@@ -7,10 +7,13 @@
 //
 
 #import "BaseTableViewController.h"
+#import "CLShareManager+ShareView.h"
 
 @interface BaseTableViewController ()<UMSocialUIDelegate>
 
 @property (nonatomic, strong) Reachability *conn;
+
+@property (nonatomic,strong) CLShareManager *manager;
 
 @end
 
@@ -94,12 +97,43 @@
     
     NSLog(@"-----------LLL");
     
-    [UMSocialSnsService presentSnsIconSheetView:self
-                                         appKey:@"5762c16e67e58e642e001208"
-                                      shareText:@"Hello Solo Ask，www.soloask.com"
-                                     shareImage:[UIImage imageNamed:@"icon.png"]
-                                shareToSnsNames:@[UMShareToFacebook,UMShareToTwitter]
-                                       delegate:self];
+     self.manager = [[CLShareManager alloc] init];
+    
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    self.manager.btnBlock = ^(NSInteger btnTag){
+      
+        if (btnTag == 0) {
+            
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToFacebook] content:@"分享文字" image:nil location:nil urlResource:nil presentedController:weakSelf completion:^(UMSocialResponseEntity *response){
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    NSLog(@"分享成功！");
+                }
+            }];
+            
+        }else if (btnTag == 1){
+            
+            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToTwitter] content:@"分享文字" image:nil location:nil urlResource:nil presentedController:weakSelf completion:^(UMSocialResponseEntity *response){
+                if (response.responseCode == UMSResponseCodeSuccess) {
+                    NSLog(@"分享成功！");
+                }
+            }];
+        }
+    };
+    
+    [self.manager show];
+    
+    
+    
+    
+    
+    
+    
+//    [UMSocialSnsService presentSnsIconSheetView:self
+//                                         appKey:@"5762c16e67e58e642e001208"
+//                                      shareText:@"Hello Solo Ask，www.soloask.com"
+//                                     shareImage:[UIImage imageNamed:@"icon.png"]
+//                                shareToSnsNames:@[UMShareToFacebook,UMShareToTwitter]
+//                                       delegate:self];
     
 }
 

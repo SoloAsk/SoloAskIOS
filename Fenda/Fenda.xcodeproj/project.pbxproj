@@ -186,6 +186,14 @@
 		82D0425D1D2E05EC008D5A56 /* Bugly.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82D0425C1D2E05EC008D5A56 /* Bugly.framework */; };
 		82D0425F1D2E59B8008D5A56 /* answer_temp.aac in Resources */ = {isa = PBXBuildFile; fileRef = 82D0425E1D2E59B8008D5A56 /* answer_temp.aac */; };
 		82D042621D2E6227008D5A56 /* luyin.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 82D042611D2E6227008D5A56 /* luyin.m4a */; };
+		82D042701D2F32C2008D5A56 /* CLShareButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D042651D2F32C2008D5A56 /* CLShareButton.m */; };
+		82D042711D2F32C2008D5A56 /* CLShareManager+ShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D042671D2F32C2008D5A56 /* CLShareManager+ShareView.m */; };
+		82D042721D2F32C2008D5A56 /* CLShareManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D042691D2F32C2008D5A56 /* CLShareManager.m */; };
+		82D042731D2F32C2008D5A56 /* share_qq@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82D0426B1D2F32C2008D5A56 /* share_qq@2x.png */; };
+		82D042741D2F32C2008D5A56 /* share_QQ空间@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82D0426C1D2F32C2008D5A56 /* share_QQ空间@2x.png */; };
+		82D042751D2F32C2008D5A56 /* share_微信@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82D0426D1D2F32C2008D5A56 /* share_微信@2x.png */; };
+		82D042761D2F32C2008D5A56 /* share_微博@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82D0426E1D2F32C2008D5A56 /* share_微博@2x.png */; };
+		82D042771D2F32C2008D5A56 /* share_朋友圈@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82D0426F1D2F32C2008D5A56 /* share_朋友圈@2x.png */; };
 		82DE0ABC1D236D8200D945D2 /* zySheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DE0ABB1D236D8200D945D2 /* zySheetPickerView.m */; };
 		82DE0ABF1D23BC3800D945D2 /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DE0ABE1D23BC3800D945D2 /* BaseNavController.m */; };
 		82DE0AC61D23C75200D945D2 /* BackBarBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DE0AC51D23C75200D945D2 /* BackBarBtnView.m */; };
@@ -540,6 +548,17 @@
 		82D0425C1D2E05EC008D5A56 /* Bugly.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bugly.framework; sourceTree = "<group>"; };
 		82D0425E1D2E59B8008D5A56 /* answer_temp.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = answer_temp.aac; sourceTree = "<group>"; };
 		82D042611D2E6227008D5A56 /* luyin.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = luyin.m4a; sourceTree = "<group>"; };
+		82D042641D2F32C2008D5A56 /* CLShareButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLShareButton.h; sourceTree = "<group>"; };
+		82D042651D2F32C2008D5A56 /* CLShareButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLShareButton.m; sourceTree = "<group>"; };
+		82D042661D2F32C2008D5A56 /* CLShareManager+ShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CLShareManager+ShareView.h"; sourceTree = "<group>"; };
+		82D042671D2F32C2008D5A56 /* CLShareManager+ShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CLShareManager+ShareView.m"; sourceTree = "<group>"; };
+		82D042681D2F32C2008D5A56 /* CLShareManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CLShareManager.h; sourceTree = "<group>"; };
+		82D042691D2F32C2008D5A56 /* CLShareManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CLShareManager.m; sourceTree = "<group>"; };
+		82D0426B1D2F32C2008D5A56 /* share_qq@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_qq@2x.png"; sourceTree = "<group>"; };
+		82D0426C1D2F32C2008D5A56 /* share_QQ空间@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_QQ空间@2x.png"; sourceTree = "<group>"; };
+		82D0426D1D2F32C2008D5A56 /* share_微信@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_微信@2x.png"; sourceTree = "<group>"; };
+		82D0426E1D2F32C2008D5A56 /* share_微博@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_微博@2x.png"; sourceTree = "<group>"; };
+		82D0426F1D2F32C2008D5A56 /* share_朋友圈@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share_朋友圈@2x.png"; sourceTree = "<group>"; };
 		82DE0ABA1D236D8200D945D2 /* zySheetPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zySheetPickerView.h; sourceTree = "<group>"; };
 		82DE0ABB1D236D8200D945D2 /* zySheetPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = zySheetPickerView.m; sourceTree = "<group>"; };
 		82DE0ABD1D23BC3800D945D2 /* BaseNavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavController.h; sourceTree = "<group>"; };
@@ -1264,6 +1283,7 @@
 		828D3C921D0E7F00003B418E /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				82D042631D2F32C2008D5A56 /* Share */,
 				82D0425C1D2E05EC008D5A56 /* Bugly.framework */,
 				820E438B1D2BA52A00F54DD4 /* Twitter */,
 				820E43831D2BA3D600F54DD4 /* Fabric.framework */,
@@ -1384,6 +1404,32 @@
 				82D0425A1D2DF0C7008D5A56 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		82D042631D2F32C2008D5A56 /* Share */ = {
+			isa = PBXGroup;
+			children = (
+				82D042641D2F32C2008D5A56 /* CLShareButton.h */,
+				82D042651D2F32C2008D5A56 /* CLShareButton.m */,
+				82D042661D2F32C2008D5A56 /* CLShareManager+ShareView.h */,
+				82D042671D2F32C2008D5A56 /* CLShareManager+ShareView.m */,
+				82D042681D2F32C2008D5A56 /* CLShareManager.h */,
+				82D042691D2F32C2008D5A56 /* CLShareManager.m */,
+				82D0426A1D2F32C2008D5A56 /* Images */,
+			);
+			path = Share;
+			sourceTree = "<group>";
+		};
+		82D0426A1D2F32C2008D5A56 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				82D0426B1D2F32C2008D5A56 /* share_qq@2x.png */,
+				82D0426C1D2F32C2008D5A56 /* share_QQ空间@2x.png */,
+				82D0426D1D2F32C2008D5A56 /* share_微信@2x.png */,
+				82D0426E1D2F32C2008D5A56 /* share_微博@2x.png */,
+				82D0426F1D2F32C2008D5A56 /* share_朋友圈@2x.png */,
+			);
+			path = Images;
 			sourceTree = "<group>";
 		};
 		82DE0AB91D236D6000D945D2 /* ZYSheetPicker */ = {
@@ -1619,13 +1665,17 @@
 				82A11F771D213966000453C0 /* MBProgressHUD.bundle in Resources */,
 				82DE0AC81D23C78A00D945D2 /* BackBarBtnView.xib in Resources */,
 				82DE0B831D26760A00D945D2 /* Localizable.strings in Resources */,
+				82D042751D2F32C2008D5A56 /* share_微信@2x.png in Resources */,
 				828D3C6A1D0E5C85003B418E /* Assets.xcassets in Resources */,
 				820E41BE1D29ED5D00F54DD4 /* AnswerVoiceController.xib in Resources */,
 				820E436D1D2B8B7800F54DD4 /* MineAskHeadView.xib in Resources */,
 				82B48F091D0FFA9D0070DA78 /* fanta_ic_playing_1.png in Resources */,
+				82D042741D2F32C2008D5A56 /* share_QQ空间@2x.png in Resources */,
 				820E43481D2B65A800F54DD4 /* MineAskCell.xib in Resources */,
+				82D042731D2F32C2008D5A56 /* share_qq@2x.png in Resources */,
 				82382A2F1D13C0070002BBC1 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				82382A0B1D1340CB0002BBC1 /* UMSnsAccountViewController.xib in Resources */,
+				82D042761D2F32C2008D5A56 /* share_微博@2x.png in Resources */,
 				820E41B51D29EBD700F54DD4 /* MineAskController.xib in Resources */,
 				820E43251D2B5EB200F54DD4 /* MineFooterView.xib in Resources */,
 				820E430E1D2B564A00F54DD4 /* AskHeaderView.xib in Resources */,
@@ -1641,6 +1691,7 @@
 				820E417D1D29E32400F54DD4 /* QuestionDetailController.xib in Resources */,
 				820E437B1D2B8C7400F54DD4 /* MineListenHeadView.xib in Resources */,
 				82382A071D1340CB0002BBC1 /* UMSCommentInputControlleriPad.xib in Resources */,
+				82D042771D2F32C2008D5A56 /* share_朋友圈@2x.png in Resources */,
 				820E41E11D29F29E00F54DD4 /* TalentCell.xib in Resources */,
 				82382A0D1D1340CB0002BBC1 /* UMSocialSDKResourcesNew.bundle in Resources */,
 			);
@@ -1683,11 +1734,13 @@
 				82023D8F1D11421200008E5A /* IQUIWindow+Hierarchy.m in Sources */,
 				82DE0AC61D23C75200D945D2 /* BackBarBtnView.m in Sources */,
 				820E41DB1D29F21E00F54DD4 /* EditView.m in Sources */,
+				82D042701D2F32C2008D5A56 /* CLShareButton.m in Sources */,
 				82382AF11D1594C10002BBC1 /* SVProgressAnimatedView.m in Sources */,
 				82A11F761D213966000453C0 /* MBProgressHUD+NJ.m in Sources */,
 				82DE0ABC1D236D8200D945D2 /* zySheetPickerView.m in Sources */,
 				82382A721D13DC030002BBC1 /* UIImage+MultiFormat.m in Sources */,
 				820E41D01D29EE7800F54DD4 /* CalculateController.m in Sources */,
+				82D042711D2F32C2008D5A56 /* CLShareManager+ShareView.m in Sources */,
 				82382A731D13DC030002BBC1 /* UIImage+WebP.m in Sources */,
 				82DFA59B1D1A5C0F00DE0351 /* MJRefreshBackStateFooter.m in Sources */,
 				82382A6B1D13DC030002BBC1 /* SDWebImageDecoder.m in Sources */,
@@ -1751,6 +1804,7 @@
 				82382AF41D1594C10002BBC1 /* SVRadialGradientLayer.m in Sources */,
 				82382A691D13DC030002BBC1 /* SDImageCache.m in Sources */,
 				820E41A91D29EAE500F54DD4 /* MineEditController.m in Sources */,
+				82D042721D2F32C2008D5A56 /* CLShareManager.m in Sources */,
 				820E41EF1D29F34A00F54DD4 /* MineListenHeadView.m in Sources */,
 				820E436A1D2B8A7600F54DD4 /* MineAskHeadView.m in Sources */,
 				82382A6E1D13DC030002BBC1 /* SDWebImageManager.m in Sources */,
