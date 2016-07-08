@@ -21,6 +21,8 @@
 "tab_name1" = "热门";
 "tab_name2" = "发现";
 "tab_name3" = "我的";
+"share_topLabel" = "分享到";
+"share_cancel" = "取消";
 
 /*-----------HOT-----------*/
 "listen_for_buy" = " 一元偷听";

@@ -122,8 +122,7 @@ static NSString *reuseIdentifier = @"TalentCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.backview.hidden = YES;
-    self.shareItem.hidden = YES;
+    [self setupUI];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"TalentCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier];
     self.talentCell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];

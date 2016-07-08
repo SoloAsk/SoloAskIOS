@@ -12,6 +12,8 @@
 "tab_name1" = "Hot";
 "tab_name2" = "Discover";
 "tab_name3" = "Me";
+"share_topLabel" = "Share";
+"share_cancel" = "Cancel";
 
 /*-----------HOT-----------*/
 "listen_for_buy" = "Overhear with $0.99";

@@ -27,8 +27,8 @@
     [self.shareBgView addSubview:self.shareView];
     
     UILabel * shareLeLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 15, ScreenWidth, 15)];
-    shareLeLabel.text = NSLocalizedString(@"分享到", nil);
-    shareLeLabel.textColor = [UIColor grayColor];
+    shareLeLabel.text = NSLocalizedString(@"share_topLabel", nil);
+    shareLeLabel.textColor = [UIColor colorWithRed:63/255.0 green:63/255.0 blue:63/255.0 alpha:1.0];
     shareLeLabel.textAlignment = NSTextAlignmentCenter;
     [self.shareView addSubview:shareLeLabel];
     
@@ -48,7 +48,7 @@
     for (int i = 0; i < shareNameArray.count; i++) {
         
         //从中间到两边排序
-        CLShareButton * shareBtn = [[CLShareButton alloc] initWithFrame:CGRectMake((ScreenWidth-shareImageArray.count*itemWidth)/2+i*(itemWidth+25), 0, itemWidth, 80)];
+        CLShareButton * shareBtn = [[CLShareButton alloc] initWithFrame:CGRectMake((ScreenWidth-shareImageArray.count*itemWidth-((shareImageArray.count-1)*45))/2+i*(itemWidth+45), 0, itemWidth, 80)];
         
 //        shareBtn.backgroundColor = [UIColor greenColor];
         
@@ -66,8 +66,8 @@
     cancelBtn.layer.cornerRadius = 6.0f;
 //    cancelBtn.layer.borderColor = [[UIColor grayColor] CGColor];
 //    cancelBtn.layer.borderWidth = 0.8f;
-    cancelBtn.tintColor = [UIColor grayColor];
-    [cancelBtn setTitle:NSLocalizedString(@"取消", nil) forState:UIControlStateNormal];
+    cancelBtn.tintColor = [UIColor colorWithRed:63/255.0 green:63/255.0 blue:63/255.0 alpha:1.0];
+    [cancelBtn setTitle:NSLocalizedString(@"share_cancel", nil) forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(hiddenShareView) forControlEvents:UIControlEventTouchUpInside];
     [self.shareView addSubview:cancelBtn];
     self.shareBgView.hidden = YES;

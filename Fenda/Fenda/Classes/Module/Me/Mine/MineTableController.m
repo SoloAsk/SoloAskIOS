@@ -143,7 +143,7 @@ static NSString *reuseIdentifier = @"mineCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.backview.hidden = YES;
+    [self setupUI];
     
 //    [self.tableView registerNib:[UINib nibWithNibName:@"MineCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier];
     

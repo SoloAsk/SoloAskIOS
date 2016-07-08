@@ -102,11 +102,11 @@
             </objects>
             <point key="canvasLocation" x="551" y="139"/>
         </scene>
-        <!--才华榜-->
+        <!--发现-->
         <scene sceneID="1dx-dT-Moe">
             <objects>
                 <navigationController id="Wjg-EA-0TH" customClass="BaseNavController" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="才华榜" image="ic_disc_tarbar_normal" selectedImage="ic_disc_tarbar_pressed" id="urV-eo-adP"/>
+                    <tabBarItem key="tabBarItem" title="发现" image="ic_disc_tarbar_normal" selectedImage="ic_disc_tarbar_pressed" id="urV-eo-adP"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="nd6-4J-Dfk">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>

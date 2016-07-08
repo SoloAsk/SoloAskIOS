@@ -16,12 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    
-    
-    
-    
+
     // Do any additional setup after loading the view.
+    [[self.tabBar.items objectAtIndex:0] setTitle:NSLocalizedString(@"tab_name1", "")];
+    [[self.tabBar.items objectAtIndex:1] setTitle:NSLocalizedString(@"tab_name2", "")];
+    [[self.tabBar.items objectAtIndex:2] setTitle:NSLocalizedString(@"tab_name3", "")];
+    
 }
 
 - (void)didReceiveMemoryWarning {
