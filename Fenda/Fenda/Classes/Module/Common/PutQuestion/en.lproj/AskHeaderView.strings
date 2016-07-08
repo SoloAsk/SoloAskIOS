@@ -1,0 +1,21 @@
+
+/* Class = "UILabel"; text = "Answered 121 question，earned $372.5"; ObjectID = "IM1-Ae-aTX"; */
+"IM1-Ae-aTX.text" = "Answered 121 question，earned $372.5";
+
+/* Class = "UILabel"; text = "Teachers of China Agricultural University, Beijing food nutrition and human health sophisticated post scientist, director of the Chinese Nutrition Society, science writer. Research interests for food nutrition and weight loss prevention."; ObjectID = "T9d-Rq-xRl"; */
+"T9d-Rq-xRl.text" = "Teachers of China Agricultural University, Beijing food nutrition and human health sophisticated post scientist, director of the Chinese Nutrition Society, science writer. Research interests for food nutrition and weight loss prevention.";
+
+/* Class = "UILabel"; text = "Public Q&A each time your answer is listened by others,you earn $0.5"; ObjectID = "XdA-Pz-wX2"; */
+"XdA-Pz-wX2.text" = "Public Q&A each time your answer is listened by others,you earn $0.5";
+
+/* Class = "UILabel"; text = "$50"; ObjectID = "YjM-th-0Un"; */
+"YjM-th-0Un.text" = "$50";
+
+/* Class = "UIButton"; normalTitle = "Finish"; ObjectID = "YkP-7e-D0l"; */
+"YkP-7e-D0l.normalTitle" = "Finish";
+
+/* Class = "UILabel"; text = "Doctor of food science"; ObjectID = "ZiJ-ir-5mP"; */
+"ZiJ-ir-5mP.text" = "Doctor of food science";
+
+/* Class = "UILabel"; text = "Yang Mi"; ObjectID = "jr7-Zh-tyi"; */
+"jr7-Zh-tyi.text" = "Yang Mi";

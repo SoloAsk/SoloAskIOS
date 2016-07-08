@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TalentCell" rowHeight="92" id="KGk-i7-Jjw" customClass="TalentCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="92"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="91.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="赵普" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="30" translatesAutoresizingMaskIntoConstraints="NO" id="GZe-6t-0oR">
+                        <rect key="frame" x="78" y="17" width="34" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.21176470588235294" green="0.21176470588235294" blue="0.21176470588235294" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="主持人、创业者，轻微强迫偶尔发泄者" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="221" translatesAutoresizingMaskIntoConstraints="NO" id="6mt-R7-zn0">
+                        <rect key="frame" x="78" y="41.5" width="221" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="前央视新闻主播，现在自主择业中。茅盾重重，危机重重；信心满满，喜悦满满" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="246" translatesAutoresizingMaskIntoConstraints="NO" id="zfo-me-NPZ">
+                        <rect key="frame" x="78" y="60.5" width="234" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="0.54503435860000005" green="0.54503435860000005" blue="0.54503435860000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="杨幂" translatesAutoresizingMaskIntoConstraints="NO" id="7sg-av-Rrt">
+                        <rect key="frame" x="16" y="21" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="C4X-Pa-qs9"/>
+                            <constraint firstAttribute="height" constant="50" id="a5p-oW-4nJ"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="GZe-6t-0oR" firstAttribute="leading" secondItem="7sg-av-Rrt" secondAttribute="trailing" constant="12" id="7PJ-MX-h7J"/>
+                    <constraint firstItem="6mt-R7-zn0" firstAttribute="leading" secondItem="7sg-av-Rrt" secondAttribute="trailing" constant="12" id="Iup-VD-ACh"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zfo-me-NPZ" secondAttribute="bottom" constant="7" id="JXN-nt-fih"/>
+                    <constraint firstItem="zfo-me-NPZ" firstAttribute="top" secondItem="6mt-R7-zn0" secondAttribute="bottom" constant="3" id="MaV-Rf-djc"/>
+                    <constraint firstItem="6mt-R7-zn0" firstAttribute="top" secondItem="GZe-6t-0oR" secondAttribute="bottom" constant="4" id="WXk-s4-zrd"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="zfo-me-NPZ" secondAttribute="bottom" constant="6" id="Y9y-Bp-5UQ"/>
+                    <constraint firstItem="zfo-me-NPZ" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="dE9-FN-MBr"/>
+                    <constraint firstItem="7sg-av-Rrt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="hml-X6-CHU"/>
+                    <constraint firstItem="7sg-av-Rrt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="lqO-mM-daL"/>
+                    <constraint firstItem="zfo-me-NPZ" firstAttribute="leading" secondItem="7sg-av-Rrt" secondAttribute="trailing" constant="12" id="n8a-fE-NiR"/>
+                    <constraint firstItem="GZe-6t-0oR" firstAttribute="top" secondItem="7sg-av-Rrt" secondAttribute="top" constant="-4" id="olT-Uk-1fw"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="Y9y-Bp-5UQ"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="userHonor" destination="6mt-R7-zn0" id="zkK-YR-HkB"/>
+                <outlet property="userIcon" destination="7sg-av-Rrt" id="Yrx-T4-xki"/>
+                <outlet property="userIntroduce" destination="zfo-me-NPZ" id="FiG-75-3tC"/>
+                <outlet property="userName" destination="GZe-6t-0oR" id="Zlc-AD-Wyi"/>
+            </connections>
+            <point key="canvasLocation" x="378" y="387"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="杨幂" width="299" height="295"/>
+    </resources>
+</document>

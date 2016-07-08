@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict/>
+	<array>
+		<dict>
+			<key>className</key>
+			<string>MinePageController</string>
+			<key>icon</key>
+			<string>Me_icon_01</string>
+			<key>title</key>
+			<string>我的主页</string>
+		</dict>
+		<dict>
+			<key>className</key>
+			<string>MineAskController</string>
+			<key>icon</key>
+			<string>Me_icon_02</string>
+			<key>title</key>
+			<string>我问</string>
+		</dict>
+		<dict>
+			<key>className</key>
+			<string>MineAnswerController</string>
+			<key>icon</key>
+			<string>Me_icon_03</string>
+			<key>title</key>
+			<string>我答</string>
+		</dict>
+		<dict>
+			<key>className</key>
+			<string>MineListenController</string>
+			<key>icon</key>
+			<string>Me_icon_04</string>
+			<key>title</key>
+			<string>我听</string>
+		</dict>
+	</array>
+	<array>
+		<dict>
+			<key>className</key>
+			<string>CalculateController</string>
+			<key>icon</key>
+			<string>Me_icon_05</string>
+			<key>title</key>
+			<string>提现</string>
+		</dict>
+		<dict>
+			<key>className</key>
+			<string>AboutController</string>
+			<key>icon</key>
+			<string>Me_icon_06</string>
+			<key>title</key>
+			<string>关于</string>
+		</dict>
+	</array>
+	<dict/>
+	<dict/>
+</array>
+</plist>

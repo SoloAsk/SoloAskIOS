@@ -1,0 +1,24 @@
+
+/* Class = "UILabel"; text = "Your PayPal Acount"; ObjectID = "2TN-8N-Ke4"; */
+"2TN-8N-Ke4.text" = "Your PayPal Acount";
+
+/* Class = "UITextField"; placeholder = "Enter again"; ObjectID = "CNO-PA-Q2y"; */
+"CNO-PA-Q2y.placeholder" = "Enter again";
+
+/* Class = "UILabel"; text = "杨幂"; ObjectID = "euN-qK-FRY"; */
+"euN-qK-FRY.text" = "杨幂";
+
+/* Class = "UILabel"; text = "Total income￥0，earned￥0"; ObjectID = "md8-gX-tNA"; */
+"md8-gX-tNA.text" = "Total income￥0，earned￥0";
+
+/* Class = "UITextField"; placeholder = "PayPal Acount(Email)"; ObjectID = "olt-VR-l1p"; */
+"olt-VR-l1p.placeholder" = "PayPal Acount(Email)";
+
+/* Class = "UILabel"; text = "50% from income belongs to you"; ObjectID = "u2v-fc-uyo"; */
+"u2v-fc-uyo.text" = "50% from income belongs to you";
+
+/* Class = "UILabel"; text = "Remember"; ObjectID = "xnU-nY-XpK"; */
+"xnU-nY-XpK.text" = "Remember";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "zKT-YN-ihK"; */
+"zKT-YN-ihK.normalTitle" = "Submit";

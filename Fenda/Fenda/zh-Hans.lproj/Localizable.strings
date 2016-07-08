@@ -1,0 +1,123 @@
+/* 
+  Localizable.strings
+  Fenda
+
+  Created by zhiwei on 16/7/1.
+  Copyright © 2016年 zhiwei. All rights reserved.
+*/
+"heard" = "人偷偷听";
+
+"It will refund to app's account if there are no answer for more than 48 hours." = "提问后，等Ta语音回答；超过48小时未回答，将按支付路径全额退款";
+
+"About these, enjoy ask me; financial investment, won the white Formica; how elegant in former wedding; the opposite sex and travel to the impulse to self management... Or give you sing goodnight ditty" = "关于这些，尽情问我；投资理财，迎娶白富美；如何优雅参加前任婚礼；和异性出差如何管理自我冲动...或者给你唱个晚安小曲";
+
+"Operations Manager DJ Google; radio; early employees; round slash youth; Counselor" = "运营经理；电台DJ；Google早期员工；周游列国的斜杠青年；心里咨询师";
+
+
+
+//=======================================================
+/*-----------全局-----------*/
+"app_name" = "Solo Ask";
+"tab_name1" = "热门";
+"tab_name2" = "发现";
+"tab_name3" = "我的";
+
+/*-----------HOT-----------*/
+"listen_for_buy" = " 一元偷听";
+"listen_for_free" = "免费听";
+"format_listerers" = "听过";
+
+/*-----------Me-----------*/
+"title_about" = "关于";
+
+
+
+"title_question_detail" = "问题详情";
+"title_ask_question" = "提问";
+"title_my_ask" = "我问";
+"title_my_answer" = "我答";
+"title_my_listen" = "我听";
+"title_login" = "登录";
+"title_answer_question" = "回答";
+"title_edit_profile" = "编辑";
+"title_withdraw" = "提现";
+
+"btn_send" = "发送";
+"btn_finish" = "完成";
+"btn_finish" = "完成";
+"btn_save" = "保存";
+"btn_cancel" = "取消";
+"btn_rerecord" = "重录";
+"btn_refuse" = "拒答";
+"btn_sure" = "确定";
+"btn_ask_question" = "提问";
+"btn_submit" = "提交";
+"btn_retry" = "重试";
+"btn_more" = "更多";
+"logout" = "注销登录";
+"btn_login" = "登录";
+"menu_title_share" = "分享";
+"menu_title_save" = "保存";
+"recording_start" = "点击开始录音，最多60s";
+"recording_stop" = "录音中，点击停止";
+"recording_play" = "录音完成，点击播放";
+"recording_playing" = "正在播放";
+
+
+
+"format_answered" = "回答 %1$d";
+"format_heard" = "听过 %1$d";
+"format_asked" = "问过 %1$d";
+//===============================================
+"format_second" = "%1$d\'\'";
+"format_write_question" = "%1$d/50";
+"format_write_describe" = "%1$d/100";
+"format_write_title" = "%1$d/18";
+"login_failed" = "登录失败";
+"login_cancel" = "登录取消";
+"btn_login_with_facebook" = "Login with Facebook";
+"user_payment_for_asking" = "向我提问需要支付";
+"user_earned" = "总收入";
+"user_payment_rules" = "收入的50%属于你";
+"user_title" = "你的头衔";
+"user_introduce" = "介绍一下你自己";
+"user_withdraw_account" = "PayPal账户";
+"remember" = "记住";
+"status_unanswered" = "待回答";
+"status_answered" = "已回答";
+"status_refunded" = "已退款";
+"status_timeout" = "已过期";
+"notice_no_question" = "你还没问过";
+"notice_no_answer" = "发现热门问题";
+"notice_no_listen" = "你还没偷听过";
+"notice_back_to_exit" = "再次点击退出";
+"sure_to_log_out" = "确定要注销登录么？";
+"rerecording_title" = "重录会丢失本次录音";
+"rerecording_message" = "确定删除并重录么？";
+"google_pay_is_unavailable" = "GooglePlay初始化失败,当前无法进行支付，请确定您所在地区支持Google Play支付或重启应用再试！";
+"hint_input_account" = "PayPal账户(邮箱)";
+"hint_input_account_again" = "再次输入";
+"hint_ask_question" = "超过48小时未回答，将退款至app账户中";
+"hint_user_title" = "运营经理；电台DJ；Google早期员工；周游列国的青年；心理咨询师";
+"hint_user_introduce" = "关于这些，尽情问我；投资理财，赢取白富美；如何优雅参加前任婚礼...或者给你唱个晚安小夜曲";
+"check_ask_question" = "公开提问回答，答案每被偷听一次，你赚$0.5";
+"login_privacy" = "我已阅读并同意用户协议";
+"launcher_slogan" = "语音问答，值得付费";
+"failed_to_load_data" = "数据拉取失败，请重试";
+"toast_withdraw_submited" = "我们已收到你的请求，会在三个工作日内处理";
+"about_payment_rules" = "收益规则";
+"about_ask_title" = "回答问题：";
+"about_ask_content" = "问题回答者可以得到悬赏的总额";
+"about_share_title" = "分享偷听：";
+"about_share_content" = "分享产生的偷听收入，回答者和提问者各获得50%";
+"about_free_title" = "限时免费：";
+"about_free_content" = "限时免费的偷听因为没有产生收益，各方均不参与分成";
+"about_platform_rules" = "平台会收取50%作为平台收益，收入进行提现操作后，您的收益平台会在3天之内打入您提供的账户";
+"detail_click_to_play" = "点击播放";
+"detail_downloading" = "正在下载";
+"" = "";
+"" = "";
+
+
+
+

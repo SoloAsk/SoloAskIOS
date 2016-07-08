@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NoQandAController">
+            <connections>
+                <outlet property="lookBtn" destination="Jff-py-3TB" id="umv-TD-bjI"/>
+                <outlet property="tipLabel" destination="jRq-8k-h2q" id="0Bq-Or-t9Q"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_empty" translatesAutoresizingMaskIntoConstraints="NO" id="fDH-9u-kLx">
+                    <rect key="frame" x="142.5" y="142.5" width="90" height="90"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="9gg-yG-O7r"/>
+                        <constraint firstAttribute="width" constant="90" id="lK4-q9-wob"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="你还没有偷听过问题哦～" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jRq-8k-h2q">
+                    <rect key="frame" x="94" y="260.5" width="187" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jff-py-3TB">
+                    <rect key="frame" x="112" y="317.5" width="150" height="45"/>
+                    <color key="backgroundColor" red="0.97254901960784312" green="0.37254901960784315" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="IIQ-e4-7xm"/>
+                        <constraint firstAttribute="height" constant="45" id="fCN-OF-nbb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="去看看热门问题">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="lookBtnClick:" destination="-1" eventType="touchUpInside" id="Onc-ji-uXY"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="Jff-py-3TB" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4If-pA-ETh"/>
+                <constraint firstItem="fDH-9u-kLx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="SWN-qb-IWV"/>
+                <constraint firstItem="jRq-8k-h2q" firstAttribute="top" secondItem="fDH-9u-kLx" secondAttribute="bottom" constant="28" id="Ys9-CL-h4K"/>
+                <constraint firstItem="Jff-py-3TB" firstAttribute="top" secondItem="jRq-8k-h2q" secondAttribute="bottom" constant="36" id="ivs-HA-X25"/>
+                <constraint firstItem="fDH-9u-kLx" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-114" id="jsQ-VV-Zbe"/>
+                <constraint firstItem="jRq-8k-h2q" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="xXa-B3-iBd"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="238" y="199"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_empty" width="272" height="272"/>
+    </resources>
+</document>

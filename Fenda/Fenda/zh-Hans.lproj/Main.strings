@@ -1,0 +1,33 @@
+
+/* Class = "UINavigationController"; title = "我的"; ObjectID = "0h6-SE-Yce"; */
+"0h6-SE-Yce.title" = "我的";
+
+/* Class = "UINavigationItem"; title = "才华榜"; ObjectID = "4sw-VS-rEf"; */
+"4sw-VS-rEf.title" = "才华榜";
+
+/* Class = "UITableViewController"; title = "热门"; ObjectID = "9e7-vX-RBo"; */
+"9e7-vX-RBo.title" = "热门";
+
+/* Class = "UINavigationItem"; title = "问题榜"; ObjectID = "IWz-uY-DY2"; */
+"IWz-uY-DY2.title" = "问题榜";
+
+/* Class = "UINavigationController"; title = "热门"; ObjectID = "Or1-Pd-sJu"; */
+"Or1-Pd-sJu.title" = "热门";
+
+/* Class = "UITableViewController"; title = "才华榜"; ObjectID = "P38-Kw-rQf"; */
+"P38-Kw-rQf.title" = "才华榜";
+
+/* Class = "UITableViewController"; title = "我的"; ObjectID = "eLQ-Po-iG1"; */
+"eLQ-Po-iG1.title" = "我的";
+
+/* Class = "UINavigationItem"; title = "我的"; ObjectID = "mvg-0L-K4i"; */
+"mvg-0L-K4i.title" = "我的";
+
+/* Class = "UITabBarItem"; title = "我的"; ObjectID = "raq-Bp-Ibg"; */
+"raq-Bp-Ibg.title" = "我的";
+
+/* Class = "UITabBarItem"; title = "才华榜"; ObjectID = "urV-eo-adP"; */
+"urV-eo-adP.title" = "才华榜";
+
+/* Class = "UITabBarItem"; title = "热门"; ObjectID = "v6D-Xq-ewi"; */
+"v6D-Xq-ewi.title" = "热门";

@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "Asking me to ask for payment"; ObjectID = "0ed-ks-SxV"; */
+"0ed-ks-SxV.text" = "Asking me to ask for payment";
+
+/* Class = "UILabel"; text = "Larry"; ObjectID = "RqT-nr-FNi"; */
+"RqT-nr-FNi.text" = "Larry";
+
+/* Class = "UIButton"; normalTitle = "$1-100"; ObjectID = "cne-WH-ySH"; */
+"cne-WH-ySH.normalTitle" = "$1-100";
+
+/* Class = "UILabel"; text = "Your honor"; ObjectID = "dbk-Yr-v9M"; */
+"dbk-Yr-v9M.text" = "Your honor";
+
+/* Class = "UILabel"; text = "Introduce yourself"; ObjectID = "fkW-0x-zQi"; */
+"fkW-0x-zQi.text" = "Introduce yourself";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "xup-ki-Gmk"; */
+"xup-ki-Gmk.normalTitle" = "Save";

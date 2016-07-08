@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="hotCell" rowHeight="174" id="KGk-i7-Jjw" customClass="HotCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="174"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="173.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="作为明星为什么会选择分答这个平台？是有给你们入驻费是有给你们入驻费吗？有多高？按什么收费？吗？有多高？按什么收费？" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="289" translatesAutoresizingMaskIntoConstraints="NO" id="Dxh-NW-cgM" userLabel="question">
+                        <rect key="frame" x="15" y="18" width="345" height="54"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="54" id="p3M-iN-dkl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" red="0.24705882352941178" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="张译" translatesAutoresizingMaskIntoConstraints="NO" id="elB-sZ-WM9">
+                        <rect key="frame" x="15" y="110" width="38" height="38"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="38" id="E1m-uv-ah4"/>
+                            <constraint firstAttribute="width" constant="38" id="dEB-km-l4Y"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1919 heard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hGC-1y-BjJ">
+                        <rect key="frame" x="304" y="123" width="62.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.97254901960784312" green="0.37254901960784315" blue="0.28235294117647058" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fanta_bubble_background_free.9" translatesAutoresizingMaskIntoConstraints="NO" id="Aw7-oR-aJa">
+                        <rect key="frame" x="53" y="107" width="185" height="45"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="185" id="2OD-9K-fzZ"/>
+                            <constraint firstAttribute="height" constant="45" id="pb0-7T-Y6r"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Listen for Free" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lwn-XX-Qnm">
+                        <rect key="frame" x="101" y="121" width="87.5" height="16"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fanta_ic_playing_3" translatesAutoresizingMaskIntoConstraints="NO" id="JB6-Rj-IGd">
+                        <rect key="frame" x="77" y="118" width="22" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="00F-7J-m31"/>
+                            <constraint firstAttribute="width" constant="22" id="uP3-L9-x2y"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="张译  |  猫奴+转业军官+电影/电视剧演员" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="217.5" translatesAutoresizingMaskIntoConstraints="NO" id="8ub-QX-Hu6" userLabel="asker">
+                        <rect key="frame" x="15" y="86" width="217.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.60784313725490191" green="0.60784313725490191" blue="0.60784313725490191" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Dxh-NW-cgM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="0h3-W0-bnR"/>
+                    <constraint firstItem="hGC-1y-BjJ" firstAttribute="centerY" secondItem="Aw7-oR-aJa" secondAttribute="centerY" constant="0.75" id="4dH-bK-bfd"/>
+                    <constraint firstItem="JB6-Rj-IGd" firstAttribute="leading" secondItem="elB-sZ-WM9" secondAttribute="trailing" constant="24" id="8LW-da-XgY"/>
+                    <constraint firstItem="Aw7-oR-aJa" firstAttribute="centerY" secondItem="elB-sZ-WM9" secondAttribute="centerY" constant="0.5" id="8Re-ui-Dh4"/>
+                    <constraint firstItem="lwn-XX-Qnm" firstAttribute="leading" secondItem="JB6-Rj-IGd" secondAttribute="trailing" constant="2" id="DNa-e2-aeE"/>
+                    <constraint firstItem="Dxh-NW-cgM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="LL4-lO-FCH"/>
+                    <constraint firstItem="JB6-Rj-IGd" firstAttribute="centerY" secondItem="Aw7-oR-aJa" secondAttribute="centerY" id="UPW-fx-9IW"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Aw7-oR-aJa" secondAttribute="bottom" constant="-1.5" id="VZA-EL-hSR"/>
+                    <constraint firstAttribute="trailing" secondItem="hGC-1y-BjJ" secondAttribute="trailing" constant="8" id="YRa-gn-h8q"/>
+                    <constraint firstItem="8ub-QX-Hu6" firstAttribute="top" secondItem="Dxh-NW-cgM" secondAttribute="bottom" constant="14" id="Yst-AJ-r2E"/>
+                    <constraint firstItem="8ub-QX-Hu6" firstAttribute="leading" secondItem="Dxh-NW-cgM" secondAttribute="leading" id="aM5-Sy-OgS"/>
+                    <constraint firstItem="lwn-XX-Qnm" firstAttribute="centerY" secondItem="Aw7-oR-aJa" secondAttribute="centerY" id="f9S-wj-qTm"/>
+                    <constraint firstAttribute="bottom" secondItem="Aw7-oR-aJa" secondAttribute="bottom" constant="22.5" id="fYp-jn-KGl"/>
+                    <constraint firstItem="elB-sZ-WM9" firstAttribute="leading" secondItem="8ub-QX-Hu6" secondAttribute="leading" id="fop-4c-phS"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Aw7-oR-aJa" secondAttribute="bottom" constant="13.5" id="lm4-mV-mfv"/>
+                    <constraint firstItem="Aw7-oR-aJa" firstAttribute="leading" secondItem="elB-sZ-WM9" secondAttribute="trailing" id="sOh-ay-hxI"/>
+                    <constraint firstAttribute="trailing" secondItem="Dxh-NW-cgM" secondAttribute="trailing" constant="15" id="skD-Th-LuU"/>
+                    <constraint firstItem="elB-sZ-WM9" firstAttribute="top" secondItem="8ub-QX-Hu6" secondAttribute="bottom" constant="9.5" id="tfo-pa-E6Y"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="VZA-EL-hSR"/>
+                        <exclude reference="fYp-jn-KGl"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="askerLabel" destination="8ub-QX-Hu6" id="Gke-t0-PKN"/>
+                <outlet property="freeLabel" destination="lwn-XX-Qnm" id="3c7-UC-nla"/>
+                <outlet property="icon" destination="elB-sZ-WM9" id="tY3-PA-q9L"/>
+                <outlet property="listenerLabel" destination="hGC-1y-BjJ" id="Wra-ek-jTE"/>
+                <outlet property="questionLabel" destination="Dxh-NW-cgM" id="sPp-xS-MMM"/>
+                <outlet property="voiceBgImage" destination="Aw7-oR-aJa" id="c6w-I5-BTd"/>
+            </connections>
+            <point key="canvasLocation" x="215.5" y="305"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="fanta_bubble_background_free.9" width="420" height="128"/>
+        <image name="fanta_ic_playing_3" width="66" height="66"/>
+        <image name="张译" width="246" height="239"/>
+    </resources>
+</document>

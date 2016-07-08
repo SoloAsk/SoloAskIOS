@@ -1,0 +1,18 @@
+
+/* Class = "UILabel"; text = "Asking me to ask for payment"; ObjectID = "0ed-ks-SxV"; */
+"0ed-ks-SxV.text" = "向我提问需要支付";
+
+/* Class = "UILabel"; text = "Larry"; ObjectID = "RqT-nr-FNi"; */
+"RqT-nr-FNi.text" = "杨幂";
+
+/* Class = "UIButton"; normalTitle = "$1-100"; ObjectID = "cne-WH-ySH"; */
+"cne-WH-ySH.normalTitle" = "$1-100";
+
+/* Class = "UILabel"; text = "Your honor"; ObjectID = "dbk-Yr-v9M"; */
+"dbk-Yr-v9M.text" = "您的头衔（18字以内）";
+
+/* Class = "UILabel"; text = "Introduce yourself"; ObjectID = "fkW-0x-zQi"; */
+"fkW-0x-zQi.text" = "介绍下自己吧（100字以内）";
+
+/* Class = "UIButton"; normalTitle = "Save"; ObjectID = "xup-ki-Gmk"; */
+"xup-ki-Gmk.normalTitle" = "保存";

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AboutController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="about" translatesAutoresizingMaskIntoConstraints="NO" id="u27-V1-zdQ">
+                    <rect key="frame" x="123" y="217" width="74" height="74"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="74" id="Qvd-eF-l9f"/>
+                        <constraint firstAttribute="height" constant="74" id="xLk-ap-SN9"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Solo Ask v1.0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KqL-cK-7ah">
+                    <rect key="frame" x="109.5" y="299" width="101" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="KqL-cK-7ah" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="326-YC-lPb"/>
+                <constraint firstItem="KqL-cK-7ah" firstAttribute="top" secondItem="u27-V1-zdQ" secondAttribute="bottom" constant="8" id="Vc2-po-e5O"/>
+                <constraint firstItem="u27-V1-zdQ" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-30" id="fRH-ig-fV6"/>
+                <constraint firstItem="u27-V1-zdQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pu2-d3-YyT"/>
+            </constraints>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+            <point key="canvasLocation" x="239" y="194"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="about" width="60" height="60"/>
+    </resources>
+</document>

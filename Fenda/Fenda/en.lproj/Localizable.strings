@@ -1,0 +1,107 @@
+/* 
+  Localizable.strings
+  Fenda
+
+  Created by zhiwei on 16/7/1.
+  Copyright © 2016年 zhiwei. All rights reserved.
+*/
+
+
+/*-----------全局-----------*/
+"app_name" = "RewardsTalk";
+"tab_name1" = "Hot";
+"tab_name2" = "Discover";
+"tab_name3" = "Me";
+
+/*-----------HOT-----------*/
+"listen_for_buy" = "Overhear with $0.99";
+"listen_for_free" = "Listen for Free";
+"format_listerers" = "heard";
+
+
+/*-----------Me-----------*/
+"title_about" = "About";
+
+
+
+"我问" = "I ask";
+"我答" = "I answer";
+"我听" = "I hear";
+"提现" = "Withdraw";
+"关于" = "About";
+"我的主页" = "Home page";
+"问题详情" = "Question Detail";
+"登录" = "Login";
+"编辑" = "Edit";
+"限时免费听" = "Listen for Free";
+"1元偷偷听" = "Overhear with $0.99";
+"提问" = "Ask Question";
+//===============================================
+
+"title_question_detail" = "Question Details";
+"title_ask_question" = "Ask Question";
+"title_my_ask" = "I ask";
+"title_my_answer" = "I answer";
+"title_my_listen" = "I hear";
+"title_login" = "Login";
+"title_answer_question" = "Answer";
+"title_edit_profile" = "Edit";
+"title_withdraw" = "Withdraw";
+"title_about" = "About";
+"btn_send" = "Send";
+"btn_finish" = "Finish";
+"btn_save" = "Save";
+"btn_cancel" = "Cancel";
+"btn_rerecord" = "Again";
+"btn_refuse" = "Refuse";
+"btn_sure" = "Yes";
+"btn_ask_question" = "Ask";
+"btn_look_around" = "Discover";
+"btn_submit" = "Submit";
+"btn_retry" = "Retry";
+"btn_more" = "More";
+"logout" = "Log out";
+"btn_login" = "Log in";
+"menu_title_share" = "share";
+"menu_title_save" = "save";
+"recording_start" = "Click to start recording, 60s limited";
+"recording_stop" = "Recording, click to stop recording";
+"recording_play" = "Finish recording, click to play";
+"recording_playing" = "Playing...";
+"second_format" = "%1$d\'\'";
+"listerers_format" = "%1$d heard";
+"price_format" = "Overhear with %1$s";
+"format_answered" = "Answered %1$d";
+"format_heard" = "Heard %1$d";
+"format_asked" = "Asked %1$d";
+"login_failed" = "Login failed";
+"login_cancel" = "Login canceled";
+"btn_login_with_facebook" = "Login with Facebook";
+"user_payment_for_asking" = "Ask me a question with";
+"user_earned" = "Total income";
+"user_payment_rules" = "50% from income belongs to you";
+"user_title" = "Your title";
+"user_introduce" = "Tell something about yourself";
+"user_withdraw_account" = "PayPal Cashout";
+"remember" = "Remember";
+"status_unanswered" = "Unanswered";
+"status_answered" = "Answered";
+"status_refunded" = "Refunded";
+"notice_no_question" = "You haven\'t ask question";
+"notice_no_answer" = "Discover the hot questions";
+"notice_no_listen" = "You haven\'t overheard yet";
+"notice_back_to_exit" = "Back again to exit";
+"sure_to_log_out" = "Sure to log out?";
+"rerecording_title" = "Re-record will delete this record";
+"rerecording_message" = "Sure to delete and rerecord?";
+"google_pay_is_unavailable" = "GooglePlay初始化失败,当前无法进行支付，请确定您所在地区支持Google Play支付或重启应用再试！";
+"hint_input_account" = "PayPal account(email)";
+"hint_input_account_again" = "Enter again";
+"hint_ask_question" = "It will refund to app\'s account if there are no answer for more than 48 hours.";
+"hint_user_title" = "Operations Manager; radio DJ; Google early employees; globe-trotting slash youth; heart Consultant";
+"hint_user_introduce" = "Of these,ask me heartily; finance and investment, marry white Formica; and how to manage themselves heterosexual travel impulse ...... or give you a good night to sing songs";
+"check_ask_question" = "Public Q&amp;A, each time your answer is listened by others, you earn $0.5";
+"login_privacy" = "I have read and agree to the user agreement.";
+"launcher_slogan" = "Vocal Q&amp;A worth to pay.";
+"failed_to_load_data" = "Failed to load data, please try again later.";
+"toast_withdraw_submited" = "We\'ve received your request, and it will be processed within 3 working days";
