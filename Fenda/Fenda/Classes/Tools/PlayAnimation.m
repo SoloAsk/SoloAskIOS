@@ -37,7 +37,7 @@ static UIImageView *playIcon;
     playIcon.animationImages = images;
     
     
-   playIcon.animationRepeatCount = 6;
+   playIcon.animationRepeatCount = 50;
     
     CGFloat eachDuration = 0.2;
     playIcon.animationDuration = eachDuration * images.count;

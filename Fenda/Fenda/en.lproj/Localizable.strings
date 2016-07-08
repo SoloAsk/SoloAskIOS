@@ -19,7 +19,7 @@
 "listen_for_buy" = "Overhear with $0.99";
 "listen_for_free" = "Listen for Free";
 "format_listerers" = "heard";
-
+"detail_click_to_play" = "Click play";
 
 /*-----------Me-----------*/
 "title_about" = "About";

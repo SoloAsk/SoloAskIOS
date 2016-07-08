@@ -53,7 +53,7 @@
 - (IBAction)answerBtn:(UIButton *)sender {
     
     if (self.btnBlock) {
-        self.btnBlock(sender.tag);
+        self.btnBlock(sender.tag,self);
     }
 }
 
@@ -62,7 +62,7 @@
 - (IBAction)askerBtn:(UIButton *)sender {
     
     if (self.btnBlock) {
-        self.btnBlock(sender.tag);
+        self.btnBlock(sender.tag,self);
     }
 }
 
@@ -70,7 +70,7 @@
 - (IBAction)voiceBtn:(UIButton *)sender {
     
     if (self.btnBlock) {
-        self.btnBlock(sender.tag);
+        self.btnBlock(sender.tag,self);
     }
     
 }

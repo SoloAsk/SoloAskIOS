@@ -28,9 +28,11 @@
 "listen_for_buy" = " 一元偷听";
 "listen_for_free" = "免费听";
 "format_listerers" = "听过";
+"detail_click_to_play" = "点击播放";
 
 /*-----------Me-----------*/
 "title_about" = "关于";
+
 
 
 
@@ -115,7 +117,7 @@
 "about_free_title" = "限时免费：";
 "about_free_content" = "限时免费的偷听因为没有产生收益，各方均不参与分成";
 "about_platform_rules" = "平台会收取50%作为平台收益，收入进行提现操作后，您的收益平台会在3天之内打入您提供的账户";
-"detail_click_to_play" = "点击播放";
+
 "detail_downloading" = "正在下载";
 "" = "";
 "" = "";

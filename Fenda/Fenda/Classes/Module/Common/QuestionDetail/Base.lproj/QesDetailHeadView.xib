@@ -138,6 +138,7 @@
                 </mask>
             </variation>
             <connections>
+                <outlet property="animationImgView" destination="fBq-B1-Ejy" id="f9O-yQ-tkh"/>
                 <outlet property="answerIcon" destination="Bgn-5U-RAV" id="3ht-8h-cvM"/>
                 <outlet property="askContentLabel" destination="9QX-a5-DOc" id="nE9-BE-liI"/>
                 <outlet property="askerIcon" destination="L52-2T-gqQ" id="qhs-Ds-O9Y"/>
@@ -146,6 +147,7 @@
                 <outlet property="minesLabel" destination="lU0-fd-oFb" id="9HU-OU-wzB"/>
                 <outlet property="priceLabel" destination="dhG-JW-RNV" id="Kui-Vs-V4q"/>
                 <outlet property="timeLabel" destination="7ge-tJ-mH1" id="xqg-Is-PhZ"/>
+                <outlet property="voiceTitle" destination="jcH-J9-oht" id="0Da-ZV-gbt"/>
             </connections>
             <point key="canvasLocation" x="570.5" y="120.5"/>
         </view>

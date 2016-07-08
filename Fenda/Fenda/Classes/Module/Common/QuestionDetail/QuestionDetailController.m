@@ -17,6 +17,7 @@
 #import "ShareBtnView.h"
 #import "AVAudioRecordTool.h"
 #import "AVAudioSession+Extension.h"
+#import "PlayAnimation.h"
 
 
 @interface QuestionDetailController ()<UMSocialUIDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver>
@@ -27,6 +28,13 @@
 
 //必须强引用才能播放
 @property (nonatomic,strong) AVAudioRecordTool *audioTool;
+
+@property (nonatomic,assign) BOOL isBuy;
+
+@property (nonatomic,strong) QesDetailHeadView *quesVC;
+
+@property (strong, nonatomic) NSTimer *recordTimer;
+
 
 @end
 
@@ -59,28 +67,38 @@ static NSString *reuseIdentifier3 = @"footerCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.isBuy = NO;
+    
     self.title = NSLocalizedString(@"问题详情", "");
 
     self.tableView.backgroundColor = TABLE_BACKGROUND_COLOR;
     
     self.audioTool = [[AVAudioRecordTool alloc] init];
     
-    
-    QesDetailHeadView *quesVC = [[QesDetailHeadView alloc] init];
-    quesVC.btnBlock = ^(NSInteger btnTag){
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    self.quesVC = [[QesDetailHeadView alloc] init];
+    self.quesVC.btnBlock = ^(NSInteger btnTag,QesDetailHeadView *detailView){
         
         NSLog(@"-----%ld",(long)btnTag);
         
         
-        if (self.userManager.isLogin) {
+        if (weakSelf.userManager.isLogin) {
             
-            [MBProgressHUD showMessage:@"请稍后"];
+            
             
             if (btnTag == 3) {//点击了语音，进行内购
+                
+                if (weakSelf.isBuy) {
+                    [weakSelf playingVoice];
+                    
+                    return ;
+                }
+                
+                [MBProgressHUD showMessage:@"请稍后"];
                 //请求可售商品
                 NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
                 SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-                request.delegate = self;
+                request.delegate = weakSelf;
                 [request start];
              
                 
@@ -88,17 +106,17 @@ static NSString *reuseIdentifier3 = @"footerCell";
             }
             
             AskTableController *apVC = [[AskTableController alloc] init];
-            [self.navigationController pushViewController:apVC animated:YES];
+            [weakSelf.navigationController pushViewController:apVC animated:YES];
         }else{
             
             LoginController *loginVC = [[LoginController alloc] init];
-            [self.navigationController pushViewController:loginVC animated:YES];
+            [weakSelf.navigationController pushViewController:loginVC animated:YES];
             
         }
         
         
     };
-    self.tableView.tableHeaderView = quesVC;
+    self.tableView.tableHeaderView = self.quesVC;
 
     [self.tableView registerNib:[UINib nibWithNibName:@"CenterCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier2];
 
@@ -146,15 +164,9 @@ static NSString *reuseIdentifier3 = @"footerCell";
                 [MBProgressHUD showError:@"购买成功"];
                 [queue finishTransaction:transacion];
                 
+                self.isBuy = YES;
                 
-                
-                //播放语音
-                NSString *path = [[NSBundle mainBundle] pathForResource:@"answer_temp.aac" ofType:nil];
-                
-                [AVAudioSession setCategory:AVAudioSessionCategoryPlayback];
-                [self.audioTool playBack:[NSURL fileURLWithPath:path]];
-                
-                
+                self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
                 
             }
                 
@@ -190,6 +202,48 @@ static NSString *reuseIdentifier3 = @"footerCell";
     }
 }
 
+-(void)playingVoice{
+    
+    
+    
+    //播放语音
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"answer_temp.aac" ofType:nil];
+    
+    [AVAudioSession setCategory:AVAudioSessionCategoryPlayback];
+    [self.audioTool playBack:[NSURL fileURLWithPath:path]];
+    
+    if ([self.audioTool isPlaying]) {
+        [self startRecordTimer];
+    }
+    
+}
+
+- (void)startRecordTimer {
+    [self.recordTimer invalidate];
+    self.recordTimer = [NSTimer timerWithTimeInterval:1.0
+                                               target:self
+                                             selector:@selector(updateRecordCurrentTime)
+                                             userInfo:nil
+                                              repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.recordTimer forMode:NSRunLoopCommonModes];
+}
+
+
+- (void)updateRecordCurrentTime {
+    
+    if (!self.audioTool.isPlaying) {
+        [self stopRecordTimer];
+        return;
+    }
+    
+    [PlayAnimation runAnimationWithCount:3 AndImageView:self.quesVC.animationImgView];
+    
+}
+
+- (void)stopRecordTimer {
+    [self.recordTimer invalidate];
+    self.recordTimer = nil;
+}
 
 #pragma mark - UM实现回调方法：
 -(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
