@@ -48,7 +48,9 @@
     for (int i = 0; i < shareNameArray.count; i++) {
         
         //从中间到两边排序
-        CLShareButton * shareBtn = [[CLShareButton alloc] initWithFrame:CGRectMake((ScreenWidth-shareImageArray.count*itemWidth)/2+i*itemWidth, 0, itemWidth, 80)];
+        CLShareButton * shareBtn = [[CLShareButton alloc] initWithFrame:CGRectMake((ScreenWidth-shareImageArray.count*itemWidth)/2+i*(itemWidth+25), 0, itemWidth, 80)];
+        
+//        shareBtn.backgroundColor = [UIColor greenColor];
         
         //从左到友排序
 //        CLShareButton * shareBtn = [[CLShareButton alloc] initWithFrame:CGRectMake(itemWidth * i, 0, itemWidth, 80)];
