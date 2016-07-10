@@ -32,8 +32,6 @@
 //语音是否已经购买
 @property (nonatomic,assign) BOOL isBuy;
 
-//购买后的点击状态（播放，停止）
-@property (nonatomic,assign) BOOL isBuyPlay;
 
 @property (nonatomic,strong) QesDetailHeadView *quesVC;
 
@@ -169,7 +167,6 @@ static NSString *reuseIdentifier3 = @"footerCell";
                 [queue finishTransaction:transacion];
                 
                 self.isBuy = YES;
-                self.isBuyPlay = YES;
                 
                 self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
                 

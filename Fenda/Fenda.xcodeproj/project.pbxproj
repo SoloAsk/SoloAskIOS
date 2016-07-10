@@ -538,6 +538,7 @@
 		82B48F121D1001A70070DA78 /* PlayAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayAnimation.m; sourceTree = "<group>"; };
 		82C0B7551D2BB965006AFBEC /* la.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = la.png; sourceTree = "<group>"; };
 		82CB52E71D2BB3DC00B3943B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		82CFF58F1D325291006BBD64 /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		82D041CE1D2BF715008D5A56 /* ShareBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareBtnView.h; sourceTree = "<group>"; };
 		82D041CF1D2BF715008D5A56 /* ShareBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareBtnView.m; sourceTree = "<group>"; };
 		82D041D11D2BF723008D5A56 /* ShareBtnView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareBtnView.xib; sourceTree = "<group>"; };
@@ -1614,6 +1615,7 @@
 				Base,
 				"zh-Hans",
 				en,
+				th,
 			);
 			mainGroup = 828D3C511D0E5C85003B418E;
 			productRefGroup = 828D3C5B1D0E5C85003B418E /* Products */;
@@ -2033,6 +2035,7 @@
 			children = (
 				82DE0B841D26760A00D945D2 /* en */,
 				82DE0B861D26761700D945D2 /* zh-Hans */,
+				82CFF58F1D325291006BBD64 /* th */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
