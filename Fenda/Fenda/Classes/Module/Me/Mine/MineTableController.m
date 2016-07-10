@@ -49,7 +49,7 @@ static NSString *reuseIdentifier = @"mineCell";
 -(void)setupUI{
     
     self.backview.hidden = YES;
-    self.shareItem.hidden = YES;
+//    self.shareItem.hidden = YES;
     
     self.title = NSLocalizedString(@"tab_name3", "");
     

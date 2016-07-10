@@ -8,6 +8,10 @@
 
 #import "BaseTableViewController.h"
 #import "CLShareManager+ShareView.h"
+#import <TwitterKit/TWTRComposer.h>
+#import <TwitterKit/TWTRSession.h>
+#import <TwitterKit/TwitterKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
 
 @interface BaseTableViewController ()<UMSocialUIDelegate>
 
@@ -104,19 +108,33 @@
       
         if (btnTag == 0) {
             
-            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToFacebook] content:@"分享文字" image:nil location:nil urlResource:nil presentedController:weakSelf completion:^(UMSocialResponseEntity *response){
-                if (response.responseCode == UMSResponseCodeSuccess) {
-                    NSLog(@"分享成功！");
-                }
-            }];
+            
+            FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+            content.contentURL = [NSURL URLWithString:@"http://developers.facebook.com"];
+            [FBSDKShareDialog showFromViewController:weakSelf
+                                         withContent:content
+                                            delegate:nil];
+        
+            
             
         }else if (btnTag == 1){
             
-            [[UMSocialDataService defaultDataService]  postSNSWithTypes:@[UMShareToTwitter] content:@"分享文字" image:nil location:nil urlResource:nil presentedController:weakSelf completion:^(UMSocialResponseEntity *response){
-                if (response.responseCode == UMSResponseCodeSuccess) {
-                    NSLog(@"分享成功！");
+            TWTRComposer *composer = [[TWTRComposer alloc] init];
+            
+            [composer setText:@"just setting up my Fabric"];
+            [composer setImage:[UIImage imageNamed:@"fabric"]];
+            
+            // Called from a UIViewController
+            [composer showFromViewController:weakSelf completion:^(TWTRComposerResult result) {
+                if (result == TWTRComposerResultCancelled) {
+                    NSLog(@"Tweet composition cancelled");
+                }
+                else {
+                    NSLog(@"Sending Tweet!");
                 }
             }];
+
+
         }
     };
     
