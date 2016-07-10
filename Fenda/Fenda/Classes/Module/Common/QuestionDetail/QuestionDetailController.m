@@ -29,7 +29,11 @@
 //必须强引用才能播放
 @property (nonatomic,strong) AVAudioRecordTool *audioTool;
 
+//语音是否已经购买
 @property (nonatomic,assign) BOOL isBuy;
+
+//购买后的点击状态（播放，停止）
+@property (nonatomic,assign) BOOL isBuyPlay;
 
 @property (nonatomic,strong) QesDetailHeadView *quesVC;
 
@@ -165,6 +169,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
                 [queue finishTransaction:transacion];
                 
                 self.isBuy = YES;
+                self.isBuyPlay = YES;
                 
                 self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
                 
@@ -205,16 +210,28 @@ static NSString *reuseIdentifier3 = @"footerCell";
 -(void)playingVoice{
     
     
+   
+        
     
-    //播放语音
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"answer_temp.aac" ofType:nil];
+        
+        if ([self.audioTool isPlaying]) {//如果正在播放就停止
+            
+            [self.audioTool stopPlay];
+            [self stopRecordTimer];
+            
+        }else{//如果停止播放，就播放
+            
+            //播放语音
+            NSString *path = [[NSBundle mainBundle] pathForResource:@"answer_temp.aac" ofType:nil];
+            
+            [AVAudioSession setCategory:AVAudioSessionCategoryPlayback];
+            [self.audioTool playBack:[NSURL fileURLWithPath:path]];
+            [self startRecordTimer];
+        }
     
-    [AVAudioSession setCategory:AVAudioSessionCategoryPlayback];
-    [self.audioTool playBack:[NSURL fileURLWithPath:path]];
     
-    if ([self.audioTool isPlaying]) {
-        [self startRecordTimer];
-    }
+    
+    
     
 }
 
@@ -231,7 +248,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
 
 - (void)updateRecordCurrentTime {
     
-    if (!self.audioTool.isPlaying) {
+    if (!self.audioTool.isPlaying) {//如果不播放了就停止动画
         [self stopRecordTimer];
         return;
     }
