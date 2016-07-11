@@ -34,7 +34,13 @@ singleton_implementation(UserManager)
         
         for (NSString *key in dataDic) {
             
-                [self saveUserDefaultsWithObject:dataDic[key] AndKey:key];
+            if ([Tools isNull:dataDic[key]]) {
+                [self saveUserDefaultsWithObject:@"" AndKey:key];
+            }else{
+                
+            [self saveUserDefaultsWithObject:dataDic[key] AndKey:key];
+                
+            }
 
         }
     }
@@ -43,79 +49,167 @@ singleton_implementation(UserManager)
 
 
 /**
+ 用户在微博的id号
+ */
+-(NSString *)userId{
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"userId"]]) {
+        return @"";
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userId"];
+}
+
+/**
  用户昵称
  */
 -(NSString *)userName{
+    
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"userName"]]) {
+        return @"无名";
+    }
     
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"userName"];
 }
 
 
 /**
- 用户在微博的id号
+ 用户头像的url
  */
--(NSString *)usid{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"usid"];
-}
-
-/**
- 用户微博头像的url
- */
--(NSString *)iconURL{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"iconURL"];
-}
-
-/**
- 用户登录状态
- */
--(BOOL)isLogin{
-    return [[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"];
+-(NSString *)userIcon{
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"userIcon"]]) {
+        return @"";
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userIcon"];
 }
 
 /**
  头衔
  */
--(NSString *)honor{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"honor"];
+-(NSString *)userhonor{
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"userhonor"]]) {
+        return @"something";
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userhonor"];
 }
 
 /**
  简介
  */
--(NSString *)introduce{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"introduce"];
+-(NSString *)userIntroduce{
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"userIntroduce"]]) {
+        return @"something";
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userIntroduce"];
 }
 
--(NSString *)price{
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"price"];
+/**
+ 提问价格
+ */
+-(NSNumber *)askPrice{
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"askPrice"]]) {
+        return @0;
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"askPrice"];
 }
 
 
--(NSString *)earning{
+/**
+ 总收入
+ */
+-(NSNumber *)earning{
     
     if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"earning"]]) {
-        return @"0";
+        return @0;
     }
     
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"earning"];
 }
 
--(NSString *)income{
+/**
+ 总收益
+ */
+-(NSNumber *)income{
     
     if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"income"]]) {
-        return @"0";
+        return @0;
     }
     
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"income"];
 }
 
+/*
+  回答问题个数
+ */
+-(NSNumber *)answerQuesNum{
+    
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"answerQuesNum"]]) {
+        return @0;
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"answerQuesNum"];
+}
+
+/*
+ 问问题的个数
+ */
+-(NSNumber *)askQuesNum{
+    
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"askQuesNum"]]) {
+        return @0;
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"askQuesNum"];
+}
+
+/*
+ 偷听过问题的个数
+ */
+-(NSNumber *)heardQuesNum{
+    
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"heardQuesNum"]]) {
+        return @0;
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"heardQuesNum"];
+}
+
+/*
+ PayPay账户
+ */
+-(NSString *)paypalAccount{
+    
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"paypalAccount"]]) {
+        return @"";
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"paypalAccount"];
+}
+
+/*
+ 登录的平台
+ */
+
+-(NSString *)loginPlaform{
+    
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"loginPlaform"]]) {
+        return @"未知平台";
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"loginPlaform"];
+}
+
+
 -(void)setIsLogin:(BOOL)isLogin{
     
-    if (isLogin == NO) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"usid"];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"iconURL"];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
-    }
+//    if (isLogin == NO) {
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"usid"];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"iconURL"];
+//        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userName"];
+//    }
     
     [self saveUserDefaultsWithBool:isLogin AndKey:@"isLogin"];
 
@@ -123,6 +217,12 @@ singleton_implementation(UserManager)
 
 
 
+/**
+ 用户登录状态
+ */
+-(BOOL)isLogin{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"];
+}
 
 
 

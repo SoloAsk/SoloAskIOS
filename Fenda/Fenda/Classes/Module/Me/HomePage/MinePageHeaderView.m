@@ -74,11 +74,11 @@
     
     if (_user) {
         
-        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:self.user.iconURL] placeholderImage:[UIImage imageNamed:@"001"]];
-        
-        self.userNameLabel.text = [Tools isNull:_user.userName] ? @"" : _user.userName;
-        
-        self.honorLabel.text = [Tools isNull:_user.honor] ? @"somthing" : _user.honor;
+//        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:self.user.iconURL] placeholderImage:[UIImage imageNamed:@"001"]];
+//        
+//        self.userNameLabel.text = [Tools isNull:_user.userName] ? @"" : _user.userName;
+//        
+//        self.honorLabel.text = [Tools isNull:_user.honor] ? @"somthing" : _user.honor;
         
 //        self.introduceLabel.text = [Tools isNull:_user.introduce] ? @"somthing" : _user.introduce;
         

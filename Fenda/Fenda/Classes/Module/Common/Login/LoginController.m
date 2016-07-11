@@ -9,9 +9,11 @@
 #import "LoginController.h"
 #import "UserManager.h"
 #import "SVProgressHUD.h"
+#import "MBProgressHUD+NJ.h"
 
 @interface LoginController ()
 @property (weak, nonatomic) IBOutlet UIButton *fbLoginBgn;
+
 
 @end
 
@@ -24,6 +26,8 @@
     if ([UserManager sharedUserManager].isLogin) {
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -55,16 +59,26 @@
 #pragma mark - FaceBook登录
 - (IBAction)facebookLoginClick:(UIButton *)sender {
     UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToFacebook];
+  
     
     snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
         
         //          获取微博用户名、uid、token等
         
+        [SVProgressHUD show];
+        
         if (response.responseCode == UMSResponseCodeSuccess) {
-            
+        
             [self setupUserManagerWithPlatform:snsPlatform];
+            
 
-        }});
+        }else{
+            
+            [SVProgressHUD dismiss];
+        }
+    
+    
+    });
     
 }
 
@@ -89,94 +103,120 @@
 //设置用户信息、跳转页面
 -(void)setupUserManagerWithPlatform:(UMSocialSnsPlatform *)snsPlatform{
     
+    
+    
     UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatform.platformName];
     
-    //保存用户信息
-    UserManager *user = [UserManager sharedUserManager];
-    NSDictionary *dic = @{
-        @"usid":snsAccount.usid,
-        @"userName":snsAccount.userName,
-        @"iconURL":snsAccount.iconURL,
-
-        };
-    [user setAttributes:dic];
-    [UserManager sharedUserManager].isLogin = YES;
     
     
     //查找User表
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
-    [bquery whereKey:@"usid" equalTo:snsAccount.usid];
+    [bquery whereKey:@"userId" equalTo:snsAccount.usid];
     //查找User表里面usid数据
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
         if (error) {
+            NSLog(@"error = %@",error);
+            
             [SVProgressHUD setMinimumDismissTimeInterval:1];
             [SVProgressHUD showErrorWithStatus:@"登录失败"];
         }
         
-        if (array.count == 0) {
+        if (array.count == 0) {//TODO:云端无此用户
+            
+            NSDictionary *dic = @{
+                                  @"userId":snsAccount.usid,
+                                  @"userName":snsAccount.userName,
+                                  @"userIcon":snsAccount.iconURL,
+                                  @"loginPlaform":snsPlatform.platformName,
+                                  @"userhonor":@"something",
+                                  @"userIntroduce":@"something",
+                                  @"askPrice":@1,
+                                  @"earning":@0,
+                                  @"income":@0,
+                                  @"answerQuesNum":@0,
+                                  @"askQuesNum":@0,
+                                  @"heardQuesNum":@0
+                                  };
             
             //保存用户信息到云端
-            BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:[Tools randomString]];
-            [bUser setObject:snsAccount.usid forKey:@"usid"];
+            BmobObject *bUser = [BmobObject objectWithClassName:@"User"];
+            [bUser setObject:snsAccount.usid forKey:@"userId"];
             [bUser setObject:snsAccount.userName forKey:@"userName"];
-            [bUser setObject:snsAccount.iconURL forKey:@"iconURL"];
+            [bUser setObject:snsAccount.iconURL forKey:@"userIcon"];
             [bUser setObject:snsPlatform.platformName forKey:@"loginPlaform"];
-            [bUser setObject:@"something" forKey:@"honor"];
-            [bUser setObject:@"something" forKey:@"introduce"];
-            [bUser setObject:@"1" forKey:@"price"];
-            [bUser setObject:@"0" forKey:@"earning"];
-            [bUser setObject:@"0" forKey:@"income"];
+            [bUser setObject:@"something" forKey:@"userhonor"];
+            [bUser setObject:@"something" forKey:@"userIntroduce"];
+            [bUser setObject:@1 forKey:@"askPrice"];
+            [bUser setObject:@0 forKey:@"earning"];
+            [bUser setObject:@0 forKey:@"income"];
+            [bUser setObject:@0 forKey:@"answerQuesNum"];
+            [bUser setObject:@0 forKey:@"askQuesNum"];
+            [bUser setObject:@0 forKey:@"heardQuesNum"];
             
             UserManager *user = [UserManager sharedUserManager];
-            
-            NSLog(@"ID------->%@",bUser.objectId);
-            NSDictionary *dic = @{
-                                  @"honor":@"something",
-                                  @"introduce":@"something",
-                                  @"price":@"1",
-                                  @"earning":@"0",
-                                  @"income":@"0"
-                                  };
+
             [user setAttributes:dic];
             
             [bUser saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                 
                 if (isSuccessful) {
+                    
                     [SVProgressHUD setMinimumDismissTimeInterval:1];
                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+                    [UserManager sharedUserManager].isLogin = YES;
                     [self.navigationController popToRootViewControllerAnimated:YES];
                 }
                 
                 if (error) {
-                   
+                    
+                    NSLog(@"error = %@",error);
+                   [UserManager sharedUserManager].isLogin = NO;
+                    
                     [SVProgressHUD setMinimumDismissTimeInterval:1];
                     [SVProgressHUD showErrorWithStatus:@"登录失败"];
                 }
             }];
             
-        }else if (array.count == 1){//说明云端已经有此用户
+        }else if (array.count == 1){//TODO:说明云端已经有此用户
             
-            BmobObject *bUser = array[0];
-            //保存用户其他信息
-            UserManager *user = [UserManager sharedUserManager];
-            NSDictionary *dic = @{
-                @"honor":[bUser objectForKey:@"honor"],
-                @"introduce":[bUser objectForKey:@"introduce"],
-                @"price":[bUser objectForKey:@"price"],
-                @"earning":[bUser objectForKey:@"earning"],
-                @"income":[bUser objectForKey:@"income"]
-                };
-            [user setAttributes:dic];
+            BmobObject *bUser2 = array[0];
             
+            NSArray *keys = @[@"userId",
+                              @"userName",
+                              @"userIcon",
+                              @"userhonor",
+                              @"userIntroduce",
+                              @"askPrice",
+                              @"earning",
+                              @"income",
+                              @"answerQuesNum",
+                              @"askQuesNum",
+                              @"heardQuesNum",
+                              @"paypalAccount",
+                              @"loginPlaform"];
+            
+            NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:10];
+            for (NSString *key in keys) {
+                
+                if ([Tools isNull:[bUser2 objectForKey:key]]) {
+                    [dic setObject:@"" forKey:key];
+                }else{
+                    
+                [dic setObject:[bUser2 objectForKey:key] forKey:key];
+                    
+                }
+            }
+            
+            [[UserManager sharedUserManager] setAttributes:dic];
+            
+            [SVProgressHUD setMinimumDismissTimeInterval:1];
+            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [UserManager sharedUserManager].isLogin = YES;
             [self.navigationController popToRootViewControllerAnimated:YES];
             
         }
-        
-        
-        
-        
-        
+ 
   
     }];
     

@@ -29,6 +29,7 @@
 
 //收入
 @property (weak, nonatomic) IBOutlet UILabel *earningLabel;
+@property (weak, nonatomic) IBOutlet UILabel *moneyDesLabel;
 
 @end
 
@@ -40,10 +41,11 @@
     
     self.userIcon.layer.cornerRadius = self.userIcon.bounds.size.width/2;
     self.userIcon.clipsToBounds = YES;
+    self.moneyDesLabel.text = NSLocalizedString(@"user_payment_rules", "");
     
     
     
-    CGSize textSize = [self.introduceLabel.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
+    CGSize textSize = [self.user.userIntroduce boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
     
     if (textSize.height > 18) {
         
@@ -82,20 +84,17 @@
     
     if (_user) {
         
-        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:self.user.iconURL] placeholderImage:[UIImage imageNamed:@"001"]];
+        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:self.user.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
         
-        self.userNameLabel.text = [Tools isNull:_user.userName] ? @"" : _user.userName;
+        self.userNameLabel.text = _user.userName;
         
-        self.honorLabel.text = [Tools isNull:_user.honor] ? @"somthing" : _user.honor;
+        self.honorLabel.text = _user.userhonor;
         
-//        self.introduceLabel.text = [Tools isNull:_user.introduce] ? @"somthing" : _user.introduce;
-        
-//        self.introduceLabel.text = @"somthingsomthisomthingsomthingsomthingsomthingsomthingsomthingsomthingsomthingsomthingsomthingsomthingsomthingsomthingsomthingsomthingsomthingngsomthingsomthing";
-        
-        
-//        self.priceLabel.text = [Tools isNull:_user.price] ? @"向我提问需要支付￥0" : [NSString stringWithFormat:@"向我提问需要支付￥%@",_user.price];
-//        
-//        self.earningLabel.text = [NSString stringWithFormat:@"总收入￥%@，总收益￥%@",_user.earning,_user.income];
+        self.introduceLabel.text = _user.userIntroduce;
+
+        self.priceLabel.text = [NSString stringWithFormat:@"%@ $%@",NSLocalizedString(@"user_payment_for_asking", ""),_user.askPrice];
+
+        self.earningLabel.text = [NSString stringWithFormat:@"%@ $%@",NSLocalizedString(@"user_earned", ""),_user.earning];
     }
 }
 

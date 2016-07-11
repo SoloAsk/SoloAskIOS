@@ -36,7 +36,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     
     UserManager *user = [UserManager sharedUserManager];
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
-    [bquery whereKey:@"askerid" equalTo:user.usid];
+    [bquery whereKey:@"askerid" equalTo:user.userId];
     //查找User表里面usid数据
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         

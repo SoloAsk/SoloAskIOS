@@ -28,7 +28,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
     //设置bmob
-    [Bmob registerWithAppKey:@"ff261e0fcfce1a4b3702fcbce00b1e26"];
+    [Bmob registerWithAppKey:@"8307cbf7bc30650a6a30ffb25be78b81"];
     
     //设置友盟
     [self setUMSDKWith:launchOptions];

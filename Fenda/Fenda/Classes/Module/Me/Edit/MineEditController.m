@@ -8,6 +8,7 @@
 
 #import "MineEditController.h"
 #import "EditView.h"
+#import "UserManager.h"
 
 @interface MineEditController ()
 
@@ -31,6 +32,11 @@
     myScrollView.scrollEnabled = YES;
     
     EditView *editView = [[EditView alloc] init];
+    editView.saveBlock = ^(){
+      
+        [self.navigationController popViewControllerAnimated:YES];
+    };
+    editView.user = [UserManager sharedUserManager];
     editView.frame = myScrollView.bounds;
     
     [myScrollView addSubview:editView];

@@ -129,6 +129,9 @@
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="saveBtnClick:" destination="ztl-5c-9K3" eventType="touchUpInside" id="iqO-RK-7m9"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
@@ -163,6 +166,9 @@
                 <outlet property="priceBtn" destination="cne-WH-ySH" id="2FD-8A-3cl"/>
                 <outlet property="saveBtn" destination="xup-ki-Gmk" id="jMX-En-X3q"/>
                 <outlet property="userIcon" destination="7BP-48-vHc" id="E49-dN-DDu"/>
+                <outlet property="yIntroduceLabel" destination="fkW-0x-zQi" id="nAn-aj-IML"/>
+                <outlet property="yPayLabel" destination="0ed-ks-SxV" id="LwF-Ml-2WE"/>
+                <outlet property="yTitleLabel" destination="dbk-Yr-v9M" id="HEp-dB-qsb"/>
             </connections>
             <point key="canvasLocation" x="528.5" y="317.5"/>
         </view>

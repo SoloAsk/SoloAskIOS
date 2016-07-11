@@ -89,6 +89,7 @@
                 <outlet property="earningLabel" destination="k9a-77-bUZ" id="1Jr-Mq-3iP"/>
                 <outlet property="honorLabel" destination="oWQ-xX-Ofk" id="ChC-1a-bUI"/>
                 <outlet property="introduceLabel" destination="CNC-bu-7JQ" id="6Rn-Js-W9g"/>
+                <outlet property="moneyDesLabel" destination="gNh-Jc-Zf6" id="hjJ-gw-uKj"/>
                 <outlet property="priceLabel" destination="A7r-P0-A01" id="3LX-pw-Cmn"/>
                 <outlet property="userIcon" destination="Oeu-Fo-ng4" id="esf-kH-uo1"/>
                 <outlet property="userNameLabel" destination="BHz-Nf-KAy" id="iQO-lR-cYl"/>

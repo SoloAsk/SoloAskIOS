@@ -169,9 +169,9 @@ static NSString *reuseIdentifier = @"TalentCell";
         
         UserModel *user = self.data[indexPath.row];
         
-        if ([user.usid isEqualToString:mUser.usid]) {
+        if ([user.usid isEqualToString:mUser.userId]) {
             
-            NSLog(@"userModelid = %@,mUserid = %@",user.usid,mUser.usid);
+//            NSLog(@"userModelid = %@,mUserid = %@",user.usid,mUser.userId);
             
    
             
