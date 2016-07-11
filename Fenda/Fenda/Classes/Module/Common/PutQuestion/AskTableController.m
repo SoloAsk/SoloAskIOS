@@ -87,14 +87,19 @@ static NSString *reuseIdentifier = @"AskTableCell";
         
         NSLog(@"写好了");
         
+//        MBProgressHUD *hud = [[MBProgressHUD alloc] init];
+//        [MBProgressHUD showMessage:@"请稍后"];
         
-        [MBProgressHUD showMessage:@"请稍后"];
+        self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+        self.hud.labelText = @"请稍后";
+        [self.hud show:YES];
+        [self.hud hide:YES afterDelay:5];
         
         //请求可售商品
-        NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
-        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-        request.delegate = self;
-        [request start];
+//        NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
+//        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
+//        request.delegate = self;
+//        [request start];
         
     };
     
@@ -129,7 +134,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
      SKPaymentTransactionStateDeferred 未决定的,不需要做处理
      */
     
-//    self.hud.label.text = [NSString stringWithFormat:@"请求到的票据个数：%ld",(unsigned long)transactions.count];
+
     
     for (SKPaymentTransaction *transacion in transactions) {
         switch (transacion.transactionState) {
