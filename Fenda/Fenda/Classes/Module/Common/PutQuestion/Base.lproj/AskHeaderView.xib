@@ -173,6 +173,7 @@
                 <outlet property="honorLabel" destination="ZiJ-ir-5mP" id="APv-03-Fth"/>
                 <outlet property="isPrivateBtn" destination="eoq-R5-7je" id="XUg-H3-ZhX"/>
                 <outlet property="stateDesc" destination="IM1-Ae-aTX" id="hNg-SP-hrj"/>
+                <outlet property="tipLabel" destination="XdA-Pz-wX2" id="v15-cx-w7H"/>
                 <outlet property="userIcon" destination="6sN-kh-1LE" id="NHW-Nr-FvG"/>
                 <outlet property="userName" destination="jr7-Zh-tyi" id="RXB-dX-AQB"/>
                 <outlet property="writeOverBtn" destination="YkP-7e-D0l" id="nnC-Hw-XLH"/>

@@ -49,6 +49,11 @@
 "hud_prompt_saveFailed" = "保存失败";
 "hud_prompt_saveSuccess" = "保存成功";
 
+/*-----------Ask Qeustion-----------*/
+"hint_ask_question" = "超过48小时未回答，将退款至app账户中";
+"footer_label_01" = "回答了 ";
+"footer_label_02" = " 个问题，收入 $";
+"check_ask_question" = "公开提问回答，答案每被偷听一次，你赚$0.5";
 
 
 
@@ -131,9 +136,9 @@
 "google_pay_is_unavailable" = "GooglePlay初始化失败,当前无法进行支付，请确定您所在地区支持Google Play支付或重启应用再试！";
 "hint_input_account" = "PayPal账户(邮箱)";
 "hint_input_account_again" = "再次输入";
-"hint_ask_question" = "超过48小时未回答，将退款至app账户中";
 
-"check_ask_question" = "公开提问回答，答案每被偷听一次，你赚$0.5";
+
+
 "login_privacy" = "我已阅读并同意用户协议";
 "launcher_slogan" = "语音问答，值得付费";
 "failed_to_load_data" = "数据拉取失败，请重试";

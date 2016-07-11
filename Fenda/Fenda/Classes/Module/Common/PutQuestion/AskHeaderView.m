@@ -50,6 +50,8 @@
 
 //底部label
 @property (weak, nonatomic) IBOutlet UILabel *footerLabel;
+//提示（公开按钮旁）
+@property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 
 @end
 
@@ -62,11 +64,16 @@
     if (_userModel) {
         
         [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_userModel.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
+        
         self.userName.text = _userModel.userName;
         self.honorLabel.text = _userModel.userTitle;
         self.DetailDescLabel.text = _userModel.userIntroduce;
+        
         NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
         self.askPrice.text = [NSString stringWithFormat:@"$%@",[fmatter stringFromNumber:_userModel.askPrice]];
+        
+        
+        self.footerLabel.text = [NSString stringWithFormat:@"%@%@%@%@",NSLocalizedString(@"footer_label_01",""),[fmatter stringFromNumber:_userModel.answerQuesNum],NSLocalizedString(@"footer_label_02",""),[fmatter stringFromNumber:_userModel.earning]];
 
     }
     
@@ -78,7 +85,9 @@
     [super awakeFromNib];
     
     
-    self.askContent.placeholder = NSLocalizedString(@"It will refund to app's account if there are no answer for more than 48 hours.", "");
+    self.askContent.placeholder = NSLocalizedString(@"hint_ask_question", "");
+    
+    self.tipLabel.text = NSLocalizedString(@"check_ask_question", "");
     
     self.userIcon.layer.cornerRadius = self.userIcon.bounds.size.width/2;
     self.userIcon.clipsToBounds = YES;
@@ -126,13 +135,7 @@
 - (IBAction)editOverClick:(UIButton *)sender {
     
     if ([Tools isNull:self.askContent.text]) {
-        
         [MBProgressHUD showError:@"提问内容不能为空"];
-        
-//        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.superview animated:YES];
-//        hud.label.text = @"提问内容不能为空";
-//        [hud hideAnimated:YES afterDelay:1.f];
-        
         return;
     }
     
@@ -154,17 +157,6 @@
     
     [self endEditing:YES];
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

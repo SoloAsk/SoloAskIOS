@@ -40,7 +40,11 @@
 "hud_prompt_saveFailed" = "Save failed";
 "hud_prompt_saveSuccess" = "Successfully saved";
 
-
+/*-----------Ask Qeustion-----------*/
+"hint_ask_question" = "It will refund to app\'s account if there are no answer for more than 48 hours.";
+"footer_label_01" = "Answered ";
+"footer_label_02" = " question，earned $";
+"check_ask_question" = "Public Q&amp;A, each time your answer is listened by others, you earn $0.5";
 
 
 
@@ -129,9 +133,7 @@
 "google_pay_is_unavailable" = "GooglePlay初始化失败,当前无法进行支付，请确定您所在地区支持Google Play支付或重启应用再试！";
 "hint_input_account" = "PayPal account(email)";
 "hint_input_account_again" = "Enter again";
-"hint_ask_question" = "It will refund to app\'s account if there are no answer for more than 48 hours.";
 
-"check_ask_question" = "Public Q&amp;A, each time your answer is listened by others, you earn $0.5";
 "login_privacy" = "I have read and agree to the user agreement.";
 "launcher_slogan" = "Vocal Q&amp;A worth to pay.";
 "failed_to_load_data" = "Failed to load data, please try again later.";

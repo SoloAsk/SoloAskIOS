@@ -71,6 +71,7 @@ static NSString *reuseIdentifier = @"TalentCell";
                                       @"earning":[bUser objectForKey:@"earning"],
                                       @"income":[bUser objectForKey:@"income"],
                                       @"loginPlatform":[bUser objectForKey:@"loginPlatform"],
+                                      @"answerQuesNum":[bUser objectForKey:@"answerQuesNum"]
                                       };
                 
                 UserModel *user = [UserModel mj_objectWithKeyValues:dic];

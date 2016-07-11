@@ -81,7 +81,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
 -(void)setupUI{
     
     AskHeaderView *askView = [[AskHeaderView alloc]init];
-    
+    askView.userModel = self.userModel;
 
     askView.editBlock = ^(NSDictionary *dic){
         
@@ -97,18 +97,10 @@ static NSString *reuseIdentifier = @"AskTableCell";
         [request start];
         
     };
-    askView.userModel = self.userModel;
-    
     
     
     self.tableView.tableHeaderView = askView;
-    
-    
-//    CGRect newFrame = askView.frame;
-//    newFrame.size.height = [askView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-//    askView.frame = newFrame;
-//    
-//    [self.tableView setTableHeaderView:askView];
+ 
 }
 
 #pragma mark - 内购代理

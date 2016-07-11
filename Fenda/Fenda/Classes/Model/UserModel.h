@@ -48,12 +48,17 @@
 /**
  总收入
  */
-@property (nonatomic, copy) NSString *earning;
+@property (nonatomic, strong) NSNumber *earning;
 
 /**
  总收益
  */
 @property (nonatomic, copy) NSString *income;
+
+/**
+ 回答问题个数
+ */
+@property (nonatomic,strong) NSNumber  *answerQuesNum;
 
 /**
  登录的平台
