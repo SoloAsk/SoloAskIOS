@@ -81,17 +81,17 @@
 - (IBAction)saveBtnClick:(UIButton *)sender {
     
     if ([Tools isNull:self.honorLabel.text]) {
-        [MBProgressHUD showError:@"头衔不能为空"];
+        [MBProgressHUD showError:NSLocalizedString(@"hud_prompt_honor", "")];
         return;
     }
     
     if ([Tools isNull:self.introduce.text]) {
-        [MBProgressHUD showError:@"介绍不能为空"];
+        [MBProgressHUD showError:NSLocalizedString(@"hud_prompt_introduce", "")];
         return;
     }
     
     if ([Tools isNull:self.saveBtn.titleLabel.text]) {
-        [MBProgressHUD showError:@"提问价格不能为空"];
+        [MBProgressHUD showError:NSLocalizedString(@"hud_prompt_askPrice", "")];
         return;
     }
     
@@ -99,7 +99,7 @@
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
     [bquery whereKey:@"userId" equalTo:_user.userId];
     
-    [MBProgressHUD showMessage:@"正在保存..."];
+    [MBProgressHUD showMessage:NSLocalizedString(@"hud_prompt_save", "")];
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
         if (error) {
@@ -120,7 +120,7 @@
             [bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                 
                 if (error) {
-                    [MBProgressHUD showSuccess:@"保存失败"];
+                    [MBProgressHUD showSuccess:NSLocalizedString(@"hud_prompt_saveFailed", "")];
                     return ;
                 }
                 
@@ -137,7 +137,7 @@
                     [localUser setAttributes:dic];
                     
                     [MBProgressHUD hideHUD];
-                    [MBProgressHUD showSuccess:@"保存成功"];
+                    [MBProgressHUD showSuccess:NSLocalizedString(@"hud_prompt_saveSuccess", "")];
                     
                     
                     if (self.saveBlock) {

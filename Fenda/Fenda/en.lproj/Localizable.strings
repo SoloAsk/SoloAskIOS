@@ -33,6 +33,12 @@
 "hint_user_title" = "Operations Manager; radio DJ; Google early employees; globe-trotting slash youth; heart Consultant";
 "hint_user_introduce" = "Of these,ask me heartily; finance and investment, marry white Formica; and how to manage themselves heterosexual travel impulse ...... or give you a good night to sing songs";
 "btn_save" = "Save";
+"hud_prompt_honor" = "Title cannot be empty";
+"hud_prompt_introduce" = "Introduction cannot be empty";
+"hud_prompt_askPrice" = "Asking price can not be empty";
+"hud_prompt_save" = "Saving...";
+"hud_prompt_saveFailed" = "Save failed";
+"hud_prompt_saveSuccess" = "Successfully saved";
 
 
 

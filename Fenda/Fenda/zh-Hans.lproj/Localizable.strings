@@ -42,6 +42,12 @@
 "hint_user_title" = "运营经理；电台DJ；Google早期员工；周游列国的青年；心理咨询师";
 "hint_user_introduce" = "关于这些，尽情问我；投资理财，赢取白富美；如何优雅参加前任婚礼...或者给你唱个晚安小夜曲";
 "btn_save" = "保存";
+"hud_prompt_honor" = "头衔不能为空";
+"hud_prompt_introduce" = "简介不能为空";
+"hud_prompt_askPrice" = "提问价格不能为空";
+"hud_prompt_save" = "正在保存...";
+"hud_prompt_saveFailed" = "保存失败";
+"hud_prompt_saveSuccess" = "保存成功";
 
 
 
