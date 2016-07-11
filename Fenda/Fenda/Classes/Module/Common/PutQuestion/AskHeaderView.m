@@ -14,6 +14,7 @@
 #import "Tools.h"
 #import "MBProgressHUD+NJ.h"
 #import "SVProgressHUD.h"
+#import "QuestionModel.h"
 
 @interface AskHeaderView()<UITextViewDelegate>
 
@@ -142,10 +143,15 @@
     
     if (self.editBlock) {
         
+        NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
+        
         NSDictionary *dic = @{
-            @"isPrivate":[NSNumber numberWithBool:self.isPrivateBtn.selected],
-            @"askContent":self.askContent.text
+            @"isPublic":[NSNumber numberWithBool:self.isPrivateBtn.selected],
+            @"quesContent":self.askContent.text,
+            @"quesPrice":[fmatter numberFromString:self.askPrice.text]
             };
+        
+        
         
         self.editBlock(dic);
     }

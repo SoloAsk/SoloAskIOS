@@ -10,50 +10,45 @@
 
 @interface QuestionModel : NSObject
 
-//存放提问者和回答者的用户信息
-@property (nonatomic,strong) NSArray *users;
+//问题id
+@property (nonatomic,copy) NSString *questionId;
 
-//提问者id
-@property (nonatomic,copy) NSString *askerid;
+//提问者（关联用户表）
+@property (nonatomic,strong) BmobObject *askUser;
 
-//回答者id
-@property (nonatomic,copy) NSString *answerid;
+//回答者	（关联用户表）
+@property (nonatomic,strong) BmobObject *answerUser;
 
-//问题内容
-@property (nonatomic,copy) NSString *askContent;
+//偷听用户
+@property (nonatomic,strong) BmobObject *hearedUser;
 
-//语音地址
-@property (nonatomic,copy) NSString *answervoiceurl;
+//提问的内容
+@property (nonatomic,copy) NSString *quesContent;
 
-//提问时间
-@property (nonatomic,copy) NSString *questionTime;
+//回答者语音地址
+@property (nonatomic,copy) NSString *quesVoiceURL;
+
+//语音长度（60s以内）
+@property (nonatomic,strong) NSNumber *voiceTime;
 
 //偷听人数
 @property (nonatomic,copy) NSString *listenerNum;
 
-//是否公开  ＝1是不公开 ＝0是公开
-@property (nonatomic,strong) NSNumber *isPrivate;
+//问题的价格（提问时的价格）
+@property (nonatomic,strong) NSNumber *quesPrice;
 
-//分成收入
-@property (nonatomic,strong) NSNumber *fenIncome;
+//回答者距离现在的时间
+@property (nonatomic,copy) NSString *answerTime;
 
-//问题的状态
-@property (nonatomic,strong) NSString *quesState;
+//问题是否是免费的
+@property (nonatomic,assign) BOOL isFree;
 
-//提问时候的价格
-@property (nonatomic,strong) NSNumber *askPrice;
+//问题是否是公开的
+@property (nonatomic,assign) BOOL isPublic;
 
-//回答者头像地址
-@property (nonatomic,copy) NSString *answerIconURL;
+//问题的状态（待回答，已回答，已过期）
+@property (nonatomic,copy) NSString *state;
 
-//回答者用户名
-@property (nonatomic,copy) NSString *answerUserName;
-
-//是限时免费听还是一元偷偷听
-@property (nonatomic,assign) Boolean *isFree;
-
-//回答者头衔
-@property (nonatomic,copy) NSString *answerHonor;
 
 
 @end

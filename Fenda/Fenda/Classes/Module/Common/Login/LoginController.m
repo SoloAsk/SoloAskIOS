@@ -124,20 +124,6 @@
         
         if (array.count == 0) {//TODO:云端无此用户
             
-            NSDictionary *dic = @{
-                                  @"userId":snsAccount.usid,
-                                  @"userName":snsAccount.userName,
-                                  @"userIcon":snsAccount.iconURL,
-                                  @"loginPlatform":snsPlatform.platformName,
-                                  @"userTitle":@"something",
-                                  @"userIntroduce":@"something",
-                                  @"askPrice":@1,
-                                  @"earning":@0,
-                                  @"income":@0,
-                                  @"answerQuesNum":@0,
-                                  @"askQuesNum":@0,
-                                  @"heardQuesNum":@0
-                                  };
             
             //保存用户信息到云端
             BmobObject *bUser = [BmobObject objectWithClassName:@"User"];
@@ -154,13 +140,33 @@
             [bUser setObject:@0 forKey:@"askQuesNum"];
             [bUser setObject:@0 forKey:@"heardQuesNum"];
             
-            UserManager *user = [UserManager sharedUserManager];
-
-            [user setAttributes:dic];
+            
             
             [bUser saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                 
                 if (isSuccessful) {
+                    NSLog(@"od = %@",bUser.objectId);
+                    
+                    NSDictionary *dic = @{
+                                          @"objectId":bUser.objectId,
+                                          @"userId":snsAccount.usid,
+                                          @"userName":snsAccount.userName,
+                                          @"userIcon":snsAccount.iconURL,
+                                          @"loginPlatform":snsPlatform.platformName,
+                                          @"userTitle":@"something",
+                                          @"userIntroduce":@"something",
+                                          @"askPrice":@1,
+                                          @"earning":@0,
+                                          @"income":@0,
+                                          @"answerQuesNum":@0,
+                                          @"askQuesNum":@0,
+                                          @"heardQuesNum":@0
+                                          };
+                    UserManager *user = [UserManager sharedUserManager];
+                    [user setAttributes:dic];
+                    
+                    
+                    
                     
                     [SVProgressHUD setMinimumDismissTimeInterval:1];
                     [SVProgressHUD showSuccessWithStatus:@"登录成功"];
@@ -182,7 +188,9 @@
             
             BmobObject *bUser2 = array[0];
             
-            NSArray *keys = @[@"userId",
+            NSArray *keys = @[
+                              @"objectId",
+                              @"userId",
                               @"userName",
                               @"userIcon",
                               @"userTitle",
@@ -207,7 +215,7 @@
                     
                 }
             }
-            
+//            NSLog(@"od = %@",[bUser2 objectForKey:@"objectId"]);
             [[UserManager sharedUserManager] setAttributes:dic];
             
             [SVProgressHUD setMinimumDismissTimeInterval:1];

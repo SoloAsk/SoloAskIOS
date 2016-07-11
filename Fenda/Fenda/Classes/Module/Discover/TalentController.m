@@ -62,6 +62,7 @@ static NSString *reuseIdentifier = @"TalentCell";
         for (BmobObject *bUser in array) {
                 
                 NSDictionary *dic = @{
+                                      @"objectId":bUser.objectId,
                                       @"userId":[bUser objectForKey:@"userId"],
                                       @"userName":[bUser objectForKey:@"userName"],
                                       @"userIcon":[bUser objectForKey:@"userIcon"],

@@ -10,6 +10,9 @@
 
 @interface UserModel : NSObject
 
+//当前用户的bmob objectid
+@property (nonatomic,copy) NSString *objectId;
+
 /**
  用户昵称
  */

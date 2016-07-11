@@ -31,6 +31,9 @@
 
 @property (nonatomic,strong) QuestionModel *questionModel;
 
+//点击finish返回的内容
+@property (nonatomic,strong) NSDictionary *askDic;
+
 @end
 
 @implementation AskTableController
@@ -85,7 +88,10 @@ static NSString *reuseIdentifier = @"AskTableCell";
 
     askView.editBlock = ^(NSDictionary *dic){
         
-        NSLog(@"写好了");
+        
+        self.askDic = dic;
+        
+//        NSLog(@"写好了");
         
 //        MBProgressHUD *hud = [[MBProgressHUD alloc] init];
 //        [MBProgressHUD showMessage:@"请稍后"];
@@ -96,16 +102,53 @@ static NSString *reuseIdentifier = @"AskTableCell";
         [self.hud hide:YES afterDelay:5];
         
         //请求可售商品
-//        NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
-//        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-//        request.delegate = self;
-//        [request start];
+        NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
+        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
+        request.delegate = self;
+        [request start];
         
     };
     
     
     self.tableView.tableHeaderView = askView;
  
+}
+
+//将问题保存到云端
+-(void)saveQuestion{
+    
+    BmobObject  *post = [BmobObject objectWithClassName:@"Question"];
+    //设置问题内容、价格、是否公开
+    [post setObject:self.askDic[@"quesContent"] forKey:@"quesContent"];
+    [post setObject:self.askDic[@"quesPrice"] forKey:@"quesPrice"];
+    [post setObject:[NSNumber numberWithBool:self.askDic[@"isPublic"]] forKey:@"isPublic"];
+    [post setObject:@"待回答" forKey:@"state"];
+    
+    
+    //设置问题关联的提问者记录
+    UserManager *localUser = [UserManager sharedUserManager];
+    BmobObject *askerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:localUser.objectId];
+    [post setObject:askerUser forKey:@"askUser"];
+    
+    //设置问题关联的回答者记录
+    BmobObject *answerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:self.userModel.objectId];
+    [post setObject:answerUser forKey:@"answerUser"];
+    
+    
+    
+    //异步保存
+    [post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            //创建成功，返回objectId，updatedAt，createdAt等信息
+            //打印objectId
+            NSLog(@"objectid :%@",post.objectId);
+        }else{
+            if (error) {
+                NSLog(@"%@",error);
+            }
+        }
+    }];
+    
 }
 
 #pragma mark - 内购代理
@@ -144,9 +187,11 @@ static NSString *reuseIdentifier = @"AskTableCell";
             case SKPaymentTransactionStatePurchased:
                 
             {
+                
+                [self saveQuestion];
+                
                 [MBProgressHUD hideHUD];
                 [MBProgressHUD showError:@"购买成功"];
-                
                 [queue finishTransaction:transacion];
             }
                 
