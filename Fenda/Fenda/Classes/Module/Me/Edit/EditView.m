@@ -10,6 +10,7 @@
 #import "zySheetPickerView.h"
 #import "IQTextView.h"
 #import "MBProgressHUD+NJ.h"
+#import "UIImageView+WebCache.h"
 
 @interface EditView()
 @property (weak, nonatomic) IBOutlet UIImageView *userIcon;
@@ -17,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *saveBtn;
 @property (weak, nonatomic) IBOutlet IQTextView *honorLabel;
 @property (weak, nonatomic) IBOutlet IQTextView *introduce;
+@property (weak, nonatomic) IBOutlet UILabel *userName;
 
 //需要国际化
 @property (weak, nonatomic) IBOutlet UILabel *yTitleLabel;
@@ -70,7 +72,10 @@
     
     _user = user;
     
-    self.honorLabel.text = _user.userhonor;
+    
+    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_user.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
+    self.userName.text = _user.userName;
+    self.honorLabel.text = _user.userTitle;
     self.introduce.text = _user.userIntroduce;
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     [self.priceBtn setTitle:[formatter stringFromNumber:_user.askPrice] forState:UIControlStateNormal];
@@ -111,7 +116,7 @@
             
             BmobObject *bUser = array[0];
             
-            [bUser setObject:self.honorLabel.text forKey:@"userhonor"];
+            [bUser setObject:self.honorLabel.text forKey:@"userTitle"];
             [bUser setObject:self.introduce.text forKey:@"userIntroduce"];
             
             NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
@@ -130,7 +135,7 @@
                     
                     UserManager *localUser = [UserManager sharedUserManager];
                     NSDictionary *dic = @{
-                                @"userhonor":self.honorLabel.text,
+                                @"userTitle":self.honorLabel.text,
                                 @"userIntroduce":self.introduce.text,
                                 @"askPrice":[formatter numberFromString:self.priceBtn.titleLabel.text]
                                           };

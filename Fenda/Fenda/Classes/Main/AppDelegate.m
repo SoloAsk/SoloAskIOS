@@ -72,7 +72,7 @@
     [UMSocialQQHandler setQQWithAppId:@"1105227706" appKey:@"HpnJJyfqUMnoMEHK" url:@"http://www.umeng.com/social"];
     
     //设置facebook应用ID及URL
-    [UMSocialFacebookHandler setFacebookAppID:@"1553518728290016" shareFacebookWithURL:@"http://www.umeng.com/social"];
+    [UMSocialFacebookHandler setFacebookAppID:@"1618281258486160" shareFacebookWithURL:@"http://www.umeng.com/social"];
     
     //默认使用iOS自带的Twitter分享framework，在iOS 6以上有效。若要使用我们提供的twitter分享需要使用此开关：
     [UMSocialTwitterHandler openTwitter];

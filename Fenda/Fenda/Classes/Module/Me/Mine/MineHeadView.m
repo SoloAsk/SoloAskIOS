@@ -88,7 +88,7 @@
         
         self.userNameLabel.text = _user.userName;
         
-        self.honorLabel.text = _user.userhonor;
+        self.honorLabel.text = _user.userTitle;
         
         self.introduceLabel.text = _user.userIntroduce;
 

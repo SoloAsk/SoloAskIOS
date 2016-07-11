@@ -28,10 +28,11 @@
     _userMoel = userMoel;
     if (_userMoel) {
         
-        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_userMoel.iconURL] placeholderImage:[UIImage imageNamed:@"001"]];
+        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_userMoel.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
         self.userName.text = _userMoel.userName;
-        self.userHonor.text = _userMoel.honor;
-        self.userIntroduce.text = _userMoel.introduce;
+        self.userHonor.text = _userMoel.userTitle;
+        self.userIntroduce.text = _userMoel.userIntroduce;
+        
     }
     
 }

@@ -62,15 +62,15 @@ static NSString *reuseIdentifier = @"TalentCell";
         for (BmobObject *bUser in array) {
                 
                 NSDictionary *dic = @{
-                                      @"usid":[bUser objectForKey:@"usid"],
+                                      @"userId":[bUser objectForKey:@"userId"],
                                       @"userName":[bUser objectForKey:@"userName"],
-                                      @"iconURL":[bUser objectForKey:@"iconURL"],
-                                      @"honor":[bUser objectForKey:@"honor"],
-                                      @"introduce":[bUser objectForKey:@"introduce"],
-                                      @"price":[bUser objectForKey:@"price"],
+                                      @"userIcon":[bUser objectForKey:@"userIcon"],
+                                      @"userTitle":[bUser objectForKey:@"userTitle"],
+                                      @"userIntroduce":[bUser objectForKey:@"userIntroduce"],
+                                      @"askPrice":[bUser objectForKey:@"askPrice"],
                                       @"earning":[bUser objectForKey:@"earning"],
                                       @"income":[bUser objectForKey:@"income"],
-                                      @"loginPlaform":[bUser objectForKey:@"loginPlaform"],
+                                      @"loginPlatform":[bUser objectForKey:@"loginPlatform"],
                                       };
                 
                 UserModel *user = [UserModel mj_objectWithKeyValues:dic];
@@ -169,7 +169,7 @@ static NSString *reuseIdentifier = @"TalentCell";
         
         UserModel *user = self.data[indexPath.row];
         
-        if ([user.usid isEqualToString:mUser.userId]) {
+        if ([user.userId isEqualToString:mUser.userId]) {
             
 //            NSLog(@"userModelid = %@,mUserid = %@",user.usid,mUser.userId);
             

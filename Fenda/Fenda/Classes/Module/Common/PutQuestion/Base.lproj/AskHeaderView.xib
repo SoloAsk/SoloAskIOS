@@ -167,7 +167,9 @@
                 <action selector="viewClick:" destination="-2" eventType="touchUpInside" id="Zum-SN-zn6"/>
                 <outlet property="DetailDescLabel" destination="T9d-Rq-xRl" id="6ig-S8-mGx"/>
                 <outlet property="askContent" destination="IxG-gu-yUX" id="i3I-gQ-Mu2"/>
+                <outlet property="askPrice" destination="YjM-th-0Un" id="4wG-4m-dvy"/>
                 <outlet property="checBtn" destination="eoq-R5-7je" id="NoT-Ep-xag"/>
+                <outlet property="footerLabel" destination="IM1-Ae-aTX" id="bF1-oj-pmn"/>
                 <outlet property="honorLabel" destination="ZiJ-ir-5mP" id="APv-03-Fth"/>
                 <outlet property="isPrivateBtn" destination="eoq-R5-7je" id="XUg-H3-ZhX"/>
                 <outlet property="stateDesc" destination="IM1-Ae-aTX" id="hNg-SP-hrj"/>

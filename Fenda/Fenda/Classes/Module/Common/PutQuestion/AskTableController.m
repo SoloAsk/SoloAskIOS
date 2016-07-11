@@ -82,10 +82,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
     
     AskHeaderView *askView = [[AskHeaderView alloc]init];
     
-//    askView.frame=CGRectMake(0, 0, 100, 800);
-    
-    
-    askView.priceLabel.text = self.userModel.price;
+
     askView.editBlock = ^(NSDictionary *dic){
         
         NSLog(@"写好了");

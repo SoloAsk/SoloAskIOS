@@ -128,8 +128,8 @@
                                   @"userId":snsAccount.usid,
                                   @"userName":snsAccount.userName,
                                   @"userIcon":snsAccount.iconURL,
-                                  @"loginPlaform":snsPlatform.platformName,
-                                  @"userhonor":@"something",
+                                  @"loginPlatform":snsPlatform.platformName,
+                                  @"userTitle":@"something",
                                   @"userIntroduce":@"something",
                                   @"askPrice":@1,
                                   @"earning":@0,
@@ -144,8 +144,8 @@
             [bUser setObject:snsAccount.usid forKey:@"userId"];
             [bUser setObject:snsAccount.userName forKey:@"userName"];
             [bUser setObject:snsAccount.iconURL forKey:@"userIcon"];
-            [bUser setObject:snsPlatform.platformName forKey:@"loginPlaform"];
-            [bUser setObject:@"something" forKey:@"userhonor"];
+            [bUser setObject:snsPlatform.platformName forKey:@"loginPlatform"];
+            [bUser setObject:@"something" forKey:@"userTitle"];
             [bUser setObject:@"something" forKey:@"userIntroduce"];
             [bUser setObject:@1 forKey:@"askPrice"];
             [bUser setObject:@0 forKey:@"earning"];
@@ -185,7 +185,7 @@
             NSArray *keys = @[@"userId",
                               @"userName",
                               @"userIcon",
-                              @"userhonor",
+                              @"userTitle",
                               @"userIntroduce",
                               @"askPrice",
                               @"earning",
@@ -194,7 +194,7 @@
                               @"askQuesNum",
                               @"heardQuesNum",
                               @"paypalAccount",
-                              @"loginPlaform"];
+                              @"loginPlatform"];
             
             NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:10];
             for (NSString *key in keys) {

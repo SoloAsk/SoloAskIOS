@@ -166,6 +166,7 @@
                 <outlet property="priceBtn" destination="cne-WH-ySH" id="2FD-8A-3cl"/>
                 <outlet property="saveBtn" destination="xup-ki-Gmk" id="jMX-En-X3q"/>
                 <outlet property="userIcon" destination="7BP-48-vHc" id="E49-dN-DDu"/>
+                <outlet property="userName" destination="RqT-nr-FNi" id="COk-Q8-gdr"/>
                 <outlet property="yIntroduceLabel" destination="fkW-0x-zQi" id="nAn-aj-IML"/>
                 <outlet property="yPayLabel" destination="0ed-ks-SxV" id="LwF-Ml-2WE"/>
                 <outlet property="yTitleLabel" destination="dbk-Yr-v9M" id="HEp-dB-qsb"/>

@@ -45,6 +45,11 @@
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *checkBtnLeading;
 
+//提问价格
+@property (weak, nonatomic) IBOutlet UILabel *askPrice;
+
+//底部label
+@property (weak, nonatomic) IBOutlet UILabel *footerLabel;
 
 @end
 
@@ -56,10 +61,12 @@
     
     if (_userModel) {
         
-//        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_userModel.iconURL] placeholderImage:[UIImage imageNamed:@"001"]];
-//        self.userName.text = _userModel.userName;
-//        self.honorLabel.text = _userModel.honor;
-//        self.DetailDescLabel.text = _userModel.introduce;
+        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_userModel.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
+        self.userName.text = _userModel.userName;
+        self.honorLabel.text = _userModel.userTitle;
+        self.DetailDescLabel.text = _userModel.userIntroduce;
+        NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
+        self.askPrice.text = [NSString stringWithFormat:@"$%@",[fmatter stringFromNumber:_userModel.askPrice]];
 
     }
     

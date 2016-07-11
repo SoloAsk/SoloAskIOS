@@ -18,12 +18,12 @@
 /**
  用户在微博的id号
  */
-@property (nonatomic, copy) NSString *usid;
+@property (nonatomic, copy) NSString *userId;
 
 /**
  用户微博头像的url
  */
-@property (nonatomic, copy) NSString *iconURL;
+@property (nonatomic, copy) NSString *userIcon;
 
 /**
  用户登录状态
@@ -33,17 +33,17 @@
 /**
  头衔
  */
-@property (nonatomic, copy) NSString *honor;
+@property (nonatomic, copy) NSString *userTitle;
 
 /**
  简介
  */
-@property (nonatomic, copy) NSString *introduce;
+@property (nonatomic, copy) NSString *userIntroduce;
 
 /**
  向我提问的价格
  */
-@property (nonatomic, copy) NSString *price;
+@property (nonatomic, strong) NSNumber *askPrice;
 
 /**
  总收入
@@ -58,6 +58,6 @@
 /**
  登录的平台
  */
-@property (nonatomic, copy) NSString *loginPlaform;
+@property (nonatomic, copy) NSString *loginPlatform;
 
 @end

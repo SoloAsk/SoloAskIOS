@@ -34,7 +34,7 @@ singleton_interface(UserManager)
 /**
  头衔
  */
-@property (nonatomic, copy) NSString *userhonor;
+@property (nonatomic, copy) NSString *userTitle;
 
 /**
  简介
@@ -80,7 +80,7 @@ singleton_interface(UserManager)
 /**
  登录的平台
  */
-@property (nonatomic, copy) NSString *loginPlaform;
+@property (nonatomic, copy) NSString *loginPlatform;
 
 /**
  用户登录状态

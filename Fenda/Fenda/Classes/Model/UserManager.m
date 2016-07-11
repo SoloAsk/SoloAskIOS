@@ -86,12 +86,12 @@ singleton_implementation(UserManager)
 /**
  头衔
  */
--(NSString *)userhonor{
-    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"userhonor"]]) {
+-(NSString *)userTitle{
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"userTitle"]]) {
         return @"something";
     }
     
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userhonor"];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"userTitle"];
 }
 
 /**
@@ -193,13 +193,13 @@ singleton_implementation(UserManager)
  登录的平台
  */
 
--(NSString *)loginPlaform{
+-(NSString *)loginPlatform{
     
-    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"loginPlaform"]]) {
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"loginPlatform"]]) {
         return @"未知平台";
     }
     
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"loginPlaform"];
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"loginPlatform"];
 }
 
 
