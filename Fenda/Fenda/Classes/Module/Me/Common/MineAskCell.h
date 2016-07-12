@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MineAskModel.h"
+#import "QuestionModel.h"
 
 @interface MineAskCell : UITableViewCell
 
-@property (nonatomic,strong) MineAskModel *mineAskModel;
+@property (nonatomic,strong) QuestionModel *quesModel;
 
 @end

@@ -117,12 +117,17 @@ static NSString *reuseIdentifier = @"AskTableCell";
 //将问题保存到云端
 -(void)saveQuestion{
     
+
+    
+    [MBProgressHUD showMessage:@"请稍后..."];
+    
     BmobObject  *post = [BmobObject objectWithClassName:@"Question"];
     //设置问题内容、价格、是否公开
     [post setObject:self.askDic[@"quesContent"] forKey:@"quesContent"];
     [post setObject:self.askDic[@"quesPrice"] forKey:@"quesPrice"];
     [post setObject:[NSNumber numberWithBool:self.askDic[@"isPublic"]] forKey:@"isPublic"];
-    [post setObject:@"待回答" forKey:@"state"];
+    [post setObject:@0 forKey:@"state"];
+    [post setObject:@0 forKey:@"listenerNum"];
     
     
     //设置问题关联的提问者记录
@@ -130,23 +135,27 @@ static NSString *reuseIdentifier = @"AskTableCell";
     BmobObject *askerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:localUser.objectId];
     [post setObject:askerUser forKey:@"askUser"];
     
-    NSLog(@"%@------%@",askerUser,localUser.objectId);
+
     
-//    //设置问题关联的回答者记录
-//    BmobObject *answerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:self.userModel.objectId];
-//    [post setObject:answerUser forKey:@"answerUser"];
+    //设置问题关联的回答者记录
+    BmobObject *answerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:self.userModel.objectId];
+    [post setObject:answerUser forKey:@"answerUser"];
     
     
     
     //异步保存
     [post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         if (isSuccessful) {
-            //创建成功，返回objectId，updatedAt，createdAt等信息
-            //打印objectId
-            NSLog(@"objectid :%@",post.objectId);
+            
+            
+            [MBProgressHUD showSuccess:@"提问成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+
+            
         }else{
             if (error) {
-                NSLog(@"%@",error);
+
+                [MBProgressHUD showError:@"提问失败"];
             }
         }
     }];

@@ -45,18 +45,16 @@
 }
 
 
--(void)setMineAskModel:(MineAskModel *)mineAskModel{
+-(void)setQuesModel:(QuestionModel *)quesModel{
     
-    _mineAskModel = mineAskModel;
+    _quesModel = quesModel;
     
-    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_mineAskModel.iconURL] placeholderImage:[UIImage imageNamed:@"001"]];
+    //价格
+    NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
+    self.askPrice.text = [fmatter stringFromNumber:_quesModel.quesPrice];
     
-    self.userName.text = _mineAskModel.userName;
-    self.askPrice.text = _mineAskModel.askPrice.description;
-    self.quesState.text = _mineAskModel.quesState;
-    self.quesContent.text = _mineAskModel.quesContent;
-    self.quesTime.text = [Tools compareCurrentTime:_mineAskModel.quesTime];
-    self.listenAndIncome.text = [NSString stringWithFormat:@"偷偷听 %@ 分成收入 ￥%@",_mineAskModel.listen,_mineAskModel.fenIncome];
+    self.quesContent.text = _quesModel.quesContent;
+    
     
 }
 
