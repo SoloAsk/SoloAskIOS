@@ -198,19 +198,6 @@ singleton_implementation(UserManager)
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"paypalAccount"];
 }
 
-/*
- 登录的平台
- */
-
--(NSString *)loginPlatform{
-    
-    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"loginPlatform"]]) {
-        return @"未知平台";
-    }
-    
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"loginPlatform"];
-}
-
 
 -(void)setIsLogin:(BOOL)isLogin{
     

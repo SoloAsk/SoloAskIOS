@@ -77,10 +77,7 @@ singleton_interface(UserManager)
 @property (nonatomic,copy) NSString *paypalAccount;
 
 
-/**
- 登录的平台
- */
-@property (nonatomic, copy) NSString *loginPlatform;
+
 
 /**
  用户登录状态

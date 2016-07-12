@@ -71,7 +71,6 @@ static NSString *reuseIdentifier = @"TalentCell";
                                       @"askPrice":[bUser objectForKey:@"askPrice"],
                                       @"earning":[bUser objectForKey:@"earning"],
                                       @"income":[bUser objectForKey:@"income"],
-                                      @"loginPlatform":[bUser objectForKey:@"loginPlatform"],
                                       @"answerQuesNum":[bUser objectForKey:@"answerQuesNum"]
                                       };
                 
