@@ -55,9 +55,12 @@
 "footer_label_02" = " 个问题，收入 $";
 "check_ask_question" = "公开提问回答，答案每被偷听一次，你赚$0.5";
 
-
-
-
+/*-----------myAsk-----------*/
+"status_unanswered" = "待回答";
+"status_answered" = "已回答";
+"status_refunded" = "已退款";
+"status_timeout" = "已过期";
+"mineAskcell_heard" = " 人偷听";
 
 
 
@@ -122,10 +125,7 @@
 
 "user_withdraw_account" = "PayPal账户";
 "remember" = "记住";
-"status_unanswered" = "待回答";
-"status_answered" = "已回答";
-"status_refunded" = "已退款";
-"status_timeout" = "已过期";
+
 "notice_no_question" = "你还没问过";
 "notice_no_answer" = "发现热门问题";
 "notice_no_listen" = "你还没偷听过";

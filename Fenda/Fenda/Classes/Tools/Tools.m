@@ -58,14 +58,14 @@
 }
 
 
-+ (NSString *) compareCurrentTime:(NSDate *)timeDate
++ (NSString *) compareCurrentTime:(NSString *)strTime
 {
-    
-//    //把字符串转为NSdate
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSS"];
-//    NSDate *timeDate = [dateFormatter dateFromString:str];
-    
+//    NSLog(@"timeDate = %@",strTime);
+    //把字符串转为NSdate
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    NSDate *timeDate = [dateFormatter dateFromString:strTime];
+    NSLog(@"timeDate = %@",timeDate);
     //得到与当前时间差
     NSTimeInterval  timeInterval = [timeDate timeIntervalSinceNow];
     timeInterval = -timeInterval;

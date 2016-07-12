@@ -83,6 +83,8 @@ static NSString *reuseIdentifier = @"AskTableCell";
 #pragma mark - 界面将要展示时要做的事情
 -(void)setupUI{
     
+    
+    
     AskHeaderView *askView = [[AskHeaderView alloc]init];
     askView.userModel = self.userModel;
 

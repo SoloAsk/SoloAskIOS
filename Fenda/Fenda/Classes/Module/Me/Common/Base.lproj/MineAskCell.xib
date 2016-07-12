@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="167.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="杨幂" translatesAutoresizingMaskIntoConstraints="NO" id="jE1-FT-dsL">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="001" translatesAutoresizingMaskIntoConstraints="NO" id="jE1-FT-dsL">
                         <rect key="frame" x="15" y="15" width="38" height="38"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="ai4-JB-pss"/>
@@ -98,6 +98,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="杨幂" width="299" height="295"/>
+        <image name="001" width="54" height="54"/>
     </resources>
 </document>

@@ -47,8 +47,11 @@
 "check_ask_question" = "Public Q&amp;A, each time your answer is listened by others, you earn $0.5";
 
 
-
-
+"status_unanswered" = "Unanswered";
+"status_answered" = "Answered";
+"status_refunded" = "Refunded";
+"status_timeout" = "Expired";
+"mineAskcell_heard" = " heard";
 
 
 
@@ -120,9 +123,7 @@
 
 "user_withdraw_account" = "PayPal Cashout";
 "remember" = "Remember";
-"status_unanswered" = "Unanswered";
-"status_answered" = "Answered";
-"status_refunded" = "Refunded";
+
 "notice_no_question" = "You haven\'t ask question";
 "notice_no_answer" = "Discover the hot questions";
 "notice_no_listen" = "You haven\'t overheard yet";

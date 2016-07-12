@@ -32,7 +32,7 @@
 @property (nonatomic,strong) NSNumber *voiceTime;
 
 //偷听人数
-@property (nonatomic,copy) NSString *listenerNum;
+@property (nonatomic,strong) NSNumber *listenerNum;
 
 //问题的价格（提问时的价格）
 @property (nonatomic,strong) NSNumber *quesPrice;
@@ -46,8 +46,11 @@
 //问题是否是公开的
 @property (nonatomic,assign) BOOL isPublic;
 
-//问题的状态（待回答，已回答，已过期）
-@property (nonatomic,copy) NSString *state;
+//问题的状态（0待回答，1已回答，2已退款，3已过期）
+@property (nonatomic,strong) NSNumber *state;
+
+//问题创建时间
+@property (nonatomic,copy) NSString *createdAt;
 
 
 

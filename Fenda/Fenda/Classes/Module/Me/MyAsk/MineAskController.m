@@ -72,11 +72,14 @@ static NSString *reuseIdentifier = @"mineAskCell";
                                   @"isFree",
                                   @"isPublic",
                                   @"state",
+                                  @"createdAt"
                                   ];
                 
                 NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:10];
                 for (int i = 0; i<keys.count; i++) {
                     if ([question objectForKey:keys[i]]) {
+                        
+                        NSLog(@"---->>>>>>>%@",[question objectForKey:keys[i]]);
                         
                         [mDic setObject:[question objectForKey:keys[i]] forKey:keys[i]];
                     }
