@@ -144,11 +144,11 @@
     if (self.editBlock) {
         
         NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
-        
+        NSString *price = [self.askPrice.text substringFromIndex:1];
         NSDictionary *dic = @{
             @"isPublic":[NSNumber numberWithBool:self.isPrivateBtn.selected],
             @"quesContent":self.askContent.text,
-            @"quesPrice":[fmatter numberFromString:self.askPrice.text]
+            @"quesPrice":[fmatter numberFromString:price]
             };
         
         

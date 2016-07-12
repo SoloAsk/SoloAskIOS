@@ -11,7 +11,6 @@
 #import <TwitterKit/TWTRComposer.h>
 #import <TwitterKit/TWTRSession.h>
 #import <TwitterKit/TwitterKit.h>
-#import <FBSDKShareKit/FBSDKShareKit.h>
 
 @interface BaseTableViewController ()<UMSocialUIDelegate>
 
@@ -109,11 +108,7 @@
         if (btnTag == 0) {
             
             
-            FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-            content.contentURL = [NSURL URLWithString:@"http://developers.facebook.com"];
-            [FBSDKShareDialog showFromViewController:weakSelf
-                                         withContent:content
-                                            delegate:nil];
+           
         
             
             

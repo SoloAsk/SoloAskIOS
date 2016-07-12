@@ -102,14 +102,38 @@ static NSString *reuseIdentifier = @"mineCell";
         __weak __typeof__(self) weakSelf = self;
         _footerView.logoutBlock = ^{
             
+//            [[UMSocialDataService defaultDataService] requestUnOauthWithType:UMShareToFacebook  completion:^(UMSocialResponseEntity *response){
+//                
+//                
+////                FBSDKLoginManager *fbManager = [[FBSDKLoginManager alloc] init];
+////                [fbManager logOut];
+//                
+//                
+//                
+//                
+//                NSLog(@"response is %@",response);
+//            }];
+            
+//            [[UMSocialDataService defaultDataService] requestUnBindToSnsWithCompletion:^(UMSocialResponseEntity *response) {
+//                 NSLog(@"response is %@",response);
+//            }];
+//            
+//            [[UMSocialDataService defaultDataService] requestUnOauthWithType:UMShareToSina  completion:^(UMSocialResponseEntity *response){
+//                NSLog(@"response is %@",response);
+//            }];
             
             
+            
+            [ShareSDK cancelAuthorize:SSDKPlatformTypeFacebook];
             weakSelf.tableView.tableHeaderView = weakSelf.loginHeaderView;
             
             //保存退出状态
             [UserManager sharedUserManager].isLogin = NO;
             [weakSelf tableView:weakSelf.tableView viewForFooterInSection:3];
             [weakSelf.tableView reloadData];
+            
+            
+            
         };
 
     }

@@ -56,62 +56,51 @@
 - (IBAction)protocal:(UIButton *)sender {
 }
 
-#pragma mark - FaceBook登录
+
+
+
+#pragma mark - FaceBook登录（shareSDK）
 - (IBAction)facebookLoginClick:(UIButton *)sender {
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToFacebook];
-  
     
-    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-        
-        //          获取微博用户名、uid、token等
-        
-        [SVProgressHUD show];
-        
-        if (response.responseCode == UMSResponseCodeSuccess) {
-        
-            [self setupUserManagerWithPlatform:snsPlatform];
-            
+    [ShareSDK getUserInfo:SSDKPlatformTypeFacebook
+           onStateChanged:^(SSDKResponseState state, SSDKUser *user, NSError *error)
+     {
+         if (state == SSDKResponseStateSuccess)
+         {
+             
+             
+             [self setupUserManagerWithUser:user];
+         }
+         
+         else
+         {
+             NSLog(@"%@",error);
+         }
+         
+     }];
+    
 
-        }else{
-            
-            [SVProgressHUD dismiss];
-        }
-    
-    
-    });
-    
 }
 
 
-#pragma mark - QQ登录
-- (IBAction)qqLoginClick:(UIButton *)sender {
- 
-    
-    UMSocialSnsPlatform *snsPlatform = [UMSocialSnsPlatformManager getSocialPlatformWithName:UMShareToQQ];
-    
-    snsPlatform.loginClickHandler(self,[UMSocialControllerService defaultControllerService],YES,^(UMSocialResponseEntity *response){
-        
-        //          获取微博用户名、uid、token等
-        
-        if (response.responseCode == UMSResponseCodeSuccess) {
 
-            [self setupUserManagerWithPlatform:snsPlatform];
-            
-        }});
-}
+
+
+
+
 
 //设置用户信息、跳转页面
--(void)setupUserManagerWithPlatform:(UMSocialSnsPlatform *)snsPlatform{
+-(void)setupUserManagerWithUser:(SSDKUser *)user{
     
     
     
-    UMSocialAccountEntity *snsAccount = [[UMSocialAccountManager socialAccountDictionary] valueForKey:snsPlatform.platformName];
+    
     
     
     
     //查找User表
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
-    [bquery whereKey:@"userId" equalTo:snsAccount.usid];
+    [bquery whereKey:@"userId" equalTo:user.uid];
     //查找User表里面usid数据
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
@@ -127,10 +116,9 @@
             
             //保存用户信息到云端
             BmobObject *bUser = [BmobObject objectWithClassName:@"User"];
-            [bUser setObject:snsAccount.usid forKey:@"userId"];
-            [bUser setObject:snsAccount.userName forKey:@"userName"];
-            [bUser setObject:snsAccount.iconURL forKey:@"userIcon"];
-            [bUser setObject:snsPlatform.platformName forKey:@"loginPlatform"];
+            [bUser setObject:user.uid forKey:@"userId"];
+            [bUser setObject:user.nickname forKey:@"userName"];
+            [bUser setObject:user.icon forKey:@"userIcon"];
             [bUser setObject:@"something" forKey:@"userTitle"];
             [bUser setObject:@"something" forKey:@"userIntroduce"];
             [bUser setObject:@1 forKey:@"askPrice"];
@@ -149,10 +137,9 @@
                     
                     NSDictionary *dic = @{
                                           @"objectId":bUser.objectId,
-                                          @"userId":snsAccount.usid,
-                                          @"userName":snsAccount.userName,
-                                          @"userIcon":snsAccount.iconURL,
-                                          @"loginPlatform":snsPlatform.platformName,
+                                          @"userId":user.uid,
+                                          @"userName":user.nickname,
+                                          @"userIcon":user.icon,
                                           @"userTitle":@"something",
                                           @"userIntroduce":@"something",
                                           @"askPrice":@1,
@@ -201,8 +188,7 @@
                               @"answerQuesNum",
                               @"askQuesNum",
                               @"heardQuesNum",
-                              @"paypalAccount",
-                              @"loginPlatform"];
+                              @"paypalAccount"];
             
             NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:10];
             for (NSString *key in keys) {

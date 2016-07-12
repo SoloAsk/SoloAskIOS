@@ -71,7 +71,7 @@
 	<key>FacebookAppID</key>
 	<string>1618281258486160</string>
 	<key>FacebookDisplayName</key>
-	<string>SoloAsk_ios</string>
+	<string>SoloAsk</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>mqqapi</string>

@@ -10,11 +10,9 @@
 #define PrefixHeader_pch
 
 #import "UMSocial.h"
-#import "UMSocialFacebookHandler.h"
-#import "UMSocialQQHandler.h"
-#import <FBSDKCoreKit/FBSDKCoreKit.h>
-#import <FBSDKLoginKit/FBSDKLoginKit.h>
 
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKConnector/ShareSDKConnector.h>
 #import <BmobSDK/Bmob.h>
 
 #import "Singleton.h"

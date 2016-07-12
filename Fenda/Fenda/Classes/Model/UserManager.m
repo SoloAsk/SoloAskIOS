@@ -48,6 +48,15 @@ singleton_implementation(UserManager)
 }
 
 
+-(NSString *)objectId{
+    if ([Tools isNull:[[NSUserDefaults standardUserDefaults] objectForKey:@"objectId"]]) {
+        return @"";
+    }
+    
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"objectId"];
+    
+}
+
 /**
  用户在微博的id号
  */

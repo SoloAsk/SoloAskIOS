@@ -42,14 +42,54 @@
     
     //腾讯bugly
      [Bugly startWithAppId:@"900037657"];
-
+    
+    
+    if ([ShareSDK hasAuthorized:SSDKPlatformTypeFacebook]) {
+        NSLog(@"9999999999999");
+    }else{
+        
+        NSLog(@"88888888888888888");
+    }
+    
+    //设置shareSDK
+    [self setShareSDK];
+    
     
     return YES;
 }
 
+#pragma mark - 设置shareSDK
+-(void)setShareSDK{
+    
+    [ShareSDK registerApp:@"13f4b70e2e691"
+          activePlatforms:@[
+                            @(SSDKPlatformTypeFacebook)
+                            ]
+                 onImport:^(SSDKPlatformType platformType) {
+                     
+                     
+                 }
+          onConfiguration:^(SSDKPlatformType platformType, NSMutableDictionary *appInfo) {
+              
+              switch (platformType)
+              {
+                  case SSDKPlatformTypeFacebook:
+                      //设置Facebook应用信息，其中authType设置为只用SSO形式授权
+                      [appInfo SSDKSetupFacebookByApiKey:@"1618281258486160"
+                                               appSecret:@"3c0d5a4dfad7ba40b6b5a35f0895bf75"
+                                                authType:SSDKAuthTypeBoth];
+                      break;
+                      
+                  default:
+                      break;
+              }
+          }];
+
+}
+
+
 #pragma mark - 设置友盟
 -(void)setUMSDKWith:(NSDictionary *)launchOptions{
-    
     
     //友盟推送
     //设置 AppKey 及 LaunchOptions
@@ -68,11 +108,11 @@
     
     [UMSocialData setAppKey:@"577b31ace0f55a8a310020f1"];
     
-    //设置手机QQ 的AppId，Appkey，和分享URL，需要#import "UMSocialQQHandler.h"
-    [UMSocialQQHandler setQQWithAppId:@"1105227706" appKey:@"HpnJJyfqUMnoMEHK" url:@"http://www.umeng.com/social"];
+    
     
     //设置facebook应用ID及URL
-    [UMSocialFacebookHandler setFacebookAppID:@"1618281258486160" shareFacebookWithURL:@"http://www.umeng.com/social"];
+//    [UMSocialFacebookHandler setFacebookAppID:@"1618281258486160" shareFacebookWithURL:@"http://www.umeng.com/social"];
+//    [UMSocialFacebookHandler setFacebookAppID:@"193834921013209" shareFacebookWithURL:@"http://www.umeng.com/social"];
     
     //默认使用iOS自带的Twitter分享framework，在iOS 6以上有效。若要使用我们提供的twitter分享需要使用此开关：
     [UMSocialTwitterHandler openTwitter];
@@ -82,16 +122,21 @@
     }
 }
 
-- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-{
-    BOOL result = [UMSocialSnsService handleOpenURL:url];
-    if (result == FALSE) {
-        //调用其他SDK，例如支付宝SDK等
-        
-        
-    }
-    return result;
-}
+
+
+
+
+
+//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+//{
+//    BOOL result = [UMSocialSnsService handleOpenURL:url];
+//    if (result == FALSE) {
+//        //调用其他SDK，例如支付宝SDK等
+//        
+//        
+//    }
+//    return result;
+//}
 
 
 #pragma mark - 设置全局样式
@@ -147,7 +192,7 @@
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {

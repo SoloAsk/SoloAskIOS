@@ -130,9 +130,11 @@ static NSString *reuseIdentifier = @"AskTableCell";
     BmobObject *askerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:localUser.objectId];
     [post setObject:askerUser forKey:@"askUser"];
     
-    //设置问题关联的回答者记录
-    BmobObject *answerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:self.userModel.objectId];
-    [post setObject:answerUser forKey:@"answerUser"];
+    NSLog(@"%@------%@",askerUser,localUser.objectId);
+    
+//    //设置问题关联的回答者记录
+//    BmobObject *answerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:self.userModel.objectId];
+//    [post setObject:answerUser forKey:@"answerUser"];
     
     
     
