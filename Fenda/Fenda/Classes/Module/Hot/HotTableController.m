@@ -217,6 +217,8 @@ static const CGFloat MJDuration = 2.0;
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
+    Question *question = self.data[indexPath.row];
+    detailVC.question = question;
     detailVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:detailVC animated:YES];
 }

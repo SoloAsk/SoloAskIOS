@@ -8,6 +8,7 @@
 
 #import "QesDetailHeadView.h"
 
+
 @interface QesDetailHeadView()
 
 //提问者头像
@@ -24,6 +25,29 @@
 @end
 
 @implementation QesDetailHeadView
+
+-(void)setQuestion:(Question *)question{
+    
+    _question = question;
+    
+    //内容
+    self.askContentLabel.text = [_question objectForKey:@"quesContent"];
+    
+    //用户名和头衔
+    BmobObject *answerUser =  [_question objectForKey:@"answerUser"];
+//    NSString *askerName = [answerUser objectForKey:@"userName"];
+//    NSString *askerTitle = [answerUser objectForKey:@"userTitle"];
+//    self.askerLabel.text = [NSString stringWithFormat:@"%@ | %@",askerName,askerTitle];
+    
+    //头像
+    [self.answerIcon sd_setImageWithURL:[NSURL URLWithString:[answerUser objectForKey:@"userIcon"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"001"]];
+    
+    
+    //偷听人数
+    NSNumberFormatter *fmatter= [[NSNumberFormatter alloc] init];
+    NSString *listenNum = [fmatter stringFromNumber:[_question objectForKey:@"listenerNum"]];
+    self.listenerNumLabel.text = [NSString stringWithFormat:@"%@%@",listenNum,NSLocalizedString(@"mineAskcell_heard", "")];
+}
 
 -(void)awakeFromNib{
     

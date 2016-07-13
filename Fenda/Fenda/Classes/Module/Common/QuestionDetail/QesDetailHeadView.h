@@ -22,4 +22,7 @@ typedef void(^BtnBlock)(NSInteger btnTag,QesDetailHeadView *detailView);
 @property (weak, nonatomic) IBOutlet UILabel *voiceTitle;
 
 
+@property (nonatomic,strong) Question *question;
+
+
 @end

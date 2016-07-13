@@ -11,4 +11,6 @@
 
 @interface QuestionDetailController : BaseTableViewController
 
+@property (nonatomic,strong) Question *question;
+
 @end

@@ -90,6 +90,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     __unsafe_unretained __typeof(self) weakSelf = self;
     self.quesVC = [[QesDetailHeadView alloc] init];
+    self.quesVC.question = self.question;
     self.quesVC.btnBlock = ^(NSInteger btnTag,QesDetailHeadView *detailView){
         
         NSLog(@"-----%ld",(long)btnTag);
@@ -323,6 +324,9 @@ static NSString *reuseIdentifier3 = @"footerCell";
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    
+    
     
     CGSize size;
     
