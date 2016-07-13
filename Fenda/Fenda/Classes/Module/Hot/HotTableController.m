@@ -120,6 +120,7 @@ static const CGFloat MJDuration = 2.0;
        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
+            [self.data removeAllObjects];
             [weakSelf loadData];
             // 刷新表格
             [self.tableView reloadData];

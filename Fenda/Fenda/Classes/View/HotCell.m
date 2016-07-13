@@ -71,6 +71,22 @@
     NSString *listenNum = [fmatter stringFromNumber:[_question objectForKey:@"listenerNum"]];
     self.listenerLabel.text = [NSString stringWithFormat:@"%@%@",listenNum,NSLocalizedString(@"mineAskcell_heard", "")];
     
+    //语音
+    
+    if ([[_question objectForKey:@"isFree"] boolValue]) {
+        
+        self.freeLabel.text = NSLocalizedString(@"listen_for_free", "");
+        self.voiceBgImage.image = [UIImage imageNamed:@"fanta_bubble_background_free.9"];
+        
+//        self.listenerLabel.hidden = NO;
+        
+    }else{
+        
+        self.freeLabel.text = NSLocalizedString(@"listen_for_buy", "");
+        self.voiceBgImage.image = [UIImage imageNamed:@"fanta_bubble_background.9"];
+//        self.listenerLabel.hidden = YES;
+    }
+    
     
 }
 
