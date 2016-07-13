@@ -51,6 +51,11 @@
 "status_timeout" = "Expired";
 "mineAskcell_heard" = " heard";
 "format_asked" = "Asked ";
+"format_answered" = "Answered ";
+"format_heard" = "Heard ";
+
+
+
 
 
 
@@ -113,8 +118,7 @@
 "second_format" = "%1$d\'\'";
 "listerers_format" = "%1$d heard";
 "price_format" = "Overhear with %1$s";
-"format_answered" = "Answered %1$d";
-"format_heard" = "Heard %1$d";
+
 
 "login_failed" = "Login failed";
 "login_cancel" = "Login canceled";

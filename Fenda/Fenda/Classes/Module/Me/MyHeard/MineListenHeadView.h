@@ -10,4 +10,6 @@
 
 @interface MineListenHeadView : UIView
 
+@property (nonatomic,assign) NSInteger askCount;
+
 @end

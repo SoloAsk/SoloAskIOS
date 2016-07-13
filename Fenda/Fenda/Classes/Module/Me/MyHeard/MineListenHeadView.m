@@ -8,7 +8,19 @@
 
 #import "MineListenHeadView.h"
 
+@interface MineListenHeadView()
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+
+@end
+
 @implementation MineListenHeadView
+
+-(void)setAskCount:(NSInteger)askCount{
+    
+    _askCount = askCount;
+    
+    self.countLabel.text = [NSString stringWithFormat:@"%@%ld",NSLocalizedString(@"format_heard", ""),(long)_askCount];
+}
 
 - (instancetype)init
 {

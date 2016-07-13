@@ -10,36 +10,36 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MineListenCell" rowHeight="142" id="KGk-i7-Jjw" customClass="MineListenCell">
             <rect key="frame" x="0.0" y="0.0" width="320" height="142"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="141.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="杨幂" translatesAutoresizingMaskIntoConstraints="NO" id="1T0-44-HSc">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="杨幂" translatesAutoresizingMaskIntoConstraints="NO" id="1T0-44-HSc">
                         <rect key="frame" x="15" y="84" width="38" height="38"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="38" id="2ue-dh-RPm"/>
                             <constraint firstAttribute="height" constant="38" id="wN7-dG-Y3w"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Founder of Aima Mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="78" translatesAutoresizingMaskIntoConstraints="NO" id="TGH-Hw-uOv">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Founder of Aima Mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="78" translatesAutoresizingMaskIntoConstraints="NO" id="TGH-Hw-uOv">
                         <rect key="frame" x="127" y="86" width="118" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.54503435860000005" green="0.54503435860000005" blue="0.54503435860000005" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10 hour ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="37.5" translatesAutoresizingMaskIntoConstraints="NO" id="whk-Hv-rVt">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="10 hour ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="37.5" translatesAutoresizingMaskIntoConstraints="NO" id="whk-Hv-rVt">
                         <rect key="frame" x="63" y="106" width="71.5" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.54503435860000005" green="0.54503435860000005" blue="0.54503435860000005" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yang Mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="60" translatesAutoresizingMaskIntoConstraints="NO" id="LMM-Ml-1fi">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Yang Mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="60" translatesAutoresizingMaskIntoConstraints="NO" id="LMM-Ml-1fi">
                         <rect key="frame" x="63" y="84" width="54.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.27058823529411763" green="0.27058823529411763" blue="0.27058823529411763" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="296" translatesAutoresizingMaskIntoConstraints="NO" id="nEJ-B2-BDr">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="296" translatesAutoresizingMaskIntoConstraints="NO" id="nEJ-B2-BDr">
                         <rect key="frame" x="15" y="15" width="290" height="54"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="lessThanOrEqual" constant="54" id="uFv-Yi-FGD"/>
@@ -49,7 +49,7 @@
                         <color key="textColor" red="0.24705882352941178" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="66 heard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="55.5" translatesAutoresizingMaskIntoConstraints="NO" id="XPE-BI-D2G">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="66 heard" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="55.5" translatesAutoresizingMaskIntoConstraints="NO" id="XPE-BI-D2G">
                         <rect key="frame" x="250" y="106" width="55" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
@@ -83,7 +83,12 @@
                 </variation>
             </tableViewCellContentView>
             <connections>
-                <outlet property="userIcon" destination="1T0-44-HSc" id="V62-cj-7S6"/>
+                <outlet property="listenNum" destination="XPE-BI-D2G" id="grE-YZ-Y8s"/>
+                <outlet property="quesContent" destination="nEJ-B2-BDr" id="S67-qT-Oii"/>
+                <outlet property="quesTime" destination="whk-Hv-rVt" id="npd-wT-woh"/>
+                <outlet property="userHonor" destination="TGH-Hw-uOv" id="Tr9-Od-biT"/>
+                <outlet property="userIcon" destination="1T0-44-HSc" id="IDX-nN-Z9L"/>
+                <outlet property="userName" destination="LMM-Ml-1fi" id="wme-fb-G9H"/>
             </connections>
             <point key="canvasLocation" x="343" y="283"/>
         </tableViewCell>

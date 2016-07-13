@@ -8,8 +8,26 @@
 
 #import "MineListenCell.h"
 
+
 @interface MineListenCell()
+
+//头像
 @property (weak, nonatomic) IBOutlet UIImageView *userIcon;
+
+//内容
+@property (weak, nonatomic) IBOutlet UILabel *quesContent;
+
+//用户名
+@property (weak, nonatomic) IBOutlet UILabel *userName;
+
+//头衔
+@property (weak, nonatomic) IBOutlet UILabel *userHonor;
+
+//据现在时间
+@property (weak, nonatomic) IBOutlet UILabel *quesTime;
+
+//偷听人数
+@property (weak, nonatomic) IBOutlet UILabel *listenNum;
 
 @end
 
@@ -21,10 +39,14 @@
     self.userIcon.clipsToBounds = YES;
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)setQuestion:(Question *)question{
+    
+    _question = question;
+    
+    
+//    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_question.answerUser.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
+    
+    
 }
 
 @end

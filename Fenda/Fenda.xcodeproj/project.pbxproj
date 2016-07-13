@@ -237,6 +237,7 @@
 		82F425C21D36035200B8F2E0 /* MCSimpleAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425BB1D36035200B8F2E0 /* MCSimpleAudioPlayer.m */; };
 		82F426001D3612C500B8F2E0 /* b3013af6ec.aac in Resources */ = {isa = PBXBuildFile; fileRef = 82F425FF1D3612C500B8F2E0 /* b3013af6ec.aac */; };
 		82F426031D362CE300B8F2E0 /* Question.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F426021D362CE300B8F2E0 /* Question.m */; };
+		82F426061D36805B00B8F2E0 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F426051D36805B00B8F2E0 /* User.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -379,8 +380,6 @@
 		820E436E1D2B8B7800F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MineAskHeadView.xib; sourceTree = "<group>"; };
 		820E43751D2B8B9900F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MinAnswerHeadView.xib; sourceTree = "<group>"; };
 		820E437C1D2B8C7400F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MineListenHeadView.xib; sourceTree = "<group>"; };
-		820E437F1D2B8C7600F54DD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MineListenHeadView.strings"; sourceTree = "<group>"; };
-		820E43811D2B8C7700F54DD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MineListenHeadView.strings; sourceTree = "<group>"; };
 		820E43831D2BA3D600F54DD4 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		820E43851D2BA3D600F54DD4 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
 		820E438C1D2BA52A00F54DD4 /* libSocialTwitter.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialTwitter.a; sourceTree = "<group>"; };
@@ -646,6 +645,8 @@
 		82F425FF1D3612C500B8F2E0 /* b3013af6ec.aac */ = {isa = PBXFileReference; lastKnownFileType = file; path = b3013af6ec.aac; sourceTree = "<group>"; };
 		82F426011D362CE300B8F2E0 /* Question.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Question.h; sourceTree = "<group>"; };
 		82F426021D362CE300B8F2E0 /* Question.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Question.m; sourceTree = "<group>"; };
+		82F426041D36805B00B8F2E0 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		82F426051D36805B00B8F2E0 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1234,6 +1235,8 @@
 				82A11F6E1D211E53000453C0 /* QuestionModel.m */,
 				82F426011D362CE300B8F2E0 /* Question.h */,
 				82F426021D362CE300B8F2E0 /* Question.m */,
+				82F426041D36805B00B8F2E0 /* User.h */,
+				82F426051D36805B00B8F2E0 /* User.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1801,6 +1804,7 @@
 				82382A721D13DC030002BBC1 /* UIImage+MultiFormat.m in Sources */,
 				820E41D01D29EE7800F54DD4 /* CalculateController.m in Sources */,
 				82D042711D2F32C2008D5A56 /* CLShareManager+ShareView.m in Sources */,
+				82F426061D36805B00B8F2E0 /* User.m in Sources */,
 				82382A731D13DC030002BBC1 /* UIImage+WebP.m in Sources */,
 				82DFA59B1D1A5C0F00DE0351 /* MJRefreshBackStateFooter.m in Sources */,
 				82382A6B1D13DC030002BBC1 /* SDWebImageDecoder.m in Sources */,
@@ -2055,8 +2059,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				820E437C1D2B8C7400F54DD4 /* Base */,
-				820E437F1D2B8C7600F54DD4 /* zh-Hans */,
-				820E43811D2B8C7700F54DD4 /* en */,
 			);
 			name = MineListenHeadView.xib;
 			sourceTree = "<group>";

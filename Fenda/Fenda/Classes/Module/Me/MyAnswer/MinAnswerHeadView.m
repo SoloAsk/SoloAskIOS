@@ -21,7 +21,7 @@
     
     _askCount = askCount;
     
-    self.titleLabel.text = [NSString stringWithFormat:@"%@%ld",NSLocalizedString(@"format_asked", ""),(long)_askCount];
+    self.titleLabel.text = [NSString stringWithFormat:@"%@%ld",NSLocalizedString(@"format_answered", ""),(long)_askCount];
 }
 
 - (instancetype)init

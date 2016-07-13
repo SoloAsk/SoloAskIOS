@@ -16,6 +16,9 @@
 
 @property (nonatomic,strong) MineListenCell *listenCell;
 
+@property (nonatomic,strong) NSMutableArray *data;
+
+
 @end
 
 @implementation MineListenController
@@ -26,9 +29,9 @@ static NSString *reuseIdentifier = @"MineListenCell";
     [super viewDidLoad];
     
     self.title = NSLocalizedString(@"我听", "");
-    
-    
     self.shareItem.hidden = YES;
+    
+    [self example01];
    
     [self.tableView registerNib:[UINib nibWithNibName:@"MineListenCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier];
     self.listenCell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
@@ -37,10 +40,85 @@ static NSString *reuseIdentifier = @"MineListenCell";
 }
 
 
+-(void)loadData2{
+    
+    UserManager *user = [UserManager sharedUserManager];
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+    
+    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
+    [bquery whereKey:@"hearedUser" equalTo:bUser];
+    [bquery includeKey:@"answerUser"];
+    
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (error) {
+            [MBProgressHUD showError:@"加载数据失败"];
+            [self.tableView.mj_header endRefreshing];
+            return ;
+        }
+        
+        
+        if (array.count == 0) {
+            [MBProgressHUD showError:@"无结果"];
+            [self.tableView.mj_header endRefreshing];
+            
+        }else if (array.count > 0){
+            
+            for (Question *question in array) {
+                
+                [self.data addObject:question];
+                
+                // 刷新表格
+                [self.tableView reloadData];
+                
+                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
+                [self.tableView.mj_header endRefreshing];
+                
+                
+            }
+            
+        }
+        
+        
+        
+    }];
+    
+}
+
+
+
+-(NSMutableArray *)data{
+    if (_data == nil) {
+        _data = [NSMutableArray arrayWithCapacity:10];
+    }
+    
+    return _data;
+}
+
+
+#pragma mark UITableView + 下拉刷新 默认
+- (void)example01
+{
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self.data removeAllObjects];
+        [weakSelf loadData2];
+        
+        
+    }];
+    
+    // 马上进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.data.count;
 }
 
 
@@ -48,7 +126,7 @@ static NSString *reuseIdentifier = @"MineListenCell";
     
     MineListenCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    
+    cell.question = self.data[indexPath.row];
     
     return cell;
 }
@@ -57,7 +135,10 @@ static NSString *reuseIdentifier = @"MineListenCell";
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
     if (section == 0) {
-        return [[MineListenHeadView alloc] init];
+        
+        MineListenHeadView *headView = [[MineListenHeadView alloc] init];
+        headView.askCount = self.data.count;
+        return headView;
     }
     
     return nil;

@@ -47,14 +47,67 @@ static const CGFloat MJDuration = 2.0;
     [self setupUI];
     
     [self example01];
-    [self example11];
+//    [self example11];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HotCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier];
     self.proCell = [self.tableView dequeueReusableCellWithIdentifier:@"hotCell"];
     
-//    [self.tableView setSeparatorColor:TABLE_LINE_COLOR];
+
+}
+
+#pragma mark - 加载网络数据
+-(void)loadData{
     
-//    self.tableView.separatorInset = UIEdgeInsetsMake(-5, 0, 0, 0);
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+    
+    [bquery includeKey:@"askUser"];
+    [bquery includeKey:@"answerUser"];
+    
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (error) {
+            [MBProgressHUD showError:@"加载数据失败"];
+            [self.tableView.mj_header endRefreshing];
+            return ;
+        }
+        
+        if (array.count == 0) {
+            [MBProgressHUD showError:@"无结果"];
+            [self.tableView.mj_header endRefreshing];
+            
+        }else if (array.count > 0){
+            
+            for (Question *question in array) {
+                
+                [self.data addObject:question];
+                
+                // 刷新表格
+                [self.tableView reloadData];
+                
+                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
+                [self.tableView.mj_header endRefreshing];
+               
+            }
+        }
+        
+    }];
+    
+    
+}
+
+-(NSMutableArray *)data{
+    
+    if (_data == nil) {
+        
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"HotCellData.plist" ofType:nil];
+//        
+//        _data = [HotModel mj_objectArrayWithFile:path];
+        
+        _data = [NSMutableArray arrayWithCapacity:10];
+        
+    }
+    
+    return _data;
 }
 
 #pragma mark UITableView + 下拉刷新 默认
@@ -67,7 +120,7 @@ static const CGFloat MJDuration = 2.0;
        
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             
-            [weakSelf loadOnceData];
+            [weakSelf loadData];
             // 刷新表格
             [self.tableView reloadData];
             
@@ -94,7 +147,7 @@ static const CGFloat MJDuration = 2.0;
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         
         
-        [weakSelf loadOnceData];
+        [weakSelf loadData];
         
         // 刷新表格
         [self.tableView reloadData];
@@ -134,66 +187,10 @@ static const CGFloat MJDuration = 2.0;
     });
 }
 
-#pragma mark - 加载网络数据
-/*
--(void)loadData{
-    
-    BmobQuery *bQuery = [BmobQuery queryWithClassName:@"Question"];
-    [bQuery whereKey:@"isPrivate" equalTo:[NSNumber numberWithBool:true]];
-    [bQuery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        
-        if (error) {
-            [MBProgressHUD showError:@"获取数据失败"];
-            [self.tableView.mj_header endRefreshing];
-            return;
-        }
-        
-        
-        for (BmobObject *object in array) {
-            
-            //                NSLog(@"object = %@",object[1]);
-            NSDictionary *dic = @{
-                                  @"askContent":[object objectForKey:@"askContent"],
-                                  @"answerUserName":[object objectForKey:@"answerUserName"],
-                                  @"answerHonor":[object objectForKey:@"answerHonor"],
-                                  @"answerIconURL":[object objectForKey:@"answerIconURL"],
-                                  @"listenerNum":[object objectForKey:@"listenerNum"]                                      };
-            
-            
-            QuestionModel *quesModel = [QuestionModel mj_objectWithKeyValues:dic];
-            
-            [self.data addObject:quesModel];
-            
-            
-        }
-        
-        // 刷新表格
-        [self.tableView reloadData];
-        
-        // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-        
-        [self.tableView.mj_header endRefreshing];
-        
-    }];
-
-}
-*/
 
 
--(NSMutableArray *)data{
-    
-    if (_data == nil) {
-        
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"HotCellData.plist" ofType:nil];
-        
-        
-        
-        _data = [HotModel mj_objectArrayWithFile:path];
-  
-    }
-    
-    return _data;
-}
+
+
 
 
 
@@ -208,7 +205,7 @@ static const CGFloat MJDuration = 2.0;
     
     HotCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    cell.model = self.data[indexPath.row];
+    cell.question = self.data[indexPath.row];
     
     return cell;
 }
@@ -227,9 +224,9 @@ static const CGFloat MJDuration = 2.0;
     
     
     
-    HotModel *model = self.data[indexPath.row];
+    Question *model = self.data[indexPath.row];
     
-    self.proCell.model = model;
+    self.proCell.question = model;
     
     CGSize cellSize = [self.proCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     

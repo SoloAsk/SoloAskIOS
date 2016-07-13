@@ -10,4 +10,6 @@
 
 @interface MineListenCell : UITableViewCell
 
+@property (nonatomic,strong) Question *question;
+
 @end

@@ -14,4 +14,6 @@
 
 @property (nonatomic,strong) HotModel *model;
 
+@property (nonatomic,strong) Question *question;
+
 @end

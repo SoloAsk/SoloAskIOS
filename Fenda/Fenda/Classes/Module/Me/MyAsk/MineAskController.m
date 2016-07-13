@@ -9,7 +9,6 @@
 #import "MineAskController.h"
 #import "MineAskCell.h"
 #import "MineAskModel.h"
-#import "UserManager.h"
 #import "MJExtension.h"
 #import "MBProgressHUD+NJ.h"
 #import "MJRefresh.h"
@@ -17,8 +16,7 @@
 #import "NoQandAController.h"
 #import "MinAnswerHeadView.h"
 #import "MineAskHeadView.h"
-#import "QuestionModel.h"
-#import "Question.h"
+
 
 @interface MineAskController ()
 
@@ -82,82 +80,6 @@ static NSString *reuseIdentifier = @"mineAskCell";
 }
 
 
--(void)loadData{
-    
-    UserManager *user = [UserManager sharedUserManager];
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
-    
-    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
-    [bquery whereKey:@"askUser" equalTo:bUser];
-    [bquery includeKey:@"answerUser"];
-    
-    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        
-        if (error) {
-            [MBProgressHUD showError:@"加载数据失败"];
-            [self.tableView.mj_header endRefreshing];
-            return ;
-        }
-        
-        
-        if (array.count == 0) {
-            [MBProgressHUD showError:@"无结果"];
-            [self.tableView.mj_header endRefreshing];
-            
-        }else if (array.count > 0){
-            
-            for (BmobObject *question in array) {
-               
-                NSArray *keys = @[
-                                  @"askUser",
-                                  @"answerUser",
-                                  @"hearedUser",
-                                  @"quesContent",
-                                  @"quesVoiceURL",
-                                  @"voiceTime",
-                                  @"listenerNum",
-                                  @"quesPrice",
-                                  @"answerTime",
-                                  @"isFree",
-                                  @"isPublic",
-                                  @"state",
-                                  @"createdAt"
-                                  ];
-                
-                NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:10];
-                for (int i = 0; i<keys.count; i++) {
-                    if ([question objectForKey:keys[i]]) {
-                        
-                        NSLog(@"---->>>>>>>%@",[question objectForKey:keys[i]]);
-                        
-                        [mDic setObject:[question objectForKey:keys[i]] forKey:keys[i]];
-                    }
-                }
-                
-                QuestionModel *quesModel = [QuestionModel mj_objectWithKeyValues:mDic];
-                
-                [self.data addObject:quesModel];
-                
-                // 刷新表格
-                [self.tableView reloadData];
-                
-                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-                [self.tableView.mj_header endRefreshing];
-
-               
-            }
-            
-            
-            NSLog(@"data = %@",self.data);
-            
-        }
-       
-        
-   
-    }];
-    
-
-}
 
 -(NSMutableArray *)data{
     if (_data == nil) {
