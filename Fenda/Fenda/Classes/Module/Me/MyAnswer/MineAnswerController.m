@@ -12,6 +12,7 @@
 #import "AnswerVoiceController.h"
 #import "QuestionModel.h"
 #import "UserManager.h"
+#import "Question.h"
 
 
 @interface MineAnswerController ()
@@ -56,37 +57,11 @@ static NSString *reuseIdentifier = @"mineAskCell";
             
         }else if (array.count > 0){
             
-            for (BmobObject *question in array) {
+            for (Question *question in array) {
                 
-                NSArray *keys = @[
-                                  @"askUser",
-                                  @"answerUser",
-                                  @"hearedUser",
-                                  @"quesContent",
-                                  @"quesVoiceURL",
-                                  @"voiceTime",
-                                  @"listenerNum",
-                                  @"quesPrice",
-                                  @"answerTime",
-                                  @"isFree",
-                                  @"isPublic",
-                                  @"state",
-                                  @"createdAt"
-                                  ];
                 
-                NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:10];
-                for (int i = 0; i<keys.count; i++) {
-                    if ([question objectForKey:keys[i]]) {
-                        
-                        NSLog(@"---->>>>>>>%@",[question objectForKey:keys[i]]);
-                        
-                        [mDic setObject:[question objectForKey:keys[i]] forKey:keys[i]];
-                    }
-                }
                 
-                QuestionModel *quesModel = [QuestionModel mj_objectWithKeyValues:mDic];
-                
-                [self.data addObject:quesModel];
+                [self.data addObject:question];
                 
                 // 刷新表格
                 [self.tableView reloadData];
@@ -161,7 +136,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     
     MineAskCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.isWhat = 2;
-    cell.quesModel = self.data[indexPath.row];
+    cell.qModel = self.data[indexPath.row];
     
     return cell;
 }

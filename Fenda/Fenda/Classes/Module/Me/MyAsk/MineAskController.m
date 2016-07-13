@@ -18,6 +18,7 @@
 #import "MinAnswerHeadView.h"
 #import "MineAskHeadView.h"
 #import "QuestionModel.h"
+#import "Question.h"
 
 @interface MineAskController ()
 
@@ -31,6 +32,54 @@
 
 static NSString *reuseIdentifier = @"mineAskCell";
 
+
+-(void)loadData2{
+    
+    UserManager *user = [UserManager sharedUserManager];
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+    
+    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
+    [bquery whereKey:@"askUser" equalTo:bUser];
+    [bquery includeKey:@"answerUser"];
+    
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (error) {
+            [MBProgressHUD showError:@"加载数据失败"];
+            [self.tableView.mj_header endRefreshing];
+            return ;
+        }
+        
+        
+        if (array.count == 0) {
+            [MBProgressHUD showError:@"无结果"];
+            [self.tableView.mj_header endRefreshing];
+            
+        }else if (array.count > 0){
+            
+            for (Question *question in array) {
+                
+                [self.data addObject:question];
+                
+                // 刷新表格
+                [self.tableView reloadData];
+                
+                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
+                [self.tableView.mj_header endRefreshing];
+                
+                
+            }
+            
+            
+//            NSLog(@"data = %@",self.data);
+            
+        }
+        
+        
+        
+    }];
+
+}
 
 
 -(void)loadData{
@@ -128,7 +177,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         [self.data removeAllObjects];
-        [weakSelf loadData];
+        [weakSelf loadData2];
         
         
     }];
@@ -166,7 +215,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     
     MineAskCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     cell.isWhat = 1;
-    cell.quesModel = self.data[indexPath.row];
+    cell.qModel = self.data[indexPath.row];
     
     return cell;
 }

@@ -45,9 +45,23 @@
 }
 
 
--(void)setQuesModel:(QuestionModel *)quesModel{
+//-(void)setQuesModel:(QuestionModel *)quesModel{
+//    
+//    _quesModel = quesModel;
+//    
+//    if (self.isWhat == 1) {
+//        [self myAsk];
+//    }else{
+//        
+//        [self myAnswer];
+//    }
+//  
+//}
+
+-(void)setQModel:(Question *)qModel{
     
-    _quesModel = quesModel;
+    _qModel = qModel;
+    
     
     if (self.isWhat == 1) {
         [self myAsk];
@@ -55,46 +69,41 @@
         
         [self myAnswer];
     }
-  
 }
 
 
-
-#pragma mark - 我问 中的cell
+#pragma mark - 我问 中的cell  2
 -(void)myAsk{
     
     NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
     
     //价格
-    self.askPrice.text = [fmatter stringFromNumber:_quesModel.quesPrice];
+    self.askPrice.text = [fmatter stringFromNumber:[_qModel objectForKey:@"quesPrice"]];
     
     //内容
-    self.quesContent.text = _quesModel.quesContent;
+    self.quesContent.text = [_qModel objectForKey:@"quesContent"];
     
     //头像，用户名
-    
-    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[_quesModel.answerUser objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
-    self.userName.text = [_quesModel.answerUser objectForKey:@"userName"];
+    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[[_qModel objectForKey:@"answerUser"] objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
+    self.userName.text = [[_qModel objectForKey:@"answerUser"] objectForKey:@"userName"];
     
     //问题状态
-    if ([_quesModel.state intValue] == 0) {
+    if ([[_qModel objectForKey:@"state"] intValue] == 0) {
         self.quesState.text = NSLocalizedString(@"status_unanswered", "");
-    }else if ([_quesModel.state intValue] == 1){
+    }else if ([[_qModel objectForKey:@"state"] intValue] == 1){
         self.quesState.text = NSLocalizedString(@"status_answered", "");
-    }else if ([_quesModel.state intValue] == 2){
+    }else if ([[_qModel objectForKey:@"state"] intValue] == 2){
         self.quesState.text = NSLocalizedString(@"status_refunded", "");
-    }else if ([_quesModel.state intValue] == 3){
+    }else if ([[_qModel objectForKey:@"state"] intValue] == 3){
         self.quesState.text = NSLocalizedString(@"status_timeout", "");
     }
     
     //偷听人数
-    self.listenAndIncome.text = [NSString stringWithFormat:@"%@%@",[fmatter stringFromNumber:_quesModel.listenerNum],NSLocalizedString(@"mineAskcell_heard", "")];
+    self.listenAndIncome.text = [NSString stringWithFormat:@"%@%@",[fmatter stringFromNumber:[_qModel objectForKey:@"listenerNum"]],NSLocalizedString(@"mineAskcell_heard", "")];
     
     //时间
     self.quesTime.text = [Tools compareCurrentTime:_quesModel.createdAt];
 }
-
-
 
 
 #pragma mark - 我答 中的cell
@@ -103,31 +112,28 @@
     NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
     
     //价格
-    self.askPrice.text = [fmatter stringFromNumber:_quesModel.quesPrice];
+    self.askPrice.text = [fmatter stringFromNumber:[_qModel objectForKey:@"quesPrice"]];
     
     //内容
-    self.quesContent.text = _quesModel.quesContent;
+    self.quesContent.text = [_qModel objectForKey:@"quesContent"];
     
-    //头像
-    
-    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[_quesModel.askUser objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
-    self.userName.text = [_quesModel.askUser objectForKey:@"userName"];
-    
-    
+    //头像，用户名
+    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[[_qModel objectForKey:@"askUser"] objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
+    self.userName.text = [[_qModel objectForKey:@"askUser"] objectForKey:@"userName"];
     
     //问题状态
-    if ([_quesModel.state intValue] == 0) {
+    if ([[_qModel objectForKey:@"state"] intValue] == 0) {
         self.quesState.text = NSLocalizedString(@"status_unanswered", "");
-    }else if ([_quesModel.state intValue] == 1){
+    }else if ([[_qModel objectForKey:@"state"] intValue] == 1){
         self.quesState.text = NSLocalizedString(@"status_answered", "");
-    }else if ([_quesModel.state intValue] == 2){
+    }else if ([[_qModel objectForKey:@"state"] intValue] == 2){
         self.quesState.text = NSLocalizedString(@"status_refunded", "");
-    }else if ([_quesModel.state intValue] == 3){
+    }else if ([[_qModel objectForKey:@"state"] intValue] == 3){
         self.quesState.text = NSLocalizedString(@"status_timeout", "");
     }
     
     //偷听人数
-    self.listenAndIncome.text = [NSString stringWithFormat:@"%@%@",[fmatter stringFromNumber:_quesModel.listenerNum],NSLocalizedString(@"mineAskcell_heard", "")];
+    self.listenAndIncome.text = [NSString stringWithFormat:@"%@%@",[fmatter stringFromNumber:[_qModel objectForKey:@"listenerNum"]],NSLocalizedString(@"mineAskcell_heard", "")];
     
     //时间
     self.quesTime.text = [Tools compareCurrentTime:_quesModel.createdAt];

@@ -18,9 +18,16 @@
 #import "AVAudioRecordTool.h"
 #import "AVAudioSession+Extension.h"
 #import "PlayAnimation.h"
+#import "MCSimpleAudioPlayer.h"
 
 
 @interface QuestionDetailController ()<UMSocialUIDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver>
+
+//{
+//@private
+//    MCSimpleAudioPlayer *_player;
+////    NSTimer *_timer;
+//}
 
 @property (nonatomic,strong) CenterCell *centerCell;
 
@@ -37,6 +44,8 @@
 
 @property (strong, nonatomic) NSTimer *recordTimer;
 
+//播放语音
+@property (nonatomic,strong) MCSimpleAudioPlayer *player;
 
 @end
 
@@ -45,6 +54,7 @@
 static NSString *reuseIdentifier2 = @"centerCell";
 static NSString *reuseIdentifier3 = @"footerCell";
 
+#pragma mark - 视图生命周期
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
@@ -68,6 +78,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+ 
     
     self.isBuy = NO;
     
@@ -89,19 +100,20 @@ static NSString *reuseIdentifier3 = @"footerCell";
             
             
             if (btnTag == 3) {//点击了语音，进行内购
-                
+                weakSelf.isBuy = YES;
                 if (weakSelf.isBuy) {
+                    
                     [weakSelf playingVoice];
                     
                     return ;
                 }
                 
-                [MBProgressHUD showMessage:@"请稍后"];
-                //请求可售商品
-                NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
-                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-                request.delegate = weakSelf;
-                [request start];
+//                [MBProgressHUD showMessage:@"请稍后"];
+//                //请求可售商品
+//                NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
+//                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
+//                request.delegate = weakSelf;
+//                [request start];
              
                 
                 return ;
@@ -204,28 +216,47 @@ static NSString *reuseIdentifier3 = @"footerCell";
     }
 }
 
+#pragma mark - 语音播放
+-(MCSimpleAudioPlayer *)player{
+    
+    if (_player == nil) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"b3013af6ec.aac" ofType:nil];
+        _player = [[MCSimpleAudioPlayer alloc] initWithFilePath:path fileType:kAudioFileMP3Type];
+    }
+    
+    return _player;
+}
+
 -(void)playingVoice{
     
+            //第一种播放方式
+//        if ([self.audioTool isPlaying]) {//如果正在播放就停止
+//            
+//            [self.audioTool stopPlay];
+//            [self stopRecordTimer];
+//            
+//        }else{//如果停止播放，就播放
+//            
+//            //播放语音
+//            NSString *path = [[NSBundle mainBundle] pathForResource:@"luyin.aac" ofType:nil];
+//            
+//            [AVAudioSession setCategory:AVAudioSessionCategoryPlayback];
+//            [self.audioTool playBack:[NSURL fileURLWithPath:path]];
+//            [self startRecordTimer];
+//        }
     
-   
-        
     
-        
-        if ([self.audioTool isPlaying]) {//如果正在播放就停止
-            
-            [self.audioTool stopPlay];
-            [self stopRecordTimer];
-            
-        }else{//如果停止播放，就播放
-            
-            //播放语音
-            NSString *path = [[NSBundle mainBundle] pathForResource:@"answer_temp.aac" ofType:nil];
-            
-            [AVAudioSession setCategory:AVAudioSessionCategoryPlayback];
-            [self.audioTool playBack:[NSURL fileURLWithPath:path]];
-            [self startRecordTimer];
-        }
-    
+    //第二种播放方式
+    if (self.player.isPlayingOrWaiting)
+    {
+        [self.player pause];//如果正在播放就停止
+        [self stopRecordTimer];
+    }
+    else
+    {
+        [self.player play];//如果停止播放，就播放
+        [self startRecordTimer];
+    }
     
     
     
@@ -245,7 +276,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
 
 - (void)updateRecordCurrentTime {
     
-    if (!self.audioTool.isPlaying) {//如果不播放了就停止动画
+    if (!self.player.isPlayingOrWaiting) {//如果不播放了就停止动画
         [self stopRecordTimer];
         return;
     }

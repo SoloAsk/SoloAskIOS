@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@interface QuestionModel : NSObject
+@interface QuestionModel : BmobObject
 
 //问题id
-@property (nonatomic,copy) NSString *questionId;
+//@property (nonatomic,copy) NSString *questionId;
 
 //提问者（关联用户表）
 @property (nonatomic,strong) BmobObject *askUser;
@@ -50,7 +50,7 @@
 @property (nonatomic,strong) NSNumber *state;
 
 //问题创建时间
-@property (nonatomic,copy) NSString *createdAt;
+//@property (nonatomic,copy) NSString *createdAt;
 
 
 

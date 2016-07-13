@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QuestionModel.h"
+#import "Question.h"
 
 @interface AnswerVoiceController : UIViewController
 
 
-@property (nonatomic,strong) QuestionModel *quesModel;
+@property (nonatomic,strong) Question *quesModel;
 
 @end

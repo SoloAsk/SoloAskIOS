@@ -48,7 +48,7 @@
         NSURL *fileURL            = [NSURL fileURLWithPath:filePath];
         self.tempURL              = fileURL;
         NSDictionary *settingDict = @{
-                                      AVFormatIDKey  :  @(kAudioFormatAppleIMA4),
+                                      AVFormatIDKey  :  @(kAudioFormatMPEG4AAC_HE),
                                       AVSampleRateKey : @(44100.0f),
                                       AVNumberOfChannelsKey :@1,
                                       AVEncoderBitDepthHintKey : @16,
@@ -125,11 +125,12 @@
 #pragma mark - save audio file
 
 - (NSURL *)saveRecordingWithName:(NSString *)name {
-    NSTimeInterval timestamp = [NSDate timeIntervalSinceReferenceDate];
     //不重名
-    NSString *filename = [NSString stringWithFormat:@"%@-%f.m4a", name, timestamp];
+//    NSTimeInterval timestamp = [NSDate timeIntervalSinceReferenceDate];
+//    NSString *filename = [NSString stringWithFormat:@"%@-%f.aac ", name, timestamp];
+    
     //重名
-//    NSString *filename = [NSString stringWithFormat:@"%@.m4a", name];
+    NSString *filename = [NSString stringWithFormat:@"%@.aac", name];
     
     NSString *document = [NSString documentDirectory];
     NSString *savePath = [document stringByAppendingPathComponent:filename];

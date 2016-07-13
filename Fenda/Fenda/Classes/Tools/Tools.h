@@ -16,7 +16,7 @@
 + (BOOL)isNull:(id)object;
 
 //时间格式实现几天前，几小时前，几分钟前
-+ (NSString *) compareCurrentTime:(NSString *)strTime;
++ (NSString *) compareCurrentTime:(NSDate *)strTime;
 
 //产生随机十位字符串
 +(NSString *)randomString;

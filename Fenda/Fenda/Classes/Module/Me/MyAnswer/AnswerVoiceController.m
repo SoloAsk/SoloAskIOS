@@ -12,6 +12,9 @@
 #import "NoQandAController.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
+#import "MCSimpleAudioPlayer.h"
+#import "NSString+Extension.h"
+#import "MBProgressHUD+NJ.h"
 
 
 @interface AnswerVoiceController ()
@@ -59,10 +62,20 @@
 //记录录音时间
 @property (strong, nonatomic) NSTimer *recordTimer;
 
+//播放语音
+@property (nonatomic,strong) MCSimpleAudioPlayer *player;
+
 
 @end
 
 @implementation AnswerVoiceController
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    [self removeRecordState];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -90,6 +103,16 @@
 }
 
 
+//-(MCSimpleAudioPlayer *)player{
+//    
+//    if (_player == nil) {
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"b3013af6ec.aac" ofType:nil];
+//        _player = [[MCSimpleAudioPlayer alloc] initWithFilePath:path fileType:kAudioFileMP3Type];
+//    }
+//    
+//    return _player;
+//}
+
 
 #pragma mark - 初始化界面数据
 -(void)setupData{
@@ -97,16 +120,16 @@
     //头像,用户名
     
                 
-    [self.userIconBtn sd_setImageWithURL:[NSURL URLWithString:[self.quesModel.askUser objectForKey:@"userIcon"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"001"]];
-    self.userNameLabel.text = [self.quesModel.askUser objectForKey:@"userName"];
+    [self.userIconBtn sd_setImageWithURL:[NSURL URLWithString:[[self.quesModel objectForKey:@"askUser"] objectForKey:@"userIcon"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"001"]];
+    self.userNameLabel.text = [[self.quesModel objectForKey:@"askUser"] objectForKey:@"userName"];
     
     
     //问题价格
     NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
-    self.priceLabel.text = [NSString stringWithFormat:@"$%@",[fmatter stringFromNumber:self.quesModel.quesPrice]];
+    self.priceLabel.text = [NSString stringWithFormat:@"$%@",[fmatter stringFromNumber:[self.quesModel objectForKey:@"quesPrice"]]];
     
     //问题内容
-    self.askContentLabel.text = self.quesModel.quesContent;
+    self.askContentLabel.text = [self.quesModel objectForKey:@"quesContent"];
     
     //时间
     self.askTimeLabel.text = [Tools compareCurrentTime:self.quesModel.createdAt];
@@ -167,10 +190,6 @@
     if (self.state) {//录音状态
 
         NSInteger t = [self.timeLabel.text integerValue];
-        
-//        t++;
-//        self.timeLabel.text = [NSString stringWithFormat:@"%ld\"",(long)t];
-//        self.times = t;
         
         if (t < 60) {//不到一分钟，继续录音
             t++;
@@ -235,10 +254,8 @@
         self.playURL = [self.recordTool saveRecordingWithName:@"luyin"];
         
     }else if (self.num == 2){//播放录音
-        
-        [AVAudioSession setCategory:AVAudioSessionCategoryPlayback];
-        if (self.recordTool.isPlaying) {
-//            [self.recordTool pausePlay];
+
+        if (self.player.isPlayingOrWaiting) {
             return ;
         }
         
@@ -247,7 +264,11 @@
         self.state = NO;
         [self startRecordTimer];
         
-        [self.recordTool playBack:self.playURL];
+
+        NSString *savePath = [[NSString documentDirectory] stringByAppendingPathComponent:@"luyin.aac"];
+
+        _player = [[MCSimpleAudioPlayer alloc] initWithFilePath:savePath fileType:kAudioFileMP3Type];
+        [_player play];
     }
     
  
@@ -292,6 +313,9 @@
 //TODO:删除录音
 -(void)removeRecordState{
     
+    NSString *savePath = [[NSString documentDirectory] stringByAppendingPathComponent:@"luyin.aac"];
+    self.playURL = [NSURL fileURLWithPath:savePath];
+    
     if (self.playURL) {
         NSFileManager *fileManager = [NSFileManager defaultManager];
         if ([fileManager removeItemAtURL:self.playURL error:nil]) {
@@ -311,7 +335,47 @@
 #pragma mark - 发送
 - (IBAction)sendBtnClick:(UIButton *)sender {
     
+    NSLog(@"objid = %@",self.quesModel.objectId);
     
+    [MBProgressHUD showMessage:@"请稍后"];
+    
+    NSString *fileString = [[NSString documentDirectory] stringByAppendingPathComponent:@"luyin.aac"];
+    BmobObject *question = [BmobObject objectWithoutDataWithClassName:@"Question" objectId:self.quesModel.objectId];
+    
+    NSLog(@"%@",question);
+    
+    BmobFile *file1 = [[BmobFile alloc] initWithFilePath:fileString];
+    [file1 saveInBackground:^(BOOL isSuccessful, NSError *error) {
+       
+        if (isSuccessful) {
+            
+            NSLog(@"%@",file1.url);
+            [question setObject:file1.url  forKey:@"quesVoiceURL"];
+            [question sub_updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                
+                if (isSuccessful) {
+                    NSLog(@"发送成功");
+                    [MBProgressHUD hideHUD];
+                    [MBProgressHUD showSuccess:@"发送成功"];
+                    [self.navigationController popViewControllerAnimated:YES];
+                }
+                
+                
+                if (error) {
+                    NSLog(@"error = %@",error);
+                    [MBProgressHUD hideHUD];
+                    [MBProgressHUD showError:@"发送失败"];
+                }
+            }];
+            
+            
+            
+        }else{
+            //进行处理
+            [MBProgressHUD hideHUD];
+            [MBProgressHUD showError:@"发送失败"];
+        }
+    }];
 }
 
 
