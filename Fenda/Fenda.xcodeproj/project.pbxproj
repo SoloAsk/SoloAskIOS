@@ -188,7 +188,7 @@
 		82D042761D2F32C2008D5A56 /* share_微博@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82D0426E1D2F32C2008D5A56 /* share_微博@2x.png */; };
 		82D042771D2F32C2008D5A56 /* share_朋友圈@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82D0426F1D2F32C2008D5A56 /* share_朋友圈@2x.png */; };
 		82DE0ABC1D236D8200D945D2 /* zySheetPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DE0ABB1D236D8200D945D2 /* zySheetPickerView.m */; };
-		82DE0ABF1D23BC3800D945D2 /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DE0ABE1D23BC3800D945D2 /* BaseNavController.m */; };
+		82DE0ABF1D23BC3800D945D2 /* BaseNavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DE0ABE1D23BC3800D945D2 /* BaseNavController.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		82DE0AC61D23C75200D945D2 /* BackBarBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DE0AC51D23C75200D945D2 /* BackBarBtnView.m */; };
 		82DE0AC81D23C78A00D945D2 /* BackBarBtnView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82DE0AC71D23C78A00D945D2 /* BackBarBtnView.xib */; };
 		82DE0B541D25FFCB00D945D2 /* AVAudioRecordTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DE0B531D25FFCB00D945D2 /* AVAudioRecordTool.m */; };
@@ -229,10 +229,10 @@
 		82F425A21D34E8A300B8F2E0 /* ShareSDKConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F4259B1D34E8A300B8F2E0 /* ShareSDKConnector.framework */; };
 		82F425A61D35E5B600B8F2E0 /* luyin.aac in Resources */ = {isa = PBXBuildFile; fileRef = 82F425A51D35E5B600B8F2E0 /* luyin.aac */; };
 		82F425BC1D36035200B8F2E0 /* MCAudioBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425AF1D36035200B8F2E0 /* MCAudioBuffer.m */; };
-		82F425BD1D36035200B8F2E0 /* MCAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425B11D36035200B8F2E0 /* MCAudioFile.m */; };
+		82F425BD1D36035200B8F2E0 /* MCAudioFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425B11D36035200B8F2E0 /* MCAudioFile.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		82F425BE1D36035200B8F2E0 /* MCAudioFileStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425B31D36035200B8F2E0 /* MCAudioFileStream.m */; };
 		82F425BF1D36035200B8F2E0 /* MCAudioOutputQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425B51D36035200B8F2E0 /* MCAudioOutputQueue.m */; };
-		82F425C01D36035200B8F2E0 /* MCAudioSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425B71D36035200B8F2E0 /* MCAudioSession.m */; };
+		82F425C01D36035200B8F2E0 /* MCAudioSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425B71D36035200B8F2E0 /* MCAudioSession.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		82F425C11D36035200B8F2E0 /* MCParsedAudioData.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425B91D36035200B8F2E0 /* MCParsedAudioData.m */; };
 		82F425C21D36035200B8F2E0 /* MCSimpleAudioPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425BB1D36035200B8F2E0 /* MCSimpleAudioPlayer.m */; };
 		82F426001D3612C500B8F2E0 /* b3013af6ec.aac in Resources */ = {isa = PBXBuildFile; fileRef = 82F425FF1D3612C500B8F2E0 /* b3013af6ec.aac */; };
