@@ -258,7 +258,7 @@ static NSString *reuseIdentifier = @"mineCell";
     }
     
     
-        if (((indexPath.row == 1) || (indexPath.row == 2) || (indexPath.row == 3) ) && (indexPath.section == 1)) {
+        if (((indexPath.row == 0) || (indexPath.row == 1) || (indexPath.row == 2) ) && (indexPath.section == 1)) {
            
             if (!isHave) {
                 NoQandAController *noVC = [[NoQandAController alloc] init];

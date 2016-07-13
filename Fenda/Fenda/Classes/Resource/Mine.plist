@@ -6,14 +6,6 @@
 	<array>
 		<dict>
 			<key>className</key>
-			<string>MinePageController</string>
-			<key>icon</key>
-			<string>Me_icon_01</string>
-			<key>title</key>
-			<string>我的主页</string>
-		</dict>
-		<dict>
-			<key>className</key>
 			<string>MineAskController</string>
 			<key>icon</key>
 			<string>Me_icon_02</string>
