@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="PSv-xU-sRG">
+        <view contentMode="scaleToFill" id="PSv-xU-sRG" customClass="MineAskHeadView">
             <rect key="frame" x="0.0" y="0.0" width="283" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -25,6 +25,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="countLabel" destination="JdI-LE-ywL" id="rZC-Cy-G3b"/>
+            </connections>
             <point key="canvasLocation" x="296.5" y="248"/>
         </view>
     </objects>

@@ -8,7 +8,21 @@
 
 #import "MinAnswerHeadView.h"
 
+
+
+@interface MinAnswerHeadView()
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@end
+
 @implementation MinAnswerHeadView
+
+-(void)setAskCount:(NSInteger)askCount{
+    
+    _askCount = askCount;
+    
+    self.titleLabel.text = [NSString stringWithFormat:@"%@%ld",NSLocalizedString(@"format_asked", ""),(long)_askCount];
+}
 
 - (instancetype)init
 {

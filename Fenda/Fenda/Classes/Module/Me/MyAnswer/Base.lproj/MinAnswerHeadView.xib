@@ -25,6 +25,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="titleLabel" destination="rim-RA-hPz" id="Yew-Y4-nYy"/>
+            </connections>
             <point key="canvasLocation" x="452.5" y="322"/>
         </view>
     </objects>

@@ -12,6 +12,6 @@
 
 @interface MinAnswerHeadView : UIView
 
-
+@property (nonatomic,assign) NSInteger askCount;
 
 @end

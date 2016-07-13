@@ -107,19 +107,6 @@ static NSString *reuseIdentifier = @"mineAskCell";
    
     }];
     
-    
-    
-    /*
-     MineAskModel *user = [MineAskModel mj_objectWithKeyValues:dic];
-     
-     [self.data addObject:user];
-     
-     // 刷新表格
-     [self.tableView reloadData];
-     
-     // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-     [self.tableView.mj_header endRefreshing];
-     */
 
 }
 
@@ -178,7 +165,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MineAskCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
+    cell.isWhat = 2;
     cell.quesModel = self.data[indexPath.row];
     
     return cell;
@@ -207,6 +194,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     //头部
     if (section == 0) {
         MineAskHeadView *headView = [[MineAskHeadView alloc] init];
+        headView.askCount = self.data.count;
         return headView;
     }
     

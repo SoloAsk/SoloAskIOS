@@ -13,4 +13,7 @@
 
 @property (nonatomic,strong) QuestionModel *quesModel;
 
+//是我问（1）还是我答（2）
+@property (nonatomic,assign) NSInteger isWhat;
+
 @end

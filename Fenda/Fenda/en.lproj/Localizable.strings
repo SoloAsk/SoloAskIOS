@@ -45,13 +45,16 @@
 "footer_label_01" = "Answered ";
 "footer_label_02" = " question，earned $";
 "check_ask_question" = "Public Q&amp;A, each time your answer is listened by others, you earn $0.5";
-
-
 "status_unanswered" = "Unanswered";
 "status_answered" = "Answered";
 "status_refunded" = "Refunded";
 "status_timeout" = "Expired";
 "mineAskcell_heard" = " heard";
+"format_asked" = "Asked ";
+
+
+
+
 
 
 
@@ -112,7 +115,7 @@
 "price_format" = "Overhear with %1$s";
 "format_answered" = "Answered %1$d";
 "format_heard" = "Heard %1$d";
-"format_asked" = "Asked %1$d";
+
 "login_failed" = "Login failed";
 "login_cancel" = "Login canceled";
 "btn_login_with_facebook" = "Login with Facebook";

@@ -10,6 +10,9 @@
 #import "MineAskCell.h"
 #import "MinAnswerHeadView.h"
 #import "AnswerVoiceController.h"
+#import "QuestionModel.h"
+#import "UserManager.h"
+
 
 @interface MineAnswerController ()
 
@@ -26,12 +29,120 @@
 static NSString *reuseIdentifier = @"mineAskCell";
 
 
+
+
+-(void)loadData{
+    
+    UserManager *user = [UserManager sharedUserManager];
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+    
+    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
+    [bquery whereKey:@"answerUser" equalTo:bUser];
+    
+    
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (error) {
+            [MBProgressHUD showError:@"加载数据失败"];
+            [self.tableView.mj_header endRefreshing];
+            return ;
+        }
+        
+        
+        if (array.count == 0) {
+            [MBProgressHUD showError:@"无结果"];
+            [self.tableView.mj_header endRefreshing];
+            
+        }else if (array.count > 0){
+            
+            for (BmobObject *question in array) {
+                
+                NSArray *keys = @[
+                                  @"askUser",
+                                  @"answerUser",
+                                  @"hearedUser",
+                                  @"quesContent",
+                                  @"quesVoiceURL",
+                                  @"voiceTime",
+                                  @"listenerNum",
+                                  @"quesPrice",
+                                  @"answerTime",
+                                  @"isFree",
+                                  @"isPublic",
+                                  @"state",
+                                  @"createdAt"
+                                  ];
+                
+                NSMutableDictionary *mDic = [NSMutableDictionary dictionaryWithCapacity:10];
+                for (int i = 0; i<keys.count; i++) {
+                    if ([question objectForKey:keys[i]]) {
+                        
+                        NSLog(@"---->>>>>>>%@",[question objectForKey:keys[i]]);
+                        
+                        [mDic setObject:[question objectForKey:keys[i]] forKey:keys[i]];
+                    }
+                }
+                
+                QuestionModel *quesModel = [QuestionModel mj_objectWithKeyValues:mDic];
+                
+                [self.data addObject:quesModel];
+                
+                // 刷新表格
+                [self.tableView reloadData];
+                
+                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
+                [self.tableView.mj_header endRefreshing];
+                
+                
+            }
+            
+            
+            NSLog(@"data = %@",self.data);
+            
+        }
+        
+        
+        
+    }];
+    
+    
+}
+
+-(NSMutableArray *)data{
+    if (_data == nil) {
+        _data = [NSMutableArray arrayWithCapacity:10];
+    }
+    
+    return _data;
+}
+
+#pragma mark UITableView + 下拉刷新 默认
+- (void)example01
+{
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [self.data removeAllObjects];
+        [weakSelf loadData];
+        
+        
+    }];
+    
+    // 马上进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
+}
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"我答", "");
     
-    self.shareItem.hidden = YES;
+    [self example01];
     
+    self.shareItem.hidden = YES;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"MineAskCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier];
     self.mineAskCell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
@@ -41,27 +152,22 @@ static NSString *reuseIdentifier = @"mineAskCell";
 
 
 #pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return self.data.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MineAskCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    
-    //    cell.mineAskModel = self.data[indexPath.section];
+    cell.isWhat = 1;
+    cell.quesModel = self.data[indexPath.row];
     
     return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CGSize size = [self.mineAskCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    CGSize size = [self.mineAskCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     return size.height;
 }
 
@@ -74,6 +180,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
         
         AnswerVoiceController *answerVC = [[AnswerVoiceController alloc] init];
         answerVC.hidesBottomBarWhenPushed = YES;
+        answerVC.quesModel = self.data[indexPath.row];
         [self.navigationController pushViewController:answerVC animated:YES];
         
     }else{
@@ -86,7 +193,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     //头部
     if (section == 0) {
         MinAnswerHeadView *headView = [[MinAnswerHeadView alloc] init];
-        
+        headView.askCount = self.data.count;
         return headView;
     }
     

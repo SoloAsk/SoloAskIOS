@@ -8,7 +8,28 @@
 
 #import "MineAskHeadView.h"
 
+@interface MineAskHeadView()
+@property (weak, nonatomic) IBOutlet UILabel *countLabel;
+
+@end
+
 @implementation MineAskHeadView
+
+
+-(void)awakeFromNib{
+    
+    [super awakeFromNib];
+    
+    
+}
+
+
+-(void)setAskCount:(NSInteger)askCount{
+    
+    _askCount = askCount;
+    
+    self.countLabel.text = [NSString stringWithFormat:@"%@%ld",NSLocalizedString(@"format_asked", ""),(long)_askCount];
+}
 
 - (instancetype)init
 {

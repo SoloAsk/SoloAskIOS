@@ -61,7 +61,7 @@
 "status_refunded" = "已退款";
 "status_timeout" = "已过期";
 "mineAskcell_heard" = " 人偷听";
-
+"format_asked" = "问过 ";
 
 
 
@@ -109,7 +109,7 @@
 
 "format_answered" = "回答 %1$d";
 "format_heard" = "听过 %1$d";
-"format_asked" = "问过 %1$d";
+
 //===============================================
 "format_second" = "%1$d\'\'";
 "format_write_question" = "%1$d/50";

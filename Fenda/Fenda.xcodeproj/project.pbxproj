@@ -367,11 +367,7 @@
 		820E43681D2B8A7600F54DD4 /* MineAskHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MineAskHeadView.h; sourceTree = "<group>"; };
 		820E43691D2B8A7600F54DD4 /* MineAskHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineAskHeadView.m; sourceTree = "<group>"; };
 		820E436E1D2B8B7800F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MineAskHeadView.xib; sourceTree = "<group>"; };
-		820E43711D2B8B7B00F54DD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MineAskHeadView.strings"; sourceTree = "<group>"; };
-		820E43731D2B8B7C00F54DD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MineAskHeadView.strings; sourceTree = "<group>"; };
 		820E43751D2B8B9900F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MinAnswerHeadView.xib; sourceTree = "<group>"; };
-		820E43781D2B8B9A00F54DD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MinAnswerHeadView.strings"; sourceTree = "<group>"; };
-		820E437A1D2B8B9B00F54DD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MinAnswerHeadView.strings; sourceTree = "<group>"; };
 		820E437C1D2B8C7400F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MineListenHeadView.xib; sourceTree = "<group>"; };
 		820E437F1D2B8C7600F54DD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/MineListenHeadView.strings"; sourceTree = "<group>"; };
 		820E43811D2B8C7700F54DD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MineListenHeadView.strings; sourceTree = "<group>"; };
@@ -1979,8 +1975,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				820E436E1D2B8B7800F54DD4 /* Base */,
-				820E43711D2B8B7B00F54DD4 /* zh-Hans */,
-				820E43731D2B8B7C00F54DD4 /* en */,
 			);
 			name = MineAskHeadView.xib;
 			sourceTree = "<group>";
@@ -1989,8 +1983,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				820E43751D2B8B9900F54DD4 /* Base */,
-				820E43781D2B8B9A00F54DD4 /* zh-Hans */,
-				820E437A1D2B8B9B00F54DD4 /* en */,
 			);
 			name = MinAnswerHeadView.xib;
 			sourceTree = "<group>";
