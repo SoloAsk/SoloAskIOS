@@ -93,21 +93,21 @@ static NSString *reuseIdentifier = @"AskTableCell";
         
         self.askDic = dic;
         
-//        NSLog(@"写好了");
+
         
-//        MBProgressHUD *hud = [[MBProgressHUD alloc] init];
-//        [MBProgressHUD showMessage:@"请稍后"];
+//        self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
+//        self.hud.labelText = @"请稍后";
+//        [self.hud show:YES];
+//        [self.hud hide:YES afterDelay:5];
         
-        self.hud = [MBProgressHUD showHUDAddedTo:self.navigationController.view animated:YES];
-        self.hud.labelText = @"请稍后";
-        [self.hud show:YES];
-        [self.hud hide:YES afterDelay:5];
+        [self saveQuestion];
+
         
         //请求可售商品
-        NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
-        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-        request.delegate = self;
-        [request start];
+//        NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
+//        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
+//        request.delegate = self;
+//        [request start];
         
     };
     

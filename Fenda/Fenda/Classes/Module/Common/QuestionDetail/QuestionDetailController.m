@@ -73,7 +73,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     [super viewDidDisappear:animated];
     
-    [self.audioTool stopPlay];
+    [self.player stop];
 }
 
 - (void)viewDidLoad {
