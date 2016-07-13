@@ -34,10 +34,10 @@
                                 <constraint firstAttribute="height" constant="38" id="Bo0-QQ-6ok"/>
                                 <constraint firstAttribute="width" constant="38" id="axX-lr-s5r"/>
                             </constraints>
-                            <state key="normal" image="杨幂"/>
+                            <state key="normal" image="001"/>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杨幂" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7b-J8-JyM">
-                            <rect key="frame" x="63" y="25" width="30" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="----" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7b-J8-JyM">
+                            <rect key="frame" x="63" y="25" width="27.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" red="0.20392156862745098" green="0.20392156862745098" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -82,8 +82,9 @@
                         <constraint firstAttribute="trailing" secondItem="csG-xi-MYm" secondAttribute="trailing" constant="15" id="crL-cB-mOO"/>
                         <constraint firstItem="S4A-yu-Ije" firstAttribute="top" secondItem="APq-pq-Oca" secondAttribute="top" constant="15" id="fNb-ub-Tuf"/>
                         <constraint firstItem="T7b-J8-JyM" firstAttribute="leading" secondItem="S4A-yu-Ije" secondAttribute="trailing" constant="10" id="h13-O3-qRa"/>
-                        <constraint firstAttribute="height" constant="167" id="lLu-19-4mJ"/>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="167" id="lLu-19-4mJ"/>
                         <constraint firstItem="S4A-yu-Ije" firstAttribute="leading" secondItem="APq-pq-Oca" secondAttribute="leading" constant="15" id="qAb-8C-Zcl"/>
+                        <constraint firstAttribute="bottom" secondItem="cPn-4W-NeG" secondAttribute="bottom" constant="15" id="qSJ-8n-rYd"/>
                         <constraint firstItem="T7b-J8-JyM" firstAttribute="centerY" secondItem="S4A-yu-Ije" secondAttribute="centerY" id="voQ-nT-YIG"/>
                     </constraints>
                 </view>
@@ -132,7 +133,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kAT-xn-zJ0">
-                    <rect key="frame" x="131" y="463.5" width="112" height="46"/>
+                    <rect key="frame" x="131" y="463" width="112" height="46"/>
                     <color key="backgroundColor" red="0.83921568627450982" green="0.83921568627450982" blue="0.83921568627450982" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="A9Z-8x-fUx"/>
@@ -185,8 +186,8 @@
         </view>
     </objects>
     <resources>
+        <image name="001" width="54" height="54"/>
         <image name="ic_answer_record" width="288" height="289"/>
         <image name="ic_answer_stop" width="300" height="300"/>
-        <image name="杨幂" width="299" height="295"/>
     </resources>
 </document>

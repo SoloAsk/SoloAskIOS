@@ -10,6 +10,8 @@
 #import "AVAudioRecordTool.h"
 #import "AVAudioSession+Extension.h"
 #import "NoQandAController.h"
+#import "UIImageView+WebCache.h"
+#import "UIButton+WebCache.h"
 
 
 @interface AnswerVoiceController ()
@@ -67,10 +69,16 @@
     
     [self setupUI];
     
+    [self setupData];
+    
     //初始化录音工具类
     self.recordTool = [[AVAudioRecordTool alloc] init];
     
 }
+
+
+
+
 
 -(AVAudioRecordTool *)recordTool{
     
@@ -80,6 +88,30 @@
     
     return _recordTool;
 }
+
+
+
+#pragma mark - 初始化界面数据
+-(void)setupData{
+    
+    //头像,用户名
+    
+                
+    [self.userIconBtn sd_setImageWithURL:[NSURL URLWithString:[self.quesModel.askUser objectForKey:@"userIcon"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"001"]];
+    self.userNameLabel.text = [self.quesModel.askUser objectForKey:@"userName"];
+    
+    
+    //问题价格
+    NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
+    self.priceLabel.text = [NSString stringWithFormat:@"$%@",[fmatter stringFromNumber:self.quesModel.quesPrice]];
+    
+    //问题内容
+    self.askContentLabel.text = self.quesModel.quesContent;
+    
+    //时间
+    self.askTimeLabel.text = [Tools compareCurrentTime:self.quesModel.createdAt];
+}
+
 
 #pragma mark - 初始化UI界面
 - (void)setupUI {
@@ -96,8 +128,6 @@
     };
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backview];
     
-    
-    
     self.rejectBtn.layer.cornerRadius = 3;
     self.rejectBtn.clipsToBounds = YES;
     self.rejectBtn.layer.borderColor = [UIColor colorWithRed:171/255.0 green:171/255.0 blue:171/255.0 alpha:1.0].CGColor;
@@ -113,8 +143,6 @@
 
 //拒绝
 - (IBAction)refuseBtn:(UIButton *)sender {
-    
-    
     
 }
 
@@ -135,7 +163,6 @@
 }
 
 - (void)updateRecordCurrentTime {
-//    self.timeLabel.text = [self.recordTool recordFormattedCurrentTime];
     
     if (self.state) {//录音状态
 

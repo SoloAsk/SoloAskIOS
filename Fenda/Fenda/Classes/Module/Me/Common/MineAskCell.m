@@ -71,19 +71,10 @@
     //内容
     self.quesContent.text = _quesModel.quesContent;
     
-    //头像
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
-    [bquery getObjectInBackgroundWithId:_quesModel.answerUser.objectId block:^(BmobObject *object,NSError *error){
-        if (error){
-            
-        }else{
-            
-            if (object) {
-                [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[object objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
-            }
-        }
-    }];
+    //头像，用户名
     
+    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[_quesModel.answerUser objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
+    self.userName.text = [_quesModel.answerUser objectForKey:@"userName"];
     
     //问题状态
     if ([_quesModel.state intValue] == 0) {
@@ -118,17 +109,10 @@
     self.quesContent.text = _quesModel.quesContent;
     
     //头像
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
-    [bquery getObjectInBackgroundWithId:_quesModel.askUser.objectId block:^(BmobObject *object,NSError *error){
-        if (error){
-            
-        }else{
-            
-            if (object) {
-                [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[object objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
-            }
-        }
-    }];
+    
+    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[_quesModel.askUser objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
+    self.userName.text = [_quesModel.askUser objectForKey:@"userName"];
+    
     
     
     //问题状态

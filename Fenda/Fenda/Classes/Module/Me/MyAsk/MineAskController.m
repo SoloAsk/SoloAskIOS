@@ -40,7 +40,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     
     BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
     [bquery whereKey:@"askUser" equalTo:bUser];
-    
+    [bquery includeKey:@"answerUser"];
     
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
@@ -165,7 +165,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     MineAskCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
-    cell.isWhat = 2;
+    cell.isWhat = 1;
     cell.quesModel = self.data[indexPath.row];
     
     return cell;
