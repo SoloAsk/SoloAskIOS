@@ -18,6 +18,7 @@
 #import "UserManager.h"
 #import "MineAskController.h"
 #import "QuestionDetailController.h"
+#import "TabbarController.h"
 
 
 
@@ -209,8 +210,34 @@ static NSString *reuseIdentifier = @"AskTableCell";
             
             
             [MBProgressHUD showSuccess:@"提问成功"];
-            [self.navigationController popViewControllerAnimated:YES];
-
+//            [self.navigationController popViewControllerAnimated:YES];
+            //提问成功跳到详情页
+//            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//            
+//            TabbarController *tabVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TabbarController"];
+//            tabVC.selectedIndex = 2;
+//            window.rootViewController = tabVC;
+            QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
+            
+            BmobQuery *bquery = [BmobQuery queryWithClassName:@"Question"];
+            
+            [bquery includeKey:@"askUser,answerUser"];
+            [bquery getObjectInBackgroundWithId:post.objectId block:^(BmobObject *object, NSError *error) {
+                
+                
+                if (object) {
+                    detailVC.question = (Question *)object;
+                    [self.navigationController pushViewController:detailVC animated:YES];
+                }
+                
+            }];
+            
+           
+            
+            
+            
+            
+            
             
         }else{
             if (error) {
