@@ -49,6 +49,7 @@ static NSString *reuseIdentifier = @"TalentCell";
 -(void)loadData{
     
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
+    
     //查找User表里面usid数据
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
@@ -59,24 +60,9 @@ static NSString *reuseIdentifier = @"TalentCell";
         }
        
             
-        for (BmobObject *bUser in array) {
-                
-                NSDictionary *dic = @{
-                                      @"objectId":bUser.objectId,
-                                      @"userId":[bUser objectForKey:@"userId"],
-                                      @"userName":[bUser objectForKey:@"userName"],
-                                      @"userIcon":[bUser objectForKey:@"userIcon"],
-                                      @"userTitle":[bUser objectForKey:@"userTitle"],
-                                      @"userIntroduce":[bUser objectForKey:@"userIntroduce"],
-                                      @"askPrice":[bUser objectForKey:@"askPrice"],
-                                      @"earning":[bUser objectForKey:@"earning"],
-                                      @"income":[bUser objectForKey:@"income"],
-                                      @"answerQuesNum":[bUser objectForKey:@"answerQuesNum"]
-                                      };
-                
-                UserModel *user = [UserModel mj_objectWithKeyValues:dic];
-                
-                [self.data addObject:user];
+        for (User *bUser in array) {
+            
+                [self.data addObject:bUser];
             }
         
         // 刷新表格
@@ -146,7 +132,7 @@ static NSString *reuseIdentifier = @"TalentCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     TalentCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-    cell.userMoel = self.data[indexPath.row];
+    cell.bUser = self.data[indexPath.row];
     
     return cell;
 }
@@ -168,9 +154,9 @@ static NSString *reuseIdentifier = @"TalentCell";
     
     if (mUser.isLogin) {
         
-        UserModel *user = self.data[indexPath.row];
+        User *bUser = self.data[indexPath.row];
         
-        if ([user.userId isEqualToString:mUser.userId]) {
+        if ([[bUser objectForKey:@"userId"] isEqualToString:mUser.userId]) {
             
 //            NSLog(@"userModelid = %@,mUserid = %@",user.usid,mUser.userId);
             
@@ -182,7 +168,7 @@ static NSString *reuseIdentifier = @"TalentCell";
         }else{
             
             AskTableController *askVC = [[AskTableController alloc] init];
-            askVC.userModel = user;
+            askVC.bUser = self.data[indexPath.row];
             askVC.hidesBottomBarWhenPushed = YES;
             [self.navigationController pushViewController:askVC animated:YES];
         }

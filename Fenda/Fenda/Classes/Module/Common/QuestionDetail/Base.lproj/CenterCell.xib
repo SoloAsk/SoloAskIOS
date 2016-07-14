@@ -64,8 +64,10 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="userIcon" destination="PBA-2l-04d" id="KAa-mu-2IX"/>
+                <outlet property="userIntroduce" destination="jZ6-Iy-LNT" id="koM-sn-aNv"/>
+                <outlet property="userName" destination="sM6-4q-8HY" id="VtX-vM-nCY"/>
             </connections>
-            <point key="canvasLocation" x="346" y="400"/>
+            <point key="canvasLocation" x="367" y="247"/>
         </tableViewCell>
     </objects>
     <resources>

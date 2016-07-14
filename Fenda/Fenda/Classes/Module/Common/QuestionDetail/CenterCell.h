@@ -10,4 +10,6 @@
 
 @interface CenterCell : UITableViewCell
 
+@property (nonatomic,strong) User *bUser;
+
 @end

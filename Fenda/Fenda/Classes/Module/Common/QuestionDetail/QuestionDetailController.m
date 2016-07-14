@@ -79,12 +79,16 @@ static NSString *reuseIdentifier3 = @"footerCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
  
-    
-    self.isBuy = NO;
+    [self setupUI];
+ 
+}
+
+-(void)setupUI{
     
     self.title = NSLocalizedString(@"问题详情", "");
-
     self.tableView.backgroundColor = TABLE_BACKGROUND_COLOR;
+    
+    self.isBuy = NO;
     
     self.audioTool = [[AVAudioRecordTool alloc] init];
     
@@ -99,6 +103,20 @@ static NSString *reuseIdentifier3 = @"footerCell";
         if (weakSelf.userManager.isLogin) {
             
             
+            if (btnTag == 1) {
+                
+                [weakSelf gotoAskTableControllerWithUser:[weakSelf.question objectForKey:@"askUser"]];
+                
+                return ;
+            }
+            
+            if (btnTag == 2) {
+                
+                [weakSelf gotoAskTableControllerWithUser:[weakSelf.question objectForKey:@"answerUser"]];
+                return;
+            }
+            
+            
             
             if (btnTag == 3) {//点击了语音，进行内购
                 weakSelf.isBuy = YES;
@@ -109,13 +127,13 @@ static NSString *reuseIdentifier3 = @"footerCell";
                     return ;
                 }
                 
-//                [MBProgressHUD showMessage:@"请稍后"];
-//                //请求可售商品
-//                NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
-//                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-//                request.delegate = weakSelf;
-//                [request start];
-             
+                //                [MBProgressHUD showMessage:@"请稍后"];
+                //                //请求可售商品
+                //                NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
+                //                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
+                //                request.delegate = weakSelf;
+                //                [request start];
+                
                 
                 return ;
             }
@@ -132,12 +150,28 @@ static NSString *reuseIdentifier3 = @"footerCell";
         
     };
     self.tableView.tableHeaderView = self.quesVC;
-
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"CenterCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier2];
-
+    
     self.centerCell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier2];
 
+    
 }
+
+#pragma mark - 封装方法
+-(void)gotoAskTableControllerWithUser:(User *)user{
+    
+    AskTableController *apVC = [[AskTableController alloc] init];
+    apVC.bUser = user;
+    UserManager *manager = [UserManager sharedUserManager];
+    if ([apVC.bUser.objectId isEqualToString:manager.objectId]) {
+        [MBProgressHUD showError:@"不能提问自己"];
+        return;
+    }
+    [self.navigationController pushViewController:apVC animated:YES];
+}
+
+
 
 #pragma mark - 内购代理
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
@@ -230,22 +264,6 @@ static NSString *reuseIdentifier3 = @"footerCell";
 
 -(void)playingVoice{
     
-            //第一种播放方式
-//        if ([self.audioTool isPlaying]) {//如果正在播放就停止
-//            
-//            [self.audioTool stopPlay];
-//            [self stopRecordTimer];
-//            
-//        }else{//如果停止播放，就播放
-//            
-//            //播放语音
-//            NSString *path = [[NSBundle mainBundle] pathForResource:@"luyin.aac" ofType:nil];
-//            
-//            [AVAudioSession setCategory:AVAudioSessionCategoryPlayback];
-//            [self.audioTool playBack:[NSURL fileURLWithPath:path]];
-//            [self startRecordTimer];
-//        }
-    
     
     //第二种播放方式
     if (self.player.isPlayingOrWaiting)
@@ -317,8 +335,8 @@ static NSString *reuseIdentifier3 = @"footerCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier2 forIndexPath:indexPath];
-
+    CenterCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier2 forIndexPath:indexPath];
+    cell.bUser = [self.question objectForKey:@"answerUser"];
     return cell;
 }
 
@@ -342,8 +360,9 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     
     if (self.userManager.isLogin) {
-        AskTableController *apVC = [[AskTableController alloc] init];
-        [self.navigationController pushViewController:apVC animated:YES];
+        
+        [self gotoAskTableControllerWithUser:[self.question objectForKey:@"answerUser"]];
+        
     }else{
         
         LoginController *loginVC = [[LoginController alloc] init];

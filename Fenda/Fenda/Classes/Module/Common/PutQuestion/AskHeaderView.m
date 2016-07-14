@@ -58,28 +58,32 @@
 
 @implementation AskHeaderView
 
--(void)setUserModel:(UserModel *)userModel{
+
+-(void)setBUser:(User *)bUser{
     
-    _userModel = userModel;
+    _bUser = bUser;
     
-    if (_userModel) {
+    if (_bUser) {
         
-        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_userModel.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
+        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[_bUser objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
         
-        self.userName.text = _userModel.userName;
-        self.honorLabel.text = _userModel.userTitle;
-        self.DetailDescLabel.text = _userModel.userIntroduce;
+        self.userName.text = [_bUser objectForKey:@"userName"];
+        self.honorLabel.text = [_bUser objectForKey:@"userTitle"];
+        self.DetailDescLabel.text = [_bUser objectForKey:@"userIntroduce"];
         
         NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
-        self.askPrice.text = [NSString stringWithFormat:@"$%@",[fmatter stringFromNumber:_userModel.askPrice]];
+        self.askPrice.text = [NSString stringWithFormat:@"$%@",[fmatter stringFromNumber:[_bUser objectForKey:@"askPrice"]]];
         
         
-        self.footerLabel.text = [NSString stringWithFormat:@"%@%@%@%@",NSLocalizedString(@"footer_label_01",""),[fmatter stringFromNumber:_userModel.answerQuesNum],NSLocalizedString(@"footer_label_02",""),[fmatter stringFromNumber:_userModel.earning]];
-
+        self.footerLabel.text = [NSString stringWithFormat:@"%@%@%@%@",NSLocalizedString(@"footer_label_01",""),[fmatter stringFromNumber:[_bUser objectForKey:@"answerQuesNum"]],NSLocalizedString(@"footer_label_02",""),[fmatter stringFromNumber:[_bUser objectForKey:@"earning"]]];
+        
     }
-    
+
     
 }
+
+
+
 
 -(void)awakeFromNib{
     

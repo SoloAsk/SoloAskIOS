@@ -11,6 +11,7 @@
 
 @interface TalentCell : UITableViewCell
 
-@property (nonatomic,strong) UserModel *userMoel;
+
+@property (nonatomic,strong) User *bUser;
 
 @end

@@ -23,19 +23,21 @@
 
 @implementation TalentCell
 
--(void)setUserMoel:(UserModel *)userMoel{
+-(void)setBUser:(User *)bUser{
     
-    _userMoel = userMoel;
-    if (_userMoel) {
+    _bUser = bUser;
+    
+    if (_bUser) {
         
-        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_userMoel.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
-        self.userName.text = _userMoel.userName;
-        self.userHonor.text = _userMoel.userTitle;
-        self.userIntroduce.text = _userMoel.userIntroduce;
+        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[_bUser objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
+        self.userName.text = [_bUser objectForKey:@"userName"];
+        self.userHonor.text = [_bUser objectForKey:@"userTitle"];
+        self.userIntroduce.text = [_bUser objectForKey:@"userIntroduce"];
         
     }
-    
 }
+
+
 
 - (void)awakeFromNib {
     [super awakeFromNib];

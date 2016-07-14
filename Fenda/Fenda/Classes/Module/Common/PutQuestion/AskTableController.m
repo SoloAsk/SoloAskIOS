@@ -86,7 +86,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
     
     
     AskHeaderView *askView = [[AskHeaderView alloc]init];
-    askView.userModel = self.userModel;
+    askView.bUser = self.bUser;
 
     askView.editBlock = ^(NSDictionary *dic){
         
@@ -140,7 +140,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
 
     
     //设置问题关联的回答者记录
-    BmobObject *answerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:self.userModel.objectId];
+    BmobObject *answerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:self.bUser.objectId];
     [post setObject:answerUser forKey:@"answerUser"];
     
     

@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserModel.h"
 #import "BaseTableViewController.h"
 
 @interface AskTableController : BaseTableViewController
 
-@property (nonatomic,strong) UserModel *userModel;
+
+@property (nonatomic,strong) User *bUser;
 
 @end

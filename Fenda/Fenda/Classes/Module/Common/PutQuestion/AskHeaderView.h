@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UserModel.h"
 #import "QuestionModel.h"
 #import "IQTextView.h"
 
@@ -15,7 +14,8 @@ typedef void (^EditBtnBlock)(NSDictionary *dic);
 
 @interface AskHeaderView : UIControl
 
-@property (nonatomic,strong) UserModel *userModel;
+
+@property (nonatomic,strong) User *bUser;
 
 @property (nonatomic,copy) EditBtnBlock editBlock;
 
