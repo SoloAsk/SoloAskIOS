@@ -12,7 +12,6 @@
 
 @interface MineAskCell : UITableViewCell
 
-@property (nonatomic,strong) QuestionModel *quesModel;
 
 @property (nonatomic,strong) Question *qModel;
 

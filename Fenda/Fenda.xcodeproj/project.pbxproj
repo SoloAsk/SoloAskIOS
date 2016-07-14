@@ -348,8 +348,6 @@
 		820E42131D29F9DE00F54DD4 /* MineFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MineFooterView.m; sourceTree = "<group>"; };
 		820E43011D2B524B00F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/QesDetailHeadView.xib; sourceTree = "<group>"; };
 		820E43081D2B55C300F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AskTableCell.xib; sourceTree = "<group>"; };
-		820E430B1D2B55C600F54DD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/AskTableCell.strings"; sourceTree = "<group>"; };
-		820E430D1D2B55C700F54DD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/AskTableCell.strings; sourceTree = "<group>"; };
 		820E430F1D2B564A00F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/AskHeaderView.xib; sourceTree = "<group>"; };
 		820E43181D2B596F00F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/HotCell.xib; sourceTree = "<group>"; };
 		820E431F1D2B5DC300F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/CenterCell.xib; sourceTree = "<group>"; };
@@ -1930,8 +1928,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				820E43081D2B55C300F54DD4 /* Base */,
-				820E430B1D2B55C600F54DD4 /* zh-Hans */,
-				820E430D1D2B55C700F54DD4 /* en */,
 			);
 			name = AskTableCell.xib;
 			sourceTree = "<group>";

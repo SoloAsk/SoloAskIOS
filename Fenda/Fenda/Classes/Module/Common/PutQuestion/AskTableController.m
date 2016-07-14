@@ -34,6 +34,8 @@
 //点击finish返回的内容
 @property (nonatomic,strong) NSDictionary *askDic;
 
+@property (nonatomic,strong) NSMutableArray *data;
+
 @end
 
 @implementation AskTableController
@@ -59,26 +61,81 @@ static NSString *reuseIdentifier = @"AskTableCell";
     
     self.title = NSLocalizedString(@"提问", "");
     
-    
-    
     [self.tableView registerNib:[UINib nibWithNibName:@"AskTableCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier];
     self.askCell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
+    [self example01];
+}
+
+#pragma mark - 加载网络数据
+-(void)loadData{
+    
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+    
+    [bquery whereKey:@"answerUser" equalTo:self.bUser];
+    [bquery includeKey:@"answerUser,askUser"];
+    
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        if (error) {
+            [MBProgressHUD showError:@"加载数据失败"];
+            [self.tableView.mj_header endRefreshing];
+            return ;
+        }
+        
+        if (array.count == 0) {
+            [MBProgressHUD showError:@"无结果"];
+            [self.tableView.mj_header endRefreshing];
+            
+        }else if (array.count > 0){
+            
+            for (Question *question in array) {
+                
+                [self.data addObject:question];
+                
+            }
+            
+            // 刷新表格
+            [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
+            
+        }
+        
+    }];
+    
+    
+}
+
+-(NSMutableArray *)data{
+    
+    if (_data == nil) {
+        
+        
+        _data = [NSMutableArray arrayWithCapacity:10];
+        
+    }
+    
+    return _data;
+}
+
+#pragma mark UITableView + 下拉刷新 默认
+- (void)example01
+{
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+            [self.data removeAllObjects];
+            [weakSelf loadData];
+    
+    }];
+    // 马上进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
     
 }
 
 
-
-#pragma mark - UM实现回调方法：
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    //根据`responseCode`得到发送结果,如果分享成功
-    if(response.responseCode == UMSResponseCodeSuccess)
-    {
-        //得到分享到的微博平台名
-        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
-    }
-}
 
 #pragma mark - 界面将要展示时要做的事情
 -(void)setupUI{
@@ -245,15 +302,15 @@ static NSString *reuseIdentifier = @"AskTableCell";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return 10;
+    return self.data.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
+    AskTableCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier forIndexPath:indexPath];
     
-
+    cell.question = self.data[indexPath.row];
     
     return cell;
 }

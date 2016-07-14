@@ -131,6 +131,13 @@
             <connections>
                 <outlet property="anserUserIcon" destination="qHJ-1Y-8gE" id="zWc-2Z-CIm"/>
                 <outlet property="askUserIcon" destination="vub-zk-4up" id="Jh3-pn-Ap6"/>
+                <outlet property="contentLabel" destination="knq-X1-Tr4" id="3MB-AM-WJN"/>
+                <outlet property="listenNumLabel" destination="cmr-zT-b04" id="4jz-kx-waW"/>
+                <outlet property="priceLabel" destination="0aB-PB-a3T" id="8Bt-lH-LPg"/>
+                <outlet property="timeLabel" destination="sMH-Sl-4VI" id="zE6-Ub-hpj"/>
+                <outlet property="voiceBgImage" destination="0dW-kK-qwR" id="Jf8-rr-4ly"/>
+                <outlet property="voiceCount" destination="R4x-UC-1Jp" id="QBm-X8-5Sx"/>
+                <outlet property="voiceTileLabel" destination="Cig-Sp-fBT" id="POs-By-yDl"/>
             </connections>
             <point key="canvasLocation" x="308.5" y="387"/>
         </tableViewCell>

@@ -10,4 +10,6 @@
 
 @interface AskTableCell : UITableViewCell
 
+@property (nonatomic,strong) Question *question;
+
 @end

@@ -102,7 +102,7 @@
     self.listenAndIncome.text = [NSString stringWithFormat:@"%@%@",[fmatter stringFromNumber:[_qModel objectForKey:@"listenerNum"]],NSLocalizedString(@"mineAskcell_heard", "")];
     
     //时间
-    self.quesTime.text = [Tools compareCurrentTime:_quesModel.createdAt];
+    self.quesTime.text = [Tools compareCurrentTime:[_qModel objectForKey:@"askTime"]];
 }
 
 
@@ -136,7 +136,7 @@
     self.listenAndIncome.text = [NSString stringWithFormat:@"%@%@",[fmatter stringFromNumber:[_qModel objectForKey:@"listenerNum"]],NSLocalizedString(@"mineAskcell_heard", "")];
     
     //时间
-    self.quesTime.text = [Tools compareCurrentTime:_quesModel.createdAt];
+    self.quesTime.text = [Tools compareCurrentTime:[_qModel objectForKey:@"askTime"]];
 }
 
 
