@@ -333,6 +333,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     QuestionDetailController *quesVC = [[QuestionDetailController alloc] init];
+    quesVC.question = self.data[indexPath.row];
     quesVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:quesVC animated:YES];
 }

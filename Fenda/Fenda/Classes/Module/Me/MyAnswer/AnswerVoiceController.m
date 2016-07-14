@@ -132,7 +132,7 @@
     self.askContentLabel.text = [self.quesModel objectForKey:@"quesContent"];
     
     //时间
-    self.askTimeLabel.text = [Tools compareCurrentTime:self.quesModel.createdAt];
+    self.askTimeLabel.text = [Tools compareCurrentTime:[self.quesModel objectForKey:@"askTime"]];
 }
 
 
@@ -349,8 +349,13 @@
        
         if (isSuccessful) {
             
-            NSLog(@"%@",file1.url);
+//            NSLog(@"%@",file1.url);
             [question setObject:file1.url  forKey:@"quesVoiceURL"];
+            [question setObject:@1 forKey:@"state"];
+            
+            NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
+            [question setObject:[fmatter numberFromString:self.timeLabel.text] forKey:@"voiceTime"];
+            
             [question sub_updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                 
                 if (isSuccessful) {

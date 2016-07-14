@@ -33,6 +33,8 @@
     
     _question = question;
     
+    
+    
     //内容
     self.askContentLabel.text = [_question objectForKey:@"quesContent"];
     
@@ -64,6 +66,10 @@
         self.voiceTitle.text = NSLocalizedString(@"listen_for_buy", "");
         [self.voiceBtn setImage:[UIImage imageNamed:@"fanta_bubble_background.9"] forState:UIControlStateNormal];
     }
+    
+    //语音长度
+    NSNumberFormatter *fmatter2= [[NSNumberFormatter alloc] init];
+    self.minesLabel.text = [NSString stringWithFormat:@"%@\"",[fmatter2 stringFromNumber:[_question objectForKey:@"voiceTime"]]];
     
     //时间
     self.timeLabel.text = [Tools compareCurrentTime:[_question objectForKey:@"askTime"]];

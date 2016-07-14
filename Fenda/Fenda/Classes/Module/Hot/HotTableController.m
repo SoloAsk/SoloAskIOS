@@ -62,7 +62,7 @@ static NSString *reuseIdentifier = @"hotCell";
     
     //一次性查询多个关联关系
     [bquery includeKey:@"askUser,answerUser"];
-    
+    [bquery whereKey:@"state" equalTo:@1];
     
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         

@@ -68,7 +68,7 @@
         }else{
             
             self.voiceTileLabel.text = NSLocalizedString(@"listen_for_buy", "");
-            [self.voiceBgImage setImage:[UIImage imageNamed:@"anta_bubble_background.9"]];
+            self.voiceBgImage.image = [UIImage imageNamed:@"fanta_bubble_background.9"];
         }
         
         
@@ -76,10 +76,12 @@
         self.timeLabel.text = [Tools compareCurrentTime:[_question objectForKey:@"askTime"]];
         
         //语音长度
-//        self.voiceCount.text = [_question objectForKey:@""];
+        NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
+        self.voiceCount.text = [NSString stringWithFormat:@"%@\"",[fmatter stringFromNumber:[_question objectForKey:@"voiceTime"]]];
         
         //偷听
-//        self.listenNumLabel.text = [_question objectForKey:@""];
+        NSString *listenNum = [fmatter stringFromNumber:[_question objectForKey:@"listenerNum"]];
+        self.listenNumLabel.text = [NSString stringWithFormat:@"%@ %@",listenNum,NSLocalizedString(@"mineAskcell_heard", "")];
         
         
         
