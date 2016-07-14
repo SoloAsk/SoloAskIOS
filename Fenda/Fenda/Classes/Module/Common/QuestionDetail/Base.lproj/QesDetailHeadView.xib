@@ -60,7 +60,6 @@
                     </constraints>
                     <state key="normal" image="fanta_bubble_background_free.9"/>
                     <connections>
-                        <action selector="listenBtn:" destination="eah-Me-fdL" eventType="touchUpInside" id="UNv-l6-g0C"/>
                         <action selector="voiceBtn:" destination="eah-Me-fdL" eventType="touchUpInside" id="jX1-fV-YGh"/>
                     </connections>
                 </button>
@@ -147,6 +146,7 @@
                 <outlet property="minesLabel" destination="lU0-fd-oFb" id="9HU-OU-wzB"/>
                 <outlet property="priceLabel" destination="dhG-JW-RNV" id="Kui-Vs-V4q"/>
                 <outlet property="timeLabel" destination="7ge-tJ-mH1" id="xqg-Is-PhZ"/>
+                <outlet property="voiceBtn" destination="wm1-OE-DD2" id="Vsb-lA-9p1"/>
                 <outlet property="voiceTitle" destination="jcH-J9-oht" id="0Da-ZV-gbt"/>
             </connections>
             <point key="canvasLocation" x="570.5" y="120.5"/>

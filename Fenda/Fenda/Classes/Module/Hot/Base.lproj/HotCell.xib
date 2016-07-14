@@ -104,7 +104,6 @@
                 <outlet property="listenerLabel" destination="hGC-1y-BjJ" id="Wra-ek-jTE"/>
                 <outlet property="questionLabel" destination="Dxh-NW-cgM" id="sPp-xS-MMM"/>
                 <outlet property="voiceBgImage" destination="Aw7-oR-aJa" id="c6w-I5-BTd"/>
-                <outlet property="voiceTitle" destination="lwn-XX-Qnm" id="I1R-qd-8uA"/>
             </connections>
             <point key="canvasLocation" x="322.5" y="365"/>
         </tableViewCell>

@@ -22,6 +22,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *listenerNumLabel;
 
+@property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
+
+
 @end
 
 @implementation QesDetailHeadView
@@ -40,6 +43,20 @@
     NSNumberFormatter *fmatter= [[NSNumberFormatter alloc] init];
     NSString *listenNum = [fmatter stringFromNumber:[_question objectForKey:@"listenerNum"]];
     self.listenerNumLabel.text = [NSString stringWithFormat:@"%@%@",listenNum,NSLocalizedString(@"mineAskcell_heard", "")];
+    
+    //语音
+    if ([[_question objectForKey:@"isFree"] boolValue]) {
+        
+        self.voiceTitle.text = NSLocalizedString(@"listen_for_free", "");
+        [self.voiceBtn setImage:[UIImage imageNamed:@"fanta_bubble_background_free.9"] forState:UIControlStateNormal];
+        
+    }else{
+        
+        self.voiceTitle.text = NSLocalizedString(@"listen_for_buy", "");
+        [self.voiceBtn setImage:[UIImage imageNamed:@"fanta_bubble_background.9"] forState:UIControlStateNormal];
+    }
+
+    
     
     //TODO:----------------------------回答者------------------------------
     BmobObject *answerUser =  [_question objectForKey:@"answerUser"];
@@ -78,8 +95,6 @@
 }
 
 
-- (IBAction)listenBtn:(UIButton *)sender {
-}
 
 
 #pragma mark - 点击回答者
