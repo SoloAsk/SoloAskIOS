@@ -50,7 +50,7 @@ static const CGFloat MJDuration = 2.0;
 //    [self example11];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"HotCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier];
-    self.proCell = [self.tableView dequeueReusableCellWithIdentifier:@"hotCell"];
+    self.proCell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     
 
 }
@@ -60,8 +60,9 @@ static const CGFloat MJDuration = 2.0;
     
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
     
-    [bquery includeKey:@"askUser"];
-    [bquery includeKey:@"answerUser"];
+    //一次性查询多个关联关系
+    [bquery includeKey:@"askUser,answerUser"];
+    
     
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
@@ -233,7 +234,7 @@ static const CGFloat MJDuration = 2.0;
     
     CGSize cellSize = [self.proCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
-    return cellSize.height;
+    return cellSize.height+1;
     
 }
 

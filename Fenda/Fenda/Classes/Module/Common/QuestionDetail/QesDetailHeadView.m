@@ -33,20 +33,29 @@
     //内容
     self.askContentLabel.text = [_question objectForKey:@"quesContent"];
     
-    //用户名和头衔
-    BmobObject *answerUser =  [_question objectForKey:@"answerUser"];
-//    NSString *askerName = [answerUser objectForKey:@"userName"];
-//    NSString *askerTitle = [answerUser objectForKey:@"userTitle"];
-//    self.askerLabel.text = [NSString stringWithFormat:@"%@ | %@",askerName,askerTitle];
-    
-    //头像
-    [self.answerIcon sd_setImageWithURL:[NSURL URLWithString:[answerUser objectForKey:@"userIcon"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"001"]];
-    
+    //价格
+    self.priceLabel.text = [NSString stringWithFormat:@"$%@",[_question objectForKey:@"quesPrice"]];
     
     //偷听人数
     NSNumberFormatter *fmatter= [[NSNumberFormatter alloc] init];
     NSString *listenNum = [fmatter stringFromNumber:[_question objectForKey:@"listenerNum"]];
     self.listenerNumLabel.text = [NSString stringWithFormat:@"%@%@",listenNum,NSLocalizedString(@"mineAskcell_heard", "")];
+    
+    //TODO:----------------------------回答者------------------------------
+    BmobObject *answerUser =  [_question objectForKey:@"answerUser"];
+    
+    //头像
+    [self.answerIcon sd_setImageWithURL:[NSURL URLWithString:[answerUser objectForKey:@"userIcon"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"001"]];
+    
+    
+    //TODO:----------------------------提问者------------------------------
+    BmobObject *askUser =  [_question objectForKey:@"askUser"];
+    //头像
+    [self.askerIcon sd_setImageWithURL:[NSURL URLWithString:[askUser objectForKey:@"userIcon"]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"001"]];
+    
+    //用户名
+    self.askerName.text = [askUser objectForKey:@"userName"];
+    
 }
 
 -(void)awakeFromNib{

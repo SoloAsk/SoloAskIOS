@@ -144,8 +144,12 @@ static NSString *reuseIdentifier = @"mineAskCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    CGSize size = [self.mineAskCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    return size.height;
+    Question *qmodel = self.data[indexPath.row];
+    
+    self.mineAskCell.qModel = qmodel;
+    
+    CGSize size = [self.mineAskCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+    return size.height +1;//必须+1，否则Label显示不全
 }
 
 
