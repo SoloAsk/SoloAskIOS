@@ -36,6 +36,14 @@
     //内容
     self.askContentLabel.text = [_question objectForKey:@"quesContent"];
     
+    CGSize size = [self.askContentLabel.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-30, 345) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
+    if (size.height > 18) {
+        CGRect frame = self.frame;
+        frame.size.height = frame.size.height+(size.height-18);
+        self.frame = frame;
+    }
+    
+    
     //价格
     self.priceLabel.text = [NSString stringWithFormat:@"$%@",[_question objectForKey:@"quesPrice"]];
     

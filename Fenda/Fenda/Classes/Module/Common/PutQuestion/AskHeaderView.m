@@ -113,7 +113,7 @@
         CGRect frame = self.frame;
         frame.size.height = 527+30;
         self.frame = frame;
-//        NSLog(@"frame:%@---文本：%@--textSize:%@",NSStringFromCGRect(self.frame),self.DetailDescLabel.text,NSStringFromCGSize(textSize));
+
     }
     
     

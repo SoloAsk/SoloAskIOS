@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="eah-Me-fdL" customClass="QesDetailHeadView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="197"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Yang Mi" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ve-aV-Gqg">
@@ -34,15 +34,14 @@
                     <color key="textColor" red="0.95686274510000002" green="0.2784313725" blue="0.22352941179999999" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="228" translatesAutoresizingMaskIntoConstraints="NO" id="9QX-a5-DOc">
-                    <rect key="frame" x="15" y="69" width="345" height="54"/>
-                    <string key="text">"Ode to joy" scraper, has a good reputation, in addition to play forcibly implanted narrator, from everywhere, a lot of people love songs, love Andy, fell in love with the old Tan, fell in love with the Fan Shengmei, but alone to here Yang Zi played Qiu Yingying, state of sharp, have open hand tore Qiu Yingying mode.</string>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;Ode to joy&quot; scraper, has a go" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="345" translatesAutoresizingMaskIntoConstraints="NO" id="9QX-a5-DOc">
+                    <rect key="frame" x="15" y="69" width="345" height="18"/>
                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                     <color key="textColor" red="0.24705882352941178" green="0.24705882352941178" blue="0.24705882352941178" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgn-5U-RAV">
-                    <rect key="frame" x="15" y="145" width="40" height="40"/>
+                    <rect key="frame" x="15" y="109" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="9fA-Vv-zHL"/>
                         <constraint firstAttribute="width" constant="40" id="YYC-Xt-CJz"/>
@@ -53,7 +52,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wm1-OE-DD2">
-                    <rect key="frame" x="61" y="140" width="185" height="45"/>
+                    <rect key="frame" x="61" y="104" width="185" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="6Yb-60-MgV"/>
                         <constraint firstAttribute="width" constant="185" id="CdF-Qd-tF9"/>
@@ -64,7 +63,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overheard with $1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="65" translatesAutoresizingMaskIntoConstraints="NO" id="jcH-J9-oht">
-                    <rect key="frame" x="103" y="155" width="117" height="16"/>
+                    <rect key="frame" x="103" y="119" width="117" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="Ylp-Md-feG"/>
                         <constraint firstAttribute="width" constant="117" id="eCy-ss-oIz"/>
@@ -74,26 +73,26 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fanta_ic_playing_3" translatesAutoresizingMaskIntoConstraints="NO" id="fBq-B1-Ejy">
-                    <rect key="frame" x="79" y="152" width="22" height="22"/>
+                    <rect key="frame" x="79" y="116" width="22" height="22"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="22" id="FVG-rq-4Fh"/>
                         <constraint firstAttribute="height" constant="22" id="T4P-JK-u6N"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 hour ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="40.5" translatesAutoresizingMaskIntoConstraints="NO" id="7ge-tJ-mH1">
-                    <rect key="frame" x="61" y="198" width="63.5" height="16"/>
+                    <rect key="frame" x="61" y="162" width="63.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="70 heard" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="125.5" translatesAutoresizingMaskIntoConstraints="NO" id="Ynn-hD-RmC">
-                    <rect key="frame" x="306" y="197" width="54" height="16"/>
+                    <rect key="frame" x="306" y="161" width="54" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.66274509803921566" green="0.66274509803921566" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="52&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="21.5" translatesAutoresizingMaskIntoConstraints="NO" id="lU0-fd-oFb">
-                    <rect key="frame" x="256" y="157" width="21.5" height="16"/>
+                    <rect key="frame" x="256" y="121" width="21.5" height="16"/>
                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                     <color key="textColor" red="0.75294117650000003" green="0.75294117650000003" blue="0.75294117650000003" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -110,6 +109,7 @@
                 <constraint firstItem="9QX-a5-DOc" firstAttribute="top" secondItem="L52-2T-gqQ" secondAttribute="bottom" constant="16" id="EUj-B0-8QE"/>
                 <constraint firstItem="Ynn-hD-RmC" firstAttribute="centerY" secondItem="7ge-tJ-mH1" secondAttribute="centerY" constant="-0.5" id="Hhu-g8-MH6"/>
                 <constraint firstItem="L52-2T-gqQ" firstAttribute="top" secondItem="eah-Me-fdL" secondAttribute="top" constant="15" id="I4Z-a0-urQ"/>
+                <constraint firstAttribute="bottom" secondItem="7ge-tJ-mH1" secondAttribute="bottom" constant="19" id="Kjg-HH-Xi8"/>
                 <constraint firstItem="L52-2T-gqQ" firstAttribute="leading" secondItem="eah-Me-fdL" secondAttribute="leading" constant="15" id="Px6-3T-7hW"/>
                 <constraint firstItem="7ge-tJ-mH1" firstAttribute="leading" secondItem="wm1-OE-DD2" secondAttribute="leading" id="aWA-uM-vv0"/>
                 <constraint firstAttribute="trailing" secondItem="Ynn-hD-RmC" secondAttribute="trailing" constant="15" id="bos-am-d6N"/>
@@ -149,7 +149,7 @@
                 <outlet property="voiceBtn" destination="wm1-OE-DD2" id="Vsb-lA-9p1"/>
                 <outlet property="voiceTitle" destination="jcH-J9-oht" id="0Da-ZV-gbt"/>
             </connections>
-            <point key="canvasLocation" x="570.5" y="120.5"/>
+            <point key="canvasLocation" x="570.5" y="103.5"/>
         </view>
     </objects>
     <resources>
