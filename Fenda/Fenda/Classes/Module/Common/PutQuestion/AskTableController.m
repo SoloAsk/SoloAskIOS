@@ -78,13 +78,13 @@ static NSString *reuseIdentifier = @"AskTableCell";
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
         if (error) {
-            [MBProgressHUD showError:@"加载数据失败"];
+            [MBProgressHUD showError:@"请检查网络"];
             [self.tableView.mj_header endRefreshing];
             return ;
         }
         
         if (array.count == 0) {
-            [MBProgressHUD showError:@"无结果"];
+//            [MBProgressHUD showError:@"无结果"];
             [self.tableView.mj_header endRefreshing];
             
         }else if (array.count > 0){
@@ -178,7 +178,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
     
 
     
-    [MBProgressHUD showMessage:@"请稍后..."];
+//    [MBProgressHUD showMessage:@"请稍后..."];
     
     BmobObject  *post = [BmobObject objectWithClassName:@"Question"];
     //设置问题内容、价格、是否公开

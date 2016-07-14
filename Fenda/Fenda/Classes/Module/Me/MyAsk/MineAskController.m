@@ -38,7 +38,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     
     BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
     [bquery whereKey:@"askUser" equalTo:bUser];
-    [bquery includeKey:@"answerUser"];
+    [bquery includeKey:@"answerUser,askUser"];
     
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
@@ -59,17 +59,12 @@ static NSString *reuseIdentifier = @"mineAskCell";
                 
                 [self.data addObject:question];
                 
-                // 刷新表格
-                [self.tableView reloadData];
-                
-                // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-                [self.tableView.mj_header endRefreshing];
-                
-                
             }
+            // 刷新表格
+            [self.tableView reloadData];
+            [self.tableView.mj_header endRefreshing];
             
-            
-//            NSLog(@"data = %@",self.data);
+
             
         }
         
@@ -158,6 +153,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     QuestionDetailController *questionDetailVC = [[QuestionDetailController alloc] init];
+    questionDetailVC.question = self.data[indexPath.row];
     questionDetailVC.hidesBottomBarWhenPushed = YES;
     
     [self.navigationController pushViewController:questionDetailVC animated:YES];

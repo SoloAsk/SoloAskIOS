@@ -13,6 +13,7 @@
 #import "QuestionModel.h"
 #import "UserManager.h"
 #import "Question.h"
+#import "QuestionDetailController.h"
 
 
 @interface MineAnswerController ()
@@ -21,7 +22,6 @@
 
 @property (nonatomic,strong) NSMutableArray *data;
 
-@property (nonatomic,assign) NSInteger selectIndex;
 
 @end
 
@@ -39,7 +39,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     
     BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
     [bquery whereKey:@"answerUser" equalTo:bUser];
-    [bquery includeKey:@"askUser"];
+    [bquery includeKey:@"askUser,answerUser"];
     
     
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
@@ -143,8 +143,10 @@ static NSString *reuseIdentifier = @"mineAskCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    self.mineAskCell.qModel = self.data[indexPath.row];
+    
     CGSize size = [self.mineAskCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
-    return size.height;
+    return size.height+1;
 }
 
 
@@ -152,16 +154,26 @@ static NSString *reuseIdentifier = @"mineAskCell";
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if (self.selectIndex == 0) {
+    Question *ques = self.data[indexPath.row];
+    
+    if ([[ques objectForKey:@"state"]  isEqual: @0]) {//未回答
         
         AnswerVoiceController *answerVC = [[AnswerVoiceController alloc] init];
         answerVC.hidesBottomBarWhenPushed = YES;
         answerVC.quesModel = self.data[indexPath.row];
         [self.navigationController pushViewController:answerVC animated:YES];
         
-    }else{
+    }else if([[ques objectForKey:@"state"]  isEqual: @1]){//已回答
         
+        QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
+        detailVC.question = ques;
+        [self.navigationController pushViewController:detailVC animated:YES];
     }
+    
+    
+        
+    
+    
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{

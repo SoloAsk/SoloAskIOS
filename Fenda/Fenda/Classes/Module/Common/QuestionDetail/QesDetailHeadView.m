@@ -25,16 +25,25 @@
 @property (weak, nonatomic) IBOutlet UIButton *voiceBtn;
 
 
+//-------约束相关-------
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeLabelLeading;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *ansIconBtnHeight;
+
+
 @end
 
 @implementation QesDetailHeadView
+
+
+
 
 -(void)setQuestion:(Question *)question{
     
     _question = question;
     
-    
-    
+    NSNumberFormatter *fmatter= [[NSNumberFormatter alloc] init];
+   
     //内容
     self.askContentLabel.text = [_question objectForKey:@"quesContent"];
     
@@ -51,7 +60,6 @@
     self.priceLabel.text = [NSString stringWithFormat:@"$%@",[_question objectForKey:@"quesPrice"]];
     
     //偷听人数
-    NSNumberFormatter *fmatter= [[NSNumberFormatter alloc] init];
     NSString *listenNum = [fmatter stringFromNumber:[_question objectForKey:@"listenerNum"]];
     self.listenerNumLabel.text = [NSString stringWithFormat:@"%@%@",listenNum,NSLocalizedString(@"mineAskcell_heard", "")];
     
@@ -68,8 +76,7 @@
     }
     
     //语音长度
-    NSNumberFormatter *fmatter2= [[NSNumberFormatter alloc] init];
-    self.minesLabel.text = [NSString stringWithFormat:@"%@\"",[fmatter2 stringFromNumber:[_question objectForKey:@"voiceTime"]]];
+    self.minesLabel.text = [NSString stringWithFormat:@"%@\"",[fmatter stringFromNumber:[_question objectForKey:@"voiceTime"]]];
     
     //时间
     self.timeLabel.text = [Tools compareCurrentTime:[_question objectForKey:@"askTime"]];

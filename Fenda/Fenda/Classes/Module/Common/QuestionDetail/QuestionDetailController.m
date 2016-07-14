@@ -13,12 +13,12 @@
 #import "UserManager.h"
 #import "LoginController.h"
 #import <StoreKit/StoreKit.h>
-#import "MBProgressHUD+NJ.h"
 #import "ShareBtnView.h"
 #import "AVAudioRecordTool.h"
 #import "AVAudioSession+Extension.h"
 #import "PlayAnimation.h"
 #import "MCSimpleAudioPlayer.h"
+#import "NSString+Extension.h"
 
 
 @interface QuestionDetailController ()<UMSocialUIDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver>
@@ -103,14 +103,14 @@ static NSString *reuseIdentifier3 = @"footerCell";
         if (weakSelf.userManager.isLogin) {
             
             
-            if (btnTag == 1) {
+            if (btnTag == 1) {//点击了提问者头像
                 
                 [weakSelf gotoAskTableControllerWithUser:[weakSelf.question objectForKey:@"askUser"]];
                 
                 return ;
             }
             
-            if (btnTag == 2) {
+            if (btnTag == 2) {//点击了回答者头像
                 
                 [weakSelf gotoAskTableControllerWithUser:[weakSelf.question objectForKey:@"answerUser"]];
                 return;
@@ -122,7 +122,11 @@ static NSString *reuseIdentifier3 = @"footerCell";
                 weakSelf.isBuy = YES;
                 if (weakSelf.isBuy) {
                     
-                    [weakSelf playingVoice];
+                    //1.下载语音呢
+                    [weakSelf downloadFile];
+                    
+                    
+//                    [weakSelf playingVoice];
                     
                     return ;
                 }
@@ -171,6 +175,43 @@ static NSString *reuseIdentifier3 = @"footerCell";
     [self.navigationController pushViewController:apVC animated:YES];
 }
 
+- (void)downloadFile{
+    
+    [SVProgressHUD show];
+    
+    [NetWorkingTools downloadFileWithURL:[self.question objectForKey:@"quesVoiceURL"] destionation:^(NSURL *targetPath, NSURLResponse *response) {
+        
+
+        [SVProgressHUD showSuccessWithStatus:@"下载完毕"];
+        [SVProgressHUD dismissWithDelay:1.5];
+        
+    } completion:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+        
+        
+        
+        // 创建文件管理器
+        
+//        NSFileManager *fileMgr = [NSFileManager defaultManager];
+//        
+//        //指向文件目录
+//        
+//        NSString *documentsDirectory= [NSString documentDirectory];
+//        
+//        NSString *filePath2= [documentsDirectory
+//                              
+//                              stringByAppendingPathComponent:@"luyin.aac"];
+        
+    
+                                    
+            
+        
+    
+        
+    }];
+    
+    
+    
+}
 
 
 #pragma mark - 内购代理

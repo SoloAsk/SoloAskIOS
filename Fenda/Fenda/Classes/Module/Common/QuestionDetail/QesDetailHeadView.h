@@ -21,6 +21,8 @@ typedef void(^BtnBlock)(NSInteger btnTag,QesDetailHeadView *detailView);
 
 @property (weak, nonatomic) IBOutlet UILabel *voiceTitle;
 
+//问题的状态（0待回答，1已回答，2已退款，3已过期）
+@property (nonatomic,strong) NSNumber *state;
 
 @property (nonatomic,strong) Question *question;
 

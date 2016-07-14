@@ -105,7 +105,6 @@
                 <constraint firstItem="Bgn-5U-RAV" firstAttribute="top" secondItem="9QX-a5-DOc" secondAttribute="bottom" constant="22" id="3J3-6Q-K4o"/>
                 <constraint firstItem="7ge-tJ-mH1" firstAttribute="top" secondItem="wm1-OE-DD2" secondAttribute="bottom" constant="13" id="97v-Nc-bUY"/>
                 <constraint firstItem="wm1-OE-DD2" firstAttribute="leading" secondItem="Bgn-5U-RAV" secondAttribute="trailing" constant="6" id="B50-yD-dZn"/>
-                <constraint firstItem="9QX-a5-DOc" firstAttribute="top" secondItem="dhG-JW-RNV" secondAttribute="bottom" constant="10.5" id="C2D-TD-pCC"/>
                 <constraint firstItem="9QX-a5-DOc" firstAttribute="top" secondItem="L52-2T-gqQ" secondAttribute="bottom" constant="16" id="EUj-B0-8QE"/>
                 <constraint firstItem="Ynn-hD-RmC" firstAttribute="centerY" secondItem="7ge-tJ-mH1" secondAttribute="centerY" constant="-0.5" id="Hhu-g8-MH6"/>
                 <constraint firstItem="L52-2T-gqQ" firstAttribute="top" secondItem="eah-Me-fdL" secondAttribute="top" constant="15" id="I4Z-a0-urQ"/>
@@ -117,7 +116,6 @@
                 <constraint firstItem="fBq-B1-Ejy" firstAttribute="leading" secondItem="Bgn-5U-RAV" secondAttribute="trailing" constant="24" id="e8f-aN-1lD"/>
                 <constraint firstItem="lU0-fd-oFb" firstAttribute="centerY" secondItem="wm1-OE-DD2" secondAttribute="centerY" constant="2.5" id="nrD-gc-7hw"/>
                 <constraint firstItem="lU0-fd-oFb" firstAttribute="leading" secondItem="wm1-OE-DD2" secondAttribute="trailing" constant="10" id="oix-k3-gln"/>
-                <constraint firstAttribute="bottom" secondItem="7ge-tJ-mH1" secondAttribute="bottom" constant="20" id="quF-RY-hEV"/>
                 <constraint firstItem="fBq-B1-Ejy" firstAttribute="centerY" secondItem="wm1-OE-DD2" secondAttribute="centerY" id="sCK-eD-3PC"/>
                 <constraint firstAttribute="trailing" secondItem="dhG-JW-RNV" secondAttribute="trailing" constant="15" id="sK9-AP-55C"/>
                 <constraint firstAttribute="trailing" secondItem="9QX-a5-DOc" secondAttribute="trailing" constant="15" id="uan-o0-htQ"/>
@@ -132,12 +130,12 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="C2D-TD-pCC"/>
-                    <exclude reference="quF-RY-hEV"/>
+                    <exclude reference="Kjg-HH-Xi8"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="animationImgView" destination="fBq-B1-Ejy" id="f9O-yQ-tkh"/>
+                <outlet property="ansIconBtnHeight" destination="9fA-Vv-zHL" id="rml-lu-PbE"/>
                 <outlet property="answerIcon" destination="Bgn-5U-RAV" id="3ht-8h-cvM"/>
                 <outlet property="askContentLabel" destination="9QX-a5-DOc" id="nE9-BE-liI"/>
                 <outlet property="askerIcon" destination="L52-2T-gqQ" id="qhs-Ds-O9Y"/>
@@ -146,6 +144,7 @@
                 <outlet property="minesLabel" destination="lU0-fd-oFb" id="9HU-OU-wzB"/>
                 <outlet property="priceLabel" destination="dhG-JW-RNV" id="Kui-Vs-V4q"/>
                 <outlet property="timeLabel" destination="7ge-tJ-mH1" id="xqg-Is-PhZ"/>
+                <outlet property="timeLabelLeading" destination="aWA-uM-vv0" id="gGl-r8-XD4"/>
                 <outlet property="voiceBtn" destination="wm1-OE-DD2" id="Vsb-lA-9p1"/>
                 <outlet property="voiceTitle" destination="jcH-J9-oht" id="0Da-ZV-gbt"/>
             </connections>

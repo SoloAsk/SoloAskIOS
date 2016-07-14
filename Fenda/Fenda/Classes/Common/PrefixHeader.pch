@@ -21,6 +21,7 @@
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
 #import <BmobSDK/Bmob.h>
+#import <BmobSDK/BmobProFile.h>
 
 #import "Singleton.h"
 #import "Tools.h"
@@ -29,10 +30,14 @@
 #import "MJExtension.h"
 #import "UIImageView+WebCache.h"
 #import "UIButton+WebCache.h"
+#import "AFNetworking.h"
+#import "SVProgressHUD.h"
+
 
 #import "Question.h"
 #import "UserManager.h"
 #import "User.h"
+#import "NetWorkingTools.h"
 
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
