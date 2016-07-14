@@ -130,6 +130,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
     [post setObject:[NSNumber numberWithBool:self.askDic[@"isPublic"]] forKey:@"isPublic"];
     [post setObject:@0 forKey:@"state"];
     [post setObject:@0 forKey:@"listenerNum"];
+    [post setObject:[Tools stringFromDate:[NSDate date]] forKey:@"askTime"];
     
     
     //设置问题关联的提问者记录

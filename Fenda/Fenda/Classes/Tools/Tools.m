@@ -58,42 +58,44 @@
 }
 
 
-+ (NSString *) compareCurrentTime:(NSDate *)strTime
++ (NSString *) compareCurrentTime:(NSString *)strTime
 {
     //把字符串转为NSdate
-//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-//    NSDate *timeDate = [dateFormatter dateFromString:strTime];
-//    NSLog(@"timeDate = %@",timeDate);
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    NSDate *timeDate = [dateFormatter dateFromString:strTime];
+    NSLog(@"timeDate = %@",timeDate);
     
-    //得到与当前时间差
-    NSTimeInterval  timeInterval = [strTime timeIntervalSinceNow];
+    //得到与当前时间差(全部使用标准时间计算)
+    NSTimeInterval  timeInterval = [timeDate timeIntervalSinceNow];
     timeInterval = -timeInterval;
-    //标准时间和北京时间差8个小时
-    timeInterval = timeInterval - 8*60*60;
+    
+    //01.标准时间和北京时间差8个小时
+//    timeInterval = timeInterval + 8*60*60;
+    
     long temp = 0;
     NSString *result;
     if (timeInterval < 60) {
-        result = [NSString stringWithFormat:@"刚刚"];
+        result = [NSString stringWithFormat:NSLocalizedString(@"time_range_just", "")];
     }
     else if((temp = timeInterval/60) <60){
-        result = [NSString stringWithFormat:@"%ld分钟前",temp];
+        result = [NSString stringWithFormat:@"%ld %@",temp,NSLocalizedString(@"time_range_minute", "")];
     }
     
     else if((temp = temp/60) <24){
-        result = [NSString stringWithFormat:@"%ld小时前",temp];
+        result = [NSString stringWithFormat:@"%ld %@",temp,NSLocalizedString(@"time_range_hour", "")];
     }
     
     else if((temp = temp/24) <30){
-        result = [NSString stringWithFormat:@"%ld天前",temp];
+        result = [NSString stringWithFormat:@"%ld %@",temp,NSLocalizedString(@"time_range_day", "")];
     }
     
     else if((temp = temp/30) <12){
-        result = [NSString stringWithFormat:@"%ld月前",temp];
+        result = [NSString stringWithFormat:@"%ld %@",temp,NSLocalizedString(@"time_range_month", "")];
     }
     else{
         temp = temp/12;
-        result = [NSString stringWithFormat:@"%ld年前",temp];
+        result = [NSString stringWithFormat:@"%ld %@",temp,NSLocalizedString(@"time_range_year", "")];
     }
     
     return  result;
@@ -109,6 +111,39 @@
     
     return dataPoint;
 }
+
++ (NSString *)stringFromDate:(NSDate *)date{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    
+    
+    //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
+    
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    
+    
+    
+    NSString *destDateString = [dateFormatter stringFromDate:date];
+    
+    
+    return destDateString;
+    
+}
+
+
+- (NSDate *)dateFromString:(NSString *)dateString{
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    
+    [dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+    
+    NSDate *destDate= [dateFormatter dateFromString:dateString];
+    
+    return destDate;
+    
+}
+
 
 
 

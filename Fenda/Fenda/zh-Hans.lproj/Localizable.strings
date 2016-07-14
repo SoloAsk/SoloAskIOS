@@ -65,6 +65,18 @@
 "format_answered" = "回答 ";
 "format_heard" = "听过 ";
 
+/*-----------Question Detail-----------*/
+"time_range_just"   = "刚刚";
+"time_range_minute" = "分钟前";
+"time_range_hour"   = "小时前";
+"time_range_day"    = "天前";
+"time_range_month"  = "月前";
+"time_range_year"   = "年前";
+
+
+
+
+
 
 
 

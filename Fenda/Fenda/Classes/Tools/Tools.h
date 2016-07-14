@@ -12,14 +12,30 @@
 
 +(void)showHudWithMessage:(NSString *)msg;
 
-//判断对象是否为空
+/*
+ 判断对象是否为空
+ */
 + (BOOL)isNull:(id)object;
 
-//时间格式实现几天前，几小时前，几分钟前
-+ (NSString *) compareCurrentTime:(NSDate *)strTime;
+/*
+ 时间格式实现几天前，几小时前，几分钟前
+ */
++ (NSString *) compareCurrentTime:(NSString *)strTime;
 
-//产生随机十位字符串
+/*
+ 产生随机十位字符串
+ */
 +(NSString *)randomString;
+
+/*
+ 将NSDate转换成NSString
+ */
++ (NSString *)stringFromDate:(NSDate *)date;
+
+/*
+ 将NSString转换成NSDate
+ */
++ (NSDate *)dateFromString:(NSString *)dateString;
 
 
 @end

@@ -36,6 +36,7 @@
     //内容
     self.askContentLabel.text = [_question objectForKey:@"quesContent"];
     
+    //--适配内容高度
     CGSize size = [self.askContentLabel.text boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-30, 345) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
     if (size.height > 18) {
         CGRect frame = self.frame;
@@ -63,7 +64,9 @@
         self.voiceTitle.text = NSLocalizedString(@"listen_for_buy", "");
         [self.voiceBtn setImage:[UIImage imageNamed:@"fanta_bubble_background.9"] forState:UIControlStateNormal];
     }
-
+    
+    //时间
+    self.timeLabel.text = [Tools compareCurrentTime:[_question objectForKey:@"askTime"]];
     
     
     //TODO:----------------------------回答者------------------------------

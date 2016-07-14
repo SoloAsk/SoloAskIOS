@@ -54,7 +54,13 @@
 "format_answered" = "Answered ";
 "format_heard" = "Heard ";
 
-
+/*-----------Question Detail-----------*/
+"time_range_just"   = "Just now";
+"time_range_minute" = "min ago";
+"time_range_hour"   = "hours ago";
+"time_range_day"    = "days ago";
+"time_range_month"  = "months ago";
+"time_range_year"   = "years ago";
 
 
 
