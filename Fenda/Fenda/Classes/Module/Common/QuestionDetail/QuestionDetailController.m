@@ -122,11 +122,23 @@ static NSString *reuseIdentifier3 = @"footerCell";
                 weakSelf.isBuy = YES;
                 if (weakSelf.isBuy) {
                     
-                    //1.下载语音呢
-                    [weakSelf downloadFile];
+                    
+                    if ([Tools isHaveVoiceWithFileName:[NSString stringWithFormat:@"%@.aac",weakSelf.question.objectId]]) {
+                        
+                        NSLog(@"文件存在");
+                        [weakSelf playingVoice];
+                        
+                    }else{
+                        
+                        NSLog(@"文件不存在");
+                        //1.下载语音呢
+                        [weakSelf downloadFile];
+                    }
                     
                     
-//                    [weakSelf playingVoice];
+                    
+                    
+//
                     
                     return ;
                 }
@@ -183,29 +195,13 @@ static NSString *reuseIdentifier3 = @"footerCell";
         
 
         [SVProgressHUD showSuccessWithStatus:@"下载完毕"];
-        [SVProgressHUD dismissWithDelay:1.5];
+        [SVProgressHUD dismissWithDelay:2];
         
     } completion:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         
         
-        
-        // 创建文件管理器
-        
-//        NSFileManager *fileMgr = [NSFileManager defaultManager];
-//        
-//        //指向文件目录
-//        
-//        NSString *documentsDirectory= [NSString documentDirectory];
-//        
-//        NSString *filePath2= [documentsDirectory
-//                              
-//                              stringByAppendingPathComponent:@"luyin.aac"];
-        
-    
-                                    
-            
-        
-    
+        [Tools reNameWithSourceURL:filePath useName:[NSString stringWithFormat:@"/voices/%@.aac",self.question.objectId]];
+
         
     }];
     
@@ -296,8 +292,14 @@ static NSString *reuseIdentifier3 = @"footerCell";
 -(MCSimpleAudioPlayer *)player{
     
     if (_player == nil) {
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"b3013af6ec.aac" ofType:nil];
-        _player = [[MCSimpleAudioPlayer alloc] initWithFilePath:path fileType:kAudioFileMP3Type];
+//        NSString *path = [[NSBundle mainBundle] pathForResource:@"b3013af6ec.aac" ofType:nil];
+        
+        //播放以objectid命名的aac文件
+        NSString *documentDerectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+        
+        NSString *filePath = [documentDerectory stringByAppendingPathComponent:[NSString stringWithFormat:@"voices/%@.aac",self.question.objectId]];
+        NSLog(@"filePath = %@",filePath);
+        _player = [[MCSimpleAudioPlayer alloc] initWithFilePath:filePath fileType:kAudioFileMP3Type];
     }
     
     return _player;

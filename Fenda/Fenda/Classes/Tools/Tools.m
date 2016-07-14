@@ -23,6 +23,49 @@
     [SVProgressHUD showErrorWithStatus:msg];
 }
 
++(NSURL *)reNameWithSourceURL:(NSURL *)fileURL useName:(NSString *)fileName{
+    
+    // 创建文件管理器
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    //创建文件目录
+    NSString *documentDerectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    
+    [fileMgr createDirectoryAtPath:[NSString stringWithFormat:@"%@/voices",documentDerectory] withIntermediateDirectories:YES attributes:nil error:nil];
+    
+    //指向文件目录
+    NSString *filePath1 = [documentDerectory stringByAppendingPathComponent:fileName];
+    
+    NSURL *fileURL1 = [NSURL fileURLWithPath:filePath1];
+    
+    NSError *error1 = nil;
+    if ([fileMgr moveItemAtURL:fileURL toURL:fileURL1 error:&error1] != YES) {
+        
+        //文件移动并重命名成功
+    }
+    
+    return fileURL1;
+}
+
+
++(BOOL)isHaveVoiceWithFileName:(NSString *)fileName{
+    
+    NSFileManager *fileMgr = [NSFileManager defaultManager];
+    
+    NSString *documentDerectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+    
+    NSString *filePath = [documentDerectory stringByAppendingPathComponent:[NSString stringWithFormat:@"voices/%@",fileName]];
+    
+    if ([fileMgr fileExistsAtPath:filePath]) {
+        
+        return  YES;
+        
+    }else{
+        
+        return NO;
+    }
+    
+}
+
 
 
 + (BOOL)isNull:(id)object

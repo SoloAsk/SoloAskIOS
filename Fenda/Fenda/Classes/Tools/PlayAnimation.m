@@ -26,7 +26,7 @@ static UIImageView *playIcon;
         
         NSString *imageName = [NSString stringWithFormat:@"fanta_ic_playing_%d.png",i];
         
-        NSLog(@"%@",imageName);
+//        NSLog(@"%@",imageName);
         
         NSString *path = [[NSBundle mainBundle]pathForResource:imageName ofType:nil];
         UIImage *image =  [UIImage imageWithContentsOfFile:path];

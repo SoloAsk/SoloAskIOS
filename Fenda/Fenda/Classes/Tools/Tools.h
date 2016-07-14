@@ -12,6 +12,18 @@
 
 +(void)showHudWithMessage:(NSString *)msg;
 
+
+/*
+ 将某个文件路径下的文件重命名，并返回重命名后的文件路径
+*/
++(NSURL *)reNameWithSourceURL:(NSURL *)fileURL useName:(NSString *)fileName;
+
+/*
+ 是否已经有这个文件名的语音文件
+ */
++(BOOL)isHaveVoiceWithFileName:(NSString *)fileName;
+
+
 /*
  判断对象是否为空
  */

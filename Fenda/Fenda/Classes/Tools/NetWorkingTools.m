@@ -28,6 +28,9 @@
         
     } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         NSLog(@"File downloaded to: %@", filePath);
+        
+        completBlock(response,filePath, error);
+        
     }];
     [downloadTask resume];
 }
