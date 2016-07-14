@@ -19,6 +19,7 @@
 #import "PlayAnimation.h"
 #import "MCSimpleAudioPlayer.h"
 #import "NSString+Extension.h"
+#import "QesDetailHeadView2.h"
 
 
 @interface QuestionDetailController ()<UMSocialUIDelegate,SKProductsRequestDelegate,SKPaymentTransactionObserver>
@@ -165,7 +166,21 @@ static NSString *reuseIdentifier3 = @"footerCell";
         
         
     };
-    self.tableView.tableHeaderView = self.quesVC;
+    
+    QesDetailHeadView2 *headView2 = [[QesDetailHeadView2 alloc] init];
+    headView2.question = self.question;
+    
+    if ([[self.question objectForKey:@"state"] intValue] == 0) {
+        
+        self.tableView.tableHeaderView = headView2;
+        
+    }else{
+        
+        self.tableView.tableHeaderView = self.quesVC;
+    }
+    
+    
+    
     
     [self.tableView registerNib:[UINib nibWithNibName:@"CenterCell" bundle:nil] forCellReuseIdentifier:reuseIdentifier2];
     
@@ -193,9 +208,11 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     [NetWorkingTools downloadFileWithURL:[self.question objectForKey:@"quesVoiceURL"] destionation:^(NSURL *targetPath, NSURLResponse *response) {
         
-
+        
+        
+        
         [SVProgressHUD showSuccessWithStatus:@"下载完毕"];
-        [SVProgressHUD dismissWithDelay:2];
+        [SVProgressHUD dismissWithDelay:1];
         
     } completion:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         
@@ -317,6 +334,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
     else
     {
         [self.player play];//如果停止播放，就播放
+        [PlayAnimation runAnimationWithCount:3 AndImageView:self.quesVC.animationImgView];
         [self startRecordTimer];
     }
     
@@ -352,16 +370,6 @@ static NSString *reuseIdentifier3 = @"footerCell";
     self.recordTimer = nil;
 }
 
-#pragma mark - UM实现回调方法：
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    //根据`responseCode`得到发送结果,如果分享成功
-    if(response.responseCode == UMSResponseCodeSuccess)
-    {
-        //得到分享到的微博平台名
-        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
-    }
-}
 
 
 #pragma mark - Table view data source

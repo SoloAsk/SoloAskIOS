@@ -245,6 +245,8 @@
 		82F4263F1D37963800B8F2E0 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F426381D37963800B8F2E0 /* AFURLResponseSerialization.m */; };
 		82F426401D37963800B8F2E0 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F4263A1D37963800B8F2E0 /* AFURLSessionManager.m */; };
 		82F4264C1D379B9900B8F2E0 /* NetWorkingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F4264B1D379B9900B8F2E0 /* NetWorkingTools.m */; };
+		82F4264F1D37E8B300B8F2E0 /* QesDetailHeadView2.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F4264E1D37E8B300B8F2E0 /* QesDetailHeadView2.m */; };
+		82F426511D37E8C200B8F2E0 /* QesDetailHeadView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82F426501D37E8C200B8F2E0 /* QesDetailHeadView2.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -663,6 +665,9 @@
 		82F4263A1D37963800B8F2E0 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
 		82F4264A1D379B9900B8F2E0 /* NetWorkingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkingTools.h; sourceTree = "<group>"; };
 		82F4264B1D379B9900B8F2E0 /* NetWorkingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkingTools.m; sourceTree = "<group>"; };
+		82F4264D1D37E8B300B8F2E0 /* QesDetailHeadView2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QesDetailHeadView2.h; sourceTree = "<group>"; };
+		82F4264E1D37E8B300B8F2E0 /* QesDetailHeadView2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QesDetailHeadView2.m; sourceTree = "<group>"; };
+		82F426501D37E8C200B8F2E0 /* QesDetailHeadView2.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = QesDetailHeadView2.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -878,6 +883,9 @@
 				820E419B1D29E8A100F54DD4 /* QesDetailHeadView.h */,
 				820E419C1D29E8A100F54DD4 /* QesDetailHeadView.m */,
 				820E43021D2B524B00F54DD4 /* QesDetailHeadView.xib */,
+				82F4264D1D37E8B300B8F2E0 /* QesDetailHeadView2.h */,
+				82F4264E1D37E8B300B8F2E0 /* QesDetailHeadView2.m */,
+				82F426501D37E8C200B8F2E0 /* QesDetailHeadView2.xib */,
 				820E417E1D29E45000F54DD4 /* CenterCell.h */,
 				820E417F1D29E45000F54DD4 /* CenterCell.m */,
 				820E43201D2B5DC300F54DD4 /* CenterCell.xib */,
@@ -1782,6 +1790,7 @@
 				820E43001D2B524B00F54DD4 /* QesDetailHeadView.xib in Resources */,
 				82B48F101D0FFC540070DA78 /* p_foot3.wav in Resources */,
 				820E431E1D2B5DC300F54DD4 /* CenterCell.xib in Resources */,
+				82F426511D37E8C200B8F2E0 /* QesDetailHeadView2.xib in Resources */,
 				820E43331D2B5F0400F54DD4 /* MineHeadView.xib in Resources */,
 				82023D981D11421200008E5A /* IQKeyboardManager.bundle in Resources */,
 				820E41C01D29ED5D00F54DD4 /* MineAnswerController.xib in Resources */,
@@ -1933,6 +1942,7 @@
 				82F426031D362CE300B8F2E0 /* Question.m in Sources */,
 				82DE0B5A1D26000B00D945D2 /* NSString+Extension.m in Sources */,
 				828D3C911D0E7DDC003B418E /* HotCellModel.m in Sources */,
+				82F4264F1D37E8B300B8F2E0 /* QesDetailHeadView2.m in Sources */,
 				82B48F041D0FE0010070DA78 /* NSArray+Log.m in Sources */,
 				820E41991D29E81F00F54DD4 /* AskTableCell.m in Sources */,
 				82DFA5A01D1A5C0F00DE0351 /* MJRefreshConst.m in Sources */,
