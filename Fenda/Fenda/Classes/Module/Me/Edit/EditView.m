@@ -68,18 +68,32 @@
     [pickerView show];
 }
 
--(void)setUser:(UserManager *)user{
+//-(void)setUser:(UserManager *)user{
+//    
+//    _user = user;
+//    
+//    
+//    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_user.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
+//    self.userName.text = _user.userName;
+//    self.honorLabel.text = _user.userTitle;
+//    self.introduce.text = _user.userIntroduce;
+//    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+//    [self.priceBtn setTitle:[formatter stringFromNumber:_user.askPrice] forState:UIControlStateNormal];
+//    
+//}
+
+
+
+-(void)setBUser:(User *)bUser{
     
-    _user = user;
+    _bUser = bUser;
     
-    
-    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_user.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
-    self.userName.text = _user.userName;
-    self.honorLabel.text = _user.userTitle;
-    self.introduce.text = _user.userIntroduce;
+    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[_bUser objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
+    self.userName.text = [_bUser objectForKey:@"userName"];
+    self.honorLabel.text = [_bUser objectForKey:@"userTitle"];
+    self.introduce.text = [_bUser objectForKey:@"userIntroduce"];
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [self.priceBtn setTitle:[formatter stringFromNumber:_user.askPrice] forState:UIControlStateNormal];
-    
+    [self.priceBtn setTitle:[formatter stringFromNumber:[_bUser objectForKey:@"askPrice"]] forState:UIControlStateNormal];
 }
 
 
@@ -101,64 +115,81 @@
     }
     
     
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
-    [bquery whereKey:@"userId" equalTo:_user.userId];
-    
-    [MBProgressHUD showMessage:NSLocalizedString(@"hud_prompt_save", "")];
-    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        
-        if (error) {
-            [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
-            return ;
+    [self.bUser setObject:self.honorLabel.text forKey:@"userTitle"];
+    [self.bUser setObject:self.introduce.text forKey:@"userIntroduce"];
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [self.bUser setObject:[formatter numberFromString:self.priceBtn.titleLabel.text] forKey:@"askPrice"];
+    [self.bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+       
+        if (isSuccessful) {
+            [MBProgressHUD showSuccess:NSLocalizedString(@"hud_prompt_saveSuccess", "")];
+            if (self.saveBlock) {
+                self.saveBlock();
+            }
         }
-        
-        if (array.count == 1) {
-            
-            BmobObject *bUser = array[0];
-            
-            [bUser setObject:self.honorLabel.text forKey:@"userTitle"];
-            [bUser setObject:self.introduce.text forKey:@"userIntroduce"];
-            
-            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-            [bUser setObject:[formatter numberFromString:self.priceBtn.titleLabel.text] forKey:@"askPrice"];
-            
-            [bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-                
-                if (error) {
-                    [MBProgressHUD showSuccess:NSLocalizedString(@"hud_prompt_saveFailed", "")];
-                    return ;
-                }
-                
-                if (isSuccessful) {
-                    
-                    NSLog(@"---->>%@",self.priceBtn.titleLabel.text);
-                    
-                    UserManager *localUser = [UserManager sharedUserManager];
-                    NSDictionary *dic = @{
-                                @"userTitle":self.honorLabel.text,
-                                @"userIntroduce":self.introduce.text,
-                                @"askPrice":[formatter numberFromString:self.priceBtn.titleLabel.text]
-                                          };
-                    [localUser setAttributes:dic];
-                    
-                    [MBProgressHUD hideHUD];
-                    [MBProgressHUD showSuccess:NSLocalizedString(@"hud_prompt_saveSuccess", "")];
-                    
-                    
-                    if (self.saveBlock) {
-                        self.saveBlock();
-                    }
-                }
-            }];
-            
-            
-            
-            
-           
-        }
-        
         
     }];
+    
+    
+    
+    
+    
+    
+    
+//    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
+//    [bquery whereKey:@"userId" equalTo:_user.userId];
+//    
+//    [MBProgressHUD showMessage:NSLocalizedString(@"hud_prompt_save", "")];
+//    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+//        
+//        if (error) {
+//            [MBProgressHUD showError:[NSString stringWithFormat:@"%@",error]];
+//            return ;
+//        }
+//        
+//        if (array.count == 1) {
+//            
+//            BmobObject *bUser = array[0];
+//            
+//            [bUser setObject:self.honorLabel.text forKey:@"userTitle"];
+//            [bUser setObject:self.introduce.text forKey:@"userIntroduce"];
+//            
+//            NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+//            [bUser setObject:[formatter numberFromString:self.priceBtn.titleLabel.text] forKey:@"askPrice"];
+//            
+//            [bUser updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+//                
+//                if (error) {
+//                    [MBProgressHUD showSuccess:NSLocalizedString(@"hud_prompt_saveFailed", "")];
+//                    return ;
+//                }
+//                
+//                if (isSuccessful) {
+//                    
+//                    NSLog(@"---->>%@",self.priceBtn.titleLabel.text);
+//                    
+//                    UserManager *localUser = [UserManager sharedUserManager];
+//                    NSDictionary *dic = @{
+//                                @"userTitle":self.honorLabel.text,
+//                                @"userIntroduce":self.introduce.text,
+//                                @"askPrice":[formatter numberFromString:self.priceBtn.titleLabel.text]
+//                                          };
+//                    [localUser setAttributes:dic];
+//                    
+//                    [MBProgressHUD hideHUD];
+//                    [MBProgressHUD showSuccess:NSLocalizedString(@"hud_prompt_saveSuccess", "")];
+//                    
+//                    
+//                    if (self.saveBlock) {
+//                        self.saveBlock();
+//                    }
+//                }
+//            }];
+//           
+//        }
+//        
+//        
+//    }];
     
     
     

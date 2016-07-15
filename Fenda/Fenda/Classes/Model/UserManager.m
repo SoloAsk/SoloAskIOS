@@ -213,6 +213,19 @@ singleton_implementation(UserManager)
 
 
 
+
+-(void)setUserObjectID:(NSString *)userObjectID{
+    
+    [self saveUserDefaultsWithObject:userObjectID AndKey:@"userObjectID"];
+}
+
+-(NSString *)userObjectID{
+    
+  return [[NSUserDefaults standardUserDefaults] objectForKey:@"userObjectID"];
+}
+
+
+
 /**
  用户登录状态
  */

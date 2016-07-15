@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Singleton.h"
+#import "User.h"
 
 @interface UserManager : NSObject
 singleton_interface(UserManager)
@@ -84,6 +85,11 @@ singleton_interface(UserManager)
  */
 @property (nonatomic,assign) BOOL isLogin;
 
+
+/**
+ 存储User对象的objectId
+ */
+@property (nonatomic,copy) NSString *userObjectID;
 
 -(void)setAttributes:(NSDictionary *)dic;
 

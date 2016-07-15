@@ -45,7 +45,7 @@
     
     
     
-    CGSize textSize = [self.user.userIntroduce boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
+    CGSize textSize = [[_bUser objectForKey:@"userIntroduce"] boundingRectWithSize:CGSizeMake(SCREEN_WIDTH-30, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15]} context:nil].size;
     
     if (textSize.height > 18) {
         
@@ -77,26 +77,48 @@
 }
 
 
-
--(void)setUser:(UserManager *)user{
+-(void)setBUser:(User *)bUser{
     
-    _user = user;
+    _bUser = bUser;
     
-    if (_user) {
+    if (_bUser) {
         
-        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:self.user.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
+        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[_bUser objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
         
-        self.userNameLabel.text = _user.userName;
+        self.userNameLabel.text = [_bUser objectForKey:@"userName"];
         
-        self.honorLabel.text = _user.userTitle;
+        self.honorLabel.text = [_bUser objectForKey:@"userTitle"];
         
-        self.introduceLabel.text = _user.userIntroduce;
-
-        self.priceLabel.text = [NSString stringWithFormat:@"%@ $%@",NSLocalizedString(@"user_payment_for_asking", ""),_user.askPrice];
-
-        self.earningLabel.text = [NSString stringWithFormat:@"%@ $%@",NSLocalizedString(@"user_earned", ""),_user.earning];
+        self.introduceLabel.text = [_bUser objectForKey:@"userIntroduce"];
+        
+        self.priceLabel.text = [NSString stringWithFormat:@"%@ $%@",NSLocalizedString(@"user_payment_for_asking", ""),[_bUser objectForKey:@"askPrice"]];
+        
+        self.earningLabel.text = [NSString stringWithFormat:@"%@ $%@",NSLocalizedString(@"user_earned", ""),[_bUser objectForKey:@"earning"]];
     }
+
 }
+
+
+
+//-(void)setUser:(UserManager *)user{
+//    
+//    _user = user;
+//    
+//    if (_user) {
+//        
+//        [self.userIcon sd_setImageWithURL:[NSURL URLWithString:self.user.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
+//        
+//        self.userNameLabel.text = _user.userName;
+//        
+//        self.honorLabel.text = _user.userTitle;
+//        
+//        self.introduceLabel.text = _user.userIntroduce;
+//
+//        self.priceLabel.text = [NSString stringWithFormat:@"%@ $%@",NSLocalizedString(@"user_payment_for_asking", ""),_user.askPrice];
+//
+//        self.earningLabel.text = [NSString stringWithFormat:@"%@ $%@",NSLocalizedString(@"user_earned", ""),_user.earning];
+//    }
+//}
 
 
 

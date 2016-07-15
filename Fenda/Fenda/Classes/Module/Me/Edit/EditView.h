@@ -15,6 +15,9 @@ typedef void(^SaveBlock)();
 
 @property (nonatomic,copy) SaveBlock saveBlock;
 
-@property (nonatomic,strong) UserManager *user;
+//@property (nonatomic,strong) UserManager *user;
+
+@property (nonatomic,strong) User *bUser;
+
 
 @end

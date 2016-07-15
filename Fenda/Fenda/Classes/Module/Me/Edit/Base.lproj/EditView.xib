@@ -79,7 +79,7 @@
                         <constraint firstItem="fkW-0x-zQi" firstAttribute="top" secondItem="wpX-Mp-Vhh" secondAttribute="top" constant="18" id="pJJ-N4-wk5"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="杨幂" translatesAutoresizingMaskIntoConstraints="NO" id="7BP-48-vHc">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="001" translatesAutoresizingMaskIntoConstraints="NO" id="7BP-48-vHc">
                     <rect key="frame" x="166" y="23" width="43" height="43"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="43" id="fTJ-9I-mkM"/>
@@ -175,6 +175,6 @@
         </view>
     </objects>
     <resources>
-        <image name="杨幂" width="299" height="295"/>
+        <image name="001" width="54" height="54"/>
     </resources>
 </document>

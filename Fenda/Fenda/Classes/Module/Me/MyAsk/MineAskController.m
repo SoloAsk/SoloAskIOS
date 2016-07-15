@@ -36,7 +36,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     UserManager *user = [UserManager sharedUserManager];
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
     
-    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
+    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.userObjectID];
     [bquery whereKey:@"askUser" equalTo:bUser];
     [bquery includeKey:@"answerUser,askUser"];
     

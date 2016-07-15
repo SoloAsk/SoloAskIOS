@@ -195,7 +195,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
     AskTableController *apVC = [[AskTableController alloc] init];
     apVC.bUser = user;
     UserManager *manager = [UserManager sharedUserManager];
-    if ([apVC.bUser.objectId isEqualToString:manager.objectId]) {
+    if ([apVC.bUser.objectId isEqualToString:manager.userObjectID]) {
         [MBProgressHUD showError:@"不能提问自己"];
         return;
     }

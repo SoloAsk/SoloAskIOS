@@ -36,7 +36,18 @@
       
         [self.navigationController popViewControllerAnimated:YES];
     };
-    editView.user = [UserManager sharedUserManager];
+    
+    
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"User"];
+    [bquery getObjectInBackgroundWithId:[UserManager sharedUserManager].userObjectID block:^(BmobObject *object, NSError *error) {
+        
+        if (object) {
+            editView.bUser = (User *)object;
+            NSLog(@"%@",[NSThread currentThread]);
+        }
+        
+    }];
+    
     editView.frame = myScrollView.bounds;
     
     [myScrollView addSubview:editView];

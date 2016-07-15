@@ -10,7 +10,6 @@
 
 @interface User : BmobObject
 
-
 ///**
 // 用户的id号
 // */

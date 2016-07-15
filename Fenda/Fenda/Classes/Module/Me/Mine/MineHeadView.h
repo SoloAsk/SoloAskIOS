@@ -13,12 +13,12 @@ typedef void (^EditBlock)();
 
 @interface MineHeadView : UIView
 
-@property (nonatomic,strong) UserManager *user;
+//@property (nonatomic,strong) UserManager *user;
 
 @property (nonatomic,copy) EditBlock editBlock;
 
 
-
+@property (nonatomic,strong) User *bUser;
 
 
 

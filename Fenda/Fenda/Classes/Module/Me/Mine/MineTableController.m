@@ -147,8 +147,20 @@ static NSString *reuseIdentifier = @"mineCell";
     
     if (self.isLogin) {
 //        NSLog(@"现在是已登录成功状态");
-        self.headerView.user = [UserManager sharedUserManager];
+        
+        BmobQuery *bquery = [BmobQuery queryWithClassName:@"User"];
+        [bquery getObjectInBackgroundWithId:[UserManager sharedUserManager].userObjectID block:^(BmobObject *object, NSError *error) {
+           
+            if (object) {
+                self.headerView.bUser = (User *)object;
+                
+            }
+            
+        }];
+        
         self.tableView.tableHeaderView = self.headerView;
+
+        
         
     }else{
 //        NSLog(@"现在是未登录状态");
