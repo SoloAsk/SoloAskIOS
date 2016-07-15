@@ -74,6 +74,7 @@ static NSString *reuseIdentifier = @"hotCell";
         
         if (array.count == 0) {
             [MBProgressHUD showError:@"无结果"];
+            [self.tableView reloadData];
             [self.tableView.mj_header endRefreshing];
             
         }else if (array.count > 0){
@@ -183,10 +184,13 @@ static NSString *reuseIdentifier = @"hotCell";
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     
+    if (self.data > 0) {
+        Question *model = self.data[indexPath.row];
+        self.proCell.question = model;
+    }
     
-    Question *model = self.data[indexPath.row];
     
-    self.proCell.question = model;
+    
     
     CGSize cellSize = [self.proCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
