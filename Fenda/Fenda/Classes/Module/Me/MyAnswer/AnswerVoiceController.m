@@ -354,7 +354,7 @@
             [question setObject:@1 forKey:@"state"];
             
             NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
-            [question setObject:[fmatter numberFromString:self.timeLabel.text] forKey:@"voiceTime"];
+            [question setObject:[fmatter numberFromString:[self.timeLabel.text substringToIndex:1]] forKey:@"voiceTime"];
             
             [question sub_updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                 

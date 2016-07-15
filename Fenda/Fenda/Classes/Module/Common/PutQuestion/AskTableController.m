@@ -91,8 +91,12 @@ static NSString *reuseIdentifier = @"AskTableCell";
         }else if (array.count > 0){
             
             for (Question *question in array) {
+                //只有已回答，完整的问题才显示
+                if ([[question objectForKey:@"state"] intValue] == 1) {
+                    [self.data addObject:question];
+                }
                 
-                [self.data addObject:question];
+                
                 
             }
             
