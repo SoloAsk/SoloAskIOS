@@ -105,9 +105,9 @@
 {
     //把字符串转为NSdate
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *timeDate = [dateFormatter dateFromString:strTime];
-    NSLog(@"timeDate = %@",timeDate);
+    NSLog(@"timeDate = %@",strTime);
     
     //得到与当前时间差(全部使用标准时间计算)
     NSTimeInterval  timeInterval = [timeDate timeIntervalSinceNow];
@@ -163,7 +163,7 @@
     
     //zzz表示时区，zzz可以删除，这样返回的日期字符将不包含时区信息。
     
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     
     
     

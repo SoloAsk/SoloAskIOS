@@ -190,7 +190,6 @@ static NSString *reuseIdentifier = @"AskTableCell";
     [post setObject:@0 forKey:@"listenerNum"];
     [post setObject:[Tools stringFromDate:[NSDate date]] forKey:@"askTime"];
     
-    
     //设置问题关联的提问者记录
     UserManager *localUser = [UserManager sharedUserManager];
     BmobObject *askerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:localUser.objectId];
