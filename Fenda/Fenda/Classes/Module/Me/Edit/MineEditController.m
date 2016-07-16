@@ -38,9 +38,8 @@
     };
     
     
-    BmobQuery *bquery = [BmobQuery queryWithClassName:@"User"];
-    [bquery getObjectInBackgroundWithId:[UserManager sharedUserManager].userObjectID block:^(BmobObject *object, NSError *error) {
-        
+    [CloudTools queryEditWithBlock:^(NSObject *object, NSError *error) {
+       
         if (object) {
             editView.bUser = (User *)object;
         }

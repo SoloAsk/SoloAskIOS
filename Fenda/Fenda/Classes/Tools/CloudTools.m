@@ -127,6 +127,33 @@
     
 }
 
+#pragma mark - 编辑页
++(void)queryEditWithBlock:(GetObjectBlock)result{
+    
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"User"];
+    [bquery getObjectInBackgroundWithId:[UserManager sharedUserManager].userObjectID block:^(BmobObject *object, NSError *error) {
+        
+        result(object,error);
+        
+    }];
+    
+}
+
+#pragma mark - 编辑页点保存更新用户信息
++(void)updateEditUserWithBUser:(User *)user UserInfo:(NSDictionary *)infoDic Block:(UpdateResultBlock)result{
+    
+    [user setObject:infoDic[@"userTitle"] forKey:@"userTitle"];
+    [user setObject:infoDic[@"userIntroduce"] forKey:@"userIntroduce"];
+    
+    [user setObject:infoDic[@"askPrice"] forKey:@"askPrice"];
+    [user updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        
+        result(isSuccessful,error);
+        
+        
+    }];
+}
+
 
 
 @end
