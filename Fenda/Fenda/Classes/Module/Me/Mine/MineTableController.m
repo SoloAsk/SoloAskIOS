@@ -32,6 +32,8 @@
 //头部已登录视图
 @property (nonatomic, nonnull,strong) MineHeadView *headerView;
 
+@property (nonatomic,strong) User *bUser;
+
 //头部未登录视图
 @property (nonatomic,strong) MineHeaderLoginView *loginHeaderView;
 
@@ -66,6 +68,7 @@ static NSString *reuseIdentifier = @"mineCell";
         _headerView.editBlock = ^{
             
             MineEditController *editVC = [[MineEditController alloc] init];
+            editVC.bUser = weakSelf.bUser;
             editVC.hidesBottomBarWhenPushed = YES;
             [weakSelf.navigationController pushViewController:editVC animated:YES];
         };
@@ -130,6 +133,7 @@ static NSString *reuseIdentifier = @"mineCell";
            
             if (object) {
                 self.headerView.bUser = (User *)object;
+                self.bUser = (User *)object;
                 
             }
             

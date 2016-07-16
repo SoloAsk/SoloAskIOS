@@ -38,13 +38,16 @@
     };
     
     
-    [CloudTools queryEditWithBlock:^(NSObject *object, NSError *error) {
-       
-        if (object) {
-            editView.bUser = (User *)object;
-        }
-        
-    }];
+//    [CloudTools queryEditWithBlock:^(NSObject *object, NSError *error) {
+//       
+//        if (object) {
+//            editView.bUser = (User *)object;
+//        }
+//        
+//    }];
+    
+    
+    editView.bUser = self.bUser;
     
     editView.frame = myScrollView.bounds;
     
