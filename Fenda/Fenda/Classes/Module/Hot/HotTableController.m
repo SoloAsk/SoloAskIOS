@@ -9,7 +9,6 @@
 #import "HotTableController.h"
 
 #import "HotCell.h"
-//#import "QuestionModel.h"
 #import "HotModel.h"
 #import "MJExtension.h"
 #import "QuestionDetailController.h"
