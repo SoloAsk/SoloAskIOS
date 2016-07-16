@@ -155,5 +155,17 @@
 }
 
 
+#pragma mark - 我的获取头部用户信息
++(void)queryMineHeadWithBlock:(GetObjectBlock)result{
+    
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"User"];
+    [bquery getObjectInBackgroundWithId:[UserManager sharedUserManager].userObjectID block:^(BmobObject *object, NSError *error) {
+        
+        result(object,error);
+        
+    }];
+}
+
+
 
 @end

@@ -51,5 +51,8 @@ typedef void(^GetObjectBlock)(NSObject *object, NSError *error);
 //编辑页点保存更新用户信息
 +(void)updateEditUserWithBUser:(User *)user UserInfo:(NSDictionary *)infoDic Block:(UpdateResultBlock)result;
 
+//TODO:我的
+//获取头部用户信息
++(void)queryMineHeadWithBlock:(GetObjectBlock)result;
 
 @end

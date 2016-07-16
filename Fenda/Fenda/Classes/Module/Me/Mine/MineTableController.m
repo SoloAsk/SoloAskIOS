@@ -102,26 +102,7 @@ static NSString *reuseIdentifier = @"mineCell";
         __weak __typeof__(self) weakSelf = self;
         _footerView.logoutBlock = ^{
             
-//            [[UMSocialDataService defaultDataService] requestUnOauthWithType:UMShareToFacebook  completion:^(UMSocialResponseEntity *response){
-//                
-//                
-////                FBSDKLoginManager *fbManager = [[FBSDKLoginManager alloc] init];
-////                [fbManager logOut];
-//                
-//                
-//                
-//                
-//                NSLog(@"response is %@",response);
-//            }];
-            
-//            [[UMSocialDataService defaultDataService] requestUnBindToSnsWithCompletion:^(UMSocialResponseEntity *response) {
-//                 NSLog(@"response is %@",response);
-//            }];
-//            
-//            [[UMSocialDataService defaultDataService] requestUnOauthWithType:UMShareToSina  completion:^(UMSocialResponseEntity *response){
-//                NSLog(@"response is %@",response);
-//            }];
-            
+
             
             
             [ShareSDK cancelAuthorize:SSDKPlatformTypeFacebook];
@@ -148,8 +129,7 @@ static NSString *reuseIdentifier = @"mineCell";
     if (self.isLogin) {
 //        NSLog(@"现在是已登录成功状态");
         
-        BmobQuery *bquery = [BmobQuery queryWithClassName:@"User"];
-        [bquery getObjectInBackgroundWithId:[UserManager sharedUserManager].userObjectID block:^(BmobObject *object, NSError *error) {
+        [CloudTools queryMineHeadWithBlock:^(NSObject *object, NSError *error) {
            
             if (object) {
                 self.headerView.bUser = (User *)object;
