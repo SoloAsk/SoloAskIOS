@@ -85,7 +85,27 @@
     [post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         
         
+        if (error) {
+            [MBProgressHUD showError:@"保存信息失败"];
+        }
         
+        
+        if (isSuccessful) {
+            
+            [MBProgressHUD showSuccess:@"提问成功"];
+            
+            BmobQuery *bquery = [BmobQuery queryWithClassName:@"Question"];
+            
+            [bquery includeKey:@"askUser,answerUser"];
+            [bquery getObjectInBackgroundWithId:post.objectId block:^(BmobObject *object, NSError *error) {
+                
+                
+                result(object,error);
+                
+            }];
+        }
+
+       
         
     }];
     

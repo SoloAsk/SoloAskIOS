@@ -150,13 +150,14 @@ static NSString *reuseIdentifier = @"AskTableCell";
 #pragma mark - 将问题保存到云端
 -(void)saveQuestion{
     
+    
     [CloudTools saveAskWithAskInfoDic:self.askDic answerObjID:self.bUser.objectId resultBlock:^(NSObject *object, NSError *error) {
         
         if (error) {
             [MBProgressHUD showError:@"获取问题信息失败"];
-            return ;
         }
         
+       
         if (object) {
             
             QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
@@ -165,8 +166,10 @@ static NSString *reuseIdentifier = @"AskTableCell";
         }
         
     }];
- 
+    
 }
+
+
 
 
 

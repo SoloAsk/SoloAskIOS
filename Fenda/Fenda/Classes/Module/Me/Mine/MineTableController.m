@@ -102,9 +102,6 @@ static NSString *reuseIdentifier = @"mineCell";
         __weak __typeof__(self) weakSelf = self;
         _footerView.logoutBlock = ^{
             
-
-            
-            
             [ShareSDK cancelAuthorize:SSDKPlatformTypeFacebook];
             weakSelf.tableView.tableHeaderView = weakSelf.loginHeaderView;
             

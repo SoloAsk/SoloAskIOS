@@ -130,7 +130,30 @@
 }
 
 
-#pragma mark - 分享按钮
+
+#pragma mark - 分享按钮（ShareSDK弹出界面）
+//-(void)itemShareAction{
+
+//    //1、创建分享参数（必要）
+//    NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+//    [shareParams SSDKSetupShareParamsByText:@"分享内容"
+//                                     images:[UIImage imageNamed:@"传入的图片名"]
+//                                        url:[NSURL URLWithString:@"http://mob.com"]
+//                                      title:@"分享标题"
+//                                       type:SSDKContentTypeAuto];
+//    
+//    // 定制新浪微博的分享内容
+//    [shareParams SSDKSetupSinaWeiboShareParamsByText:@"定制新浪微博的分享内容" title:nil image:[UIImage imageNamed:@"传入的图片名"] url:nil latitude:0 longitude:0 objectID:nil type:SSDKContentTypeAuto];
+//    // 定制微信好友的分享内容
+//    [shareParams SSDKSetupWeChatParamsByText:@"定制微信的分享内容" title:@"title" url:[NSURL URLWithString:@"http://mob.com"] thumbImage:nil image:[UIImage imageNamed:@"传入的图片名"] musicFileURL:nil extInfo:nil fileData:nil emoticonData:nil type:SSDKContentTypeAuto forPlatformSubType:SSDKPlatformSubTypeWechatSession];// 微信好友子平台
+    
+    //2、分享
+//    [ShareSDK showShareActionSheet:self.view items:<#(NSArray *)#> shareParams:<#(NSMutableDictionary *)#> onShareStateChanged:<#^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end)shareStateChangedHandler#>]
+//}
+
+
+#pragma mark - 分享按钮（自定义弹出界面）
+
 -(void)itemShareAction{
     
     NSLog(@"-----------LLL");
@@ -142,54 +165,45 @@
       
         if (btnTag == 0) {
             
-//            FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
-//            content.contentURL = [NSURL URLWithString:@"https://developers.facebook.com"];
+            
+            //1、创建分享参数（必要）
+            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+            [shareParams SSDKSetupShareParamsByText:@"分享内容"
+                                             images:[UIImage imageNamed:@"传入的图片名"]
+                                                url:[NSURL URLWithString:@"http://mob.com"]
+                                              title:@"分享标题"
+                                               type:SSDKContentTypeAuto];
+            
+          [ShareSDK showShareEditor:SSDKPlatformTypeFacebook otherPlatformTypes:nil shareParams:shareParams onShareStateChanged:^(SSDKResponseState state, SSDKPlatformType platformType, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error, BOOL end) {
+              
+              if (state == SSDKResponseStateSuccess) {
+                  NSLog(@"分享成功");
+              }
+              
+          }];
             
             
-//            // 首先判断新浪分享是否可用
-//            if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
-//                return;
-//            }
-//            // 创建控制器，并设置ServiceType
-//            SLComposeViewController *composeVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
-//            // 添加要分享的图片
-//            [composeVC addImage:[UIImage imageNamed:@"about"]];
-//            // 添加要分享的文字
-//            [composeVC setInitialText:@"开启问答赚钱模式"];
-//            // 添加要分享的url
-//            [composeVC addURL:[NSURL URLWithString:@"http://www.soloask.com"]];
-//            // 弹出分享控制器
-//            [weakSelf presentViewController:composeVC animated:YES completion:nil];
-//            // 监听用户点击事件
-//            composeVC.completionHandler = ^(SLComposeViewControllerResult result){
-//                if (result == SLComposeViewControllerResultDone) {
-//                    NSLog(@"点击了发送");
-//                }
-//                else if (result == SLComposeViewControllerResultCancelled)
-//                {
-//                    NSLog(@"点击了取消");
-//                }
-//            };
-           
+            
+            
             
             
             
         }else if (btnTag == 1){
             
-//            TWTRComposer *composer = [[TWTRComposer alloc] init];
-//            
-//            [composer setText:@"just setting up my Fabric"];
-//            [composer setImage:[UIImage imageNamed:@"fabric"]];
-//            
-//            // Called from a UIViewController
-//            [composer showFromViewController:weakSelf completion:^(TWTRComposerResult result) {
-//                if (result == TWTRComposerResultCancelled) {
-//                    NSLog(@"Tweet composition cancelled");
-//                }
-//                else {
-//                    NSLog(@"Sending Tweet!");
-//                }
-//            }];
+            TWTRComposer *composer = [[TWTRComposer alloc] init];
+            
+            [composer setText:@"just setting up my Fabric"];
+            [composer setImage:[UIImage imageNamed:@"fabric"]];
+            
+            // Called from a UIViewController
+            [composer showFromViewController:weakSelf completion:^(TWTRComposerResult result) {
+                if (result == TWTRComposerResultCancelled) {
+                    NSLog(@"Tweet composition cancelled");
+                }
+                else {
+                    NSLog(@"Sending Tweet!");
+                }
+            }];
 
 
         }
@@ -197,20 +211,42 @@
     
     [self.manager show];
     
-    
-    
-    
-    
-    
-    
-//    [UMSocialSnsService presentSnsIconSheetView:self
-//                                         appKey:@"5762c16e67e58e642e001208"
-//                                      shareText:@"Hello Solo Ask，www.soloask.com"
-//                                     shareImage:[UIImage imageNamed:@"icon.png"]
-//                                shareToSnsNames:@[UMShareToFacebook,UMShareToTwitter]
-//                                       delegate:self];
-    
 }
+
+
+#pragma mark - 原生分享
+-(void)nativeShare{
+    
+    //
+    
+    // 首先判断新浪分享是否可用
+    if (![SLComposeViewController isAvailableForServiceType:SLServiceTypeTwitter]) {
+        return;
+    }
+    // 创建控制器，并设置ServiceType
+    SLComposeViewController *composeVC = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    // 添加要分享的图片
+    [composeVC addImage:[UIImage imageNamed:@"about"]];
+    // 添加要分享的文字
+    [composeVC setInitialText:@"开启问答赚钱模式"];
+    // 添加要分享的url
+    [composeVC addURL:[NSURL URLWithString:@"http://www.soloask.com"]];
+    // 弹出分享控制器
+    [self presentViewController:composeVC animated:YES completion:nil];
+    // 监听用户点击事件
+    composeVC.completionHandler = ^(SLComposeViewControllerResult result){
+        if (result == SLComposeViewControllerResultDone) {
+            NSLog(@"点击了发送");
+        }
+        else if (result == SLComposeViewControllerResultCancelled)
+        {
+            NSLog(@"点击了取消");
+        }
+    };
+}
+
+
+
 
 
 
