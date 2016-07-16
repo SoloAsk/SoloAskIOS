@@ -37,8 +37,8 @@
 //必须强引用才能播放
 @property (nonatomic,strong) AVAudioRecordTool *audioTool;
 
-//语音是否已经购买
-@property (nonatomic,assign) BOOL isBuy;
+//是否正在内购，防止按钮被多次点击
+@property (nonatomic,assign) BOOL isBuying;
 
 
 @property (nonatomic,strong) QesDetailHeadView *quesVC;
@@ -50,6 +50,8 @@
 
 //记录语音是否 已经 下载并且购买过(防止每次判断都要去联网)
 @property (nonatomic,assign) BOOL isLocalBuy;
+
+
 
 @end
 
@@ -108,8 +110,6 @@ static NSString *reuseIdentifier3 = @"footerCell";
     self.title = NSLocalizedString(@"问题详情", "");
     self.tableView.backgroundColor = TABLE_BACKGROUND_COLOR;
     
-    self.isBuy = NO;
-    
     self.audioTool = [[AVAudioRecordTool alloc] init];
     
     __unsafe_unretained __typeof(self) weakSelf = self;
@@ -136,6 +136,10 @@ static NSString *reuseIdentifier3 = @"footerCell";
             
             
             if (btnTag == 3) {//点击了语音，进行内购
+                
+                if (weakSelf.isBuying) {
+                    return;
+                }
 
                 if (weakSelf.isLocalBuy) {//如果已经购买过此语音，直接播放
                     [weakSelf playingVoice];
@@ -415,6 +419,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
 
     [SVProgressHUD show];
     
+    self.isBuying = YES;
     //请求可售商品
     NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
     SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
@@ -458,6 +463,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
     [SVProgressHUD setMinimumDismissTimeInterval:1];
     
     for (SKPaymentTransaction *transacion in transactions) {
+        
         switch (transacion.transactionState) {
             case SKPaymentTransactionStatePurchasing:
                 break;
@@ -473,6 +479,8 @@ static NSString *reuseIdentifier3 = @"footerCell";
             
                 self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
                 
+                self.isBuying = NO;
+                
             }
                 
                 
@@ -482,25 +490,30 @@ static NSString *reuseIdentifier3 = @"footerCell";
                 [queue finishTransaction:transacion];
                
                 [SVProgressHUD showErrorWithStatus:@"购买失败"];
+                self.isBuying = NO;
                 break;
                 
             case SKPaymentTransactionStateRestored:
             
                 [SVProgressHUD showErrorWithStatus:@"恢复购买"];
+                self.isBuying = NO;
                 [queue finishTransaction:transacion];
                 break;
                 
             case SKPaymentTransactionStateDeferred:
         
                 [SVProgressHUD showErrorWithStatus:@"未决定购买"];
+                self.isBuying = NO;
                 [queue finishTransaction:transacion];
                 break;
                 
             default:
                
                 [SVProgressHUD showErrorWithStatus:@"未知错误"];
+                self.isBuying = NO;
                 break;
         }
+        
         
     }
 }
