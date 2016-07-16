@@ -120,6 +120,10 @@ static NSString *reuseIdentifier3 = @"footerCell";
         
         
         if (weakSelf.userManager.isLogin) {
+            
+            if (weakSelf.isBuying) {
+                return;
+            }
 
             
             if (btnTag == 1) {//点击了提问者头像
@@ -149,10 +153,13 @@ static NSString *reuseIdentifier3 = @"footerCell";
                 
                 
             //判断是否是 提问者 和 回答者
+                weakSelf.isBuying = YES;
                 [weakSelf isAuthorAndAnswerWithBlock:^(BOOL isAuthor) {
                     
                     if (isAuthor) {
+                        
                         NSLog(@"是回答者或者作者");
+                        weakSelf.isBuying = NO;
                         [SVProgressHUD dismiss];
                         weakSelf.isLocalBuy = YES;
                         [weakSelf playingVoice];
@@ -164,7 +171,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
                         [weakSelf searchUserOfQuestionWithResultBlock:^(BOOL isHave) {
                             
                             if (isHave) {//----已经买过了
-                                
+                                weakSelf.isBuying = NO;
                                 weakSelf.isLocalBuy = YES;
                                 //播放语音
                                 [weakSelf playingVoice];
@@ -227,6 +234,16 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
 }
 
+-(void)itemShareAction{
+    
+    if (self.isBuying) {
+        return;
+    }
+    
+    [super itemShareAction];
+    
+}
+
 #pragma mark - **************封装方法**************
 //TODO:跳转到提问页
 -(void)gotoAskTableControllerWithUser:(User *)user{
@@ -248,9 +265,9 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     [NetWorkingTools downloadFileWithURL:[self.question objectForKey:@"quesVoiceURL"] destionation:^(NSURL *targetPath, NSURLResponse *response) {
         
-        
-        [SVProgressHUD showSuccessWithStatus:@"下载完毕"];
-        [SVProgressHUD dismissWithDelay:1];
+        [SVProgressHUD dismiss];
+//        [SVProgressHUD showSuccessWithStatus:@"下载完毕"];
+//        [SVProgressHUD dismissWithDelay:1];
         
         
         dispatch_sync(dispatch_get_main_queue(), ^{
@@ -417,14 +434,24 @@ static NSString *reuseIdentifier3 = @"footerCell";
 
 -(void)appleBuy{
 
-    [SVProgressHUD show];
     
-    self.isBuying = YES;
-    //请求可售商品
-    NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
-    SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-    request.delegate = self;
-    [request start];
+    
+    if ([SKPaymentQueue canMakePayments]) {//判断设备是否可以内购
+        
+        [SVProgressHUD show];
+        self.isBuying = YES;
+        //请求可售商品
+        NSSet *productSet = [NSSet setWithArray:@[@"cn.listen.price1"]];
+        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
+        request.delegate = self;
+        [request start];
+    }else{
+        
+        [SVProgressHUD showErrorWithStatus:@"此设备不能内购或者已禁止"];
+    }
+    
+    
+    
 }
 
 
@@ -649,8 +676,13 @@ static NSString *reuseIdentifier3 = @"footerCell";
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
+    if (self.isBuying) {
+        return;
+    }
     
     if (self.userManager.isLogin) {
         

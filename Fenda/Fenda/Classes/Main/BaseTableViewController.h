@@ -28,5 +28,8 @@
 - (void)example01;
 -(void)loadData;
 
+#pragma mark - 分享按钮（自定义弹出界面）
+-(void)itemShareAction;
+
 
 @end
