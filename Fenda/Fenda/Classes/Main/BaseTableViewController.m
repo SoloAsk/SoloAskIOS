@@ -23,6 +23,8 @@
 
 @implementation BaseTableViewController
 
+
+#pragma mark - 视图声明周期
 -(void)viewDidAppear:(BOOL)animated{
     
     [super viewDidAppear:animated];
@@ -61,18 +63,50 @@
 
 - (void)dealloc
 {
+    
     [self.conn stopNotifier];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 
-#pragma mark - 网络状态改变时调用
+#pragma mark UITableView + 下拉刷新 默认
+- (void)example01
+{
+    __unsafe_unretained __typeof(self) weakSelf = self;
+    
+    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [weakSelf loadData];
+        
+    }];
+    // 马上进入刷新状态
+    [self.tableView.mj_header beginRefreshing];
+    
+}
+
+-(void)loadData{
+    
+}
+
+-(NSMutableArray *)data{
+    
+    if (_data == nil) {
+        
+        _data = [NSMutableArray array];
+        
+    }
+    
+    return _data;
+}
+
+
+#pragma mark - 监听网络状态
 - (void)networkStateChange
 {
     [self checkNetworkState];
 }
 
-#pragma mark - 监听网络状态
 - (void)checkNetworkState
 {
     

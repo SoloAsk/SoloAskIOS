@@ -21,4 +21,12 @@
 //是否有网络，yes有，no没有
 @property (nonatomic,assign) BOOL canReachability;
 
+//存储下拉刷新数据
+@property (nonatomic,strong) NSMutableArray *data;
+
+/*下拉刷新 相关*/
+- (void)example01;
+-(void)loadData;
+
+
 @end

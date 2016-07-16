@@ -35,8 +35,6 @@
 //点击finish返回的内容
 @property (nonatomic,strong) NSDictionary *askDic;
 
-@property (nonatomic,strong) NSMutableArray *data;
-
 @end
 
 @implementation AskTableController
@@ -113,34 +111,6 @@ static NSString *reuseIdentifier = @"AskTableCell";
     
 }
 
--(NSMutableArray *)data{
-    
-    if (_data == nil) {
-        
-        
-        _data = [NSMutableArray array];
-        
-    }
-    
-    return _data;
-}
-
-#pragma mark UITableView + 下拉刷新 默认
-- (void)example01
-{
-    __unsafe_unretained __typeof(self) weakSelf = self;
-    
-    // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        
-        
-            [weakSelf loadData];
-    
-    }];
-    // 马上进入刷新状态
-    [self.tableView.mj_header beginRefreshing];
-    
-}
 
 
 
