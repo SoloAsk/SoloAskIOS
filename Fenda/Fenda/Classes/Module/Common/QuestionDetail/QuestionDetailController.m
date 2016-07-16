@@ -86,6 +86,9 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     [super viewDidDisappear:animated];
     
+    //删除下载的语音
+    [self removeFileWithFileName:[NSString stringWithFormat:@"voices/%@.aac",self.question.objectId]];
+    
     [self.player stop];
     self.isLocalBuy = NO;
     self.player = nil;
@@ -265,6 +268,21 @@ static NSString *reuseIdentifier3 = @"footerCell";
         
         //将语音文件重命名为问题objectId
         [Tools reNameWithSourceURL:filePath useName:[NSString stringWithFormat:@"/voices/%@.aac",self.question.objectId]];
+        
+        
+        
+        //重命名后删除源文件
+        if (filePath) {
+            NSLog(@"fileURL ====== %@",filePath);
+            NSFileManager *fileManager = [NSFileManager defaultManager];
+            if ([fileManager removeItemAtURL:filePath error:nil]) {
+                NSLog(@"删除保存的录音文件成功---1");
+            }else{
+                
+                NSLog(@"删除保存的录音文件失败---1");
+            }
+            
+        }
 
     }];
  
@@ -559,6 +577,26 @@ static NSString *reuseIdentifier3 = @"footerCell";
 - (void)stopRecordTimer {
     [self.recordTimer invalidate];
     self.recordTimer = nil;
+}
+
+//TODO:删除录音
+-(void)removeFileWithFileName:(NSString *)fileName{
+    
+    NSString *savePath = [[NSString documentDirectory] stringByAppendingPathComponent:fileName];
+    NSURL *fileURL = [NSURL fileURLWithPath:savePath];
+    NSLog(@"fileURL = %@",fileURL);
+    if (fileURL) {
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        if ([fileManager removeItemAtURL:fileURL error:nil]) {
+            NSLog(@"删除保存的录音文件成功---1");
+        }else{
+            
+            NSLog(@"删除保存的录音文件失败---1");
+        }
+        
+    }
+    
+    
 }
 
 

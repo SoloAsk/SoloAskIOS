@@ -327,8 +327,7 @@
         
         self.recordTool = nil;
     }
-    
-    
+ 
     
 }
 

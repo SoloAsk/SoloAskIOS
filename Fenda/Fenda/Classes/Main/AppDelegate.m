@@ -27,12 +27,11 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    //设置bmob
-    [Bmob registerWithAppKey:@"8307cbf7bc30650a6a30ffb25be78b81"];
-//    [Bmob registerWithAppKey:@"26cc3d0d29e618b194be911c994efd11"];
+    //设置Bmob
+    [self setupBmob];
     
     //设置友盟
-    [self setUMSDKWith:launchOptions];
+//    [self setUMSDKWith:launchOptions];
     
     //全局样式
     [self setAllStyle];
@@ -58,6 +57,46 @@
     
     return YES;
 }
+
+#pragma mark - 设置Bmob
+-(void)setupBmob{
+    
+    //设置bmob
+    [Bmob registerWithAppKey:@"8307cbf7bc30650a6a30ffb25be78b81"];
+    //    [Bmob registerWithAppKey:@"26cc3d0d29e618b194be911c994efd11"];
+    
+    
+    // Override point for customization after application launch.
+    //注册推送，iOS 8的推送机制与iOS 7有所不同，这里需要分别设置
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0) {
+        UIMutableUserNotificationCategory *categorys = [[UIMutableUserNotificationCategory alloc]init];
+        //注意：此处的Bundle ID要与你申请证书时填写的一致。
+        categorys.identifier=@"com.soloask.ios";
+        
+        UIUserNotificationSettings *userNotifiSetting = [UIUserNotificationSettings settingsForTypes:(UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound) categories:[NSSet setWithObjects:categorys,nil]];
+        
+        [[UIApplication sharedApplication] registerUserNotificationSettings:userNotifiSetting];
+        
+        [[UIApplication sharedApplication] registerForRemoteNotifications];
+    }else {
+        //注册远程推送
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+    }
+ 
+    
+}
+
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    
+    //注册成功后上传Token至服务器
+    BmobInstallation  *currentIntallation = [BmobInstallation installation];
+    [currentIntallation setDeviceTokenFromData:deviceToken];
+    [currentIntallation saveInBackground];
+    
+    
+}
+
 
 #pragma mark - 设置shareSDK
 -(void)setShareSDK{
@@ -124,20 +163,6 @@
 }
 
 
-
-
-
-
-//- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
-//{
-//    BOOL result = [UMSocialSnsService handleOpenURL:url];
-//    if (result == FALSE) {
-//        //调用其他SDK，例如支付宝SDK等
-//        
-//        
-//    }
-//    return result;
-//}
 
 
 #pragma mark - 设置全局样式

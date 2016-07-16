@@ -23,6 +23,7 @@
 #import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <BmobSDK/Bmob.h>
 #import <BmobSDK/BmobProFile.h>
+#import <BmobSDK/BmobPush.h>
 
 #import "Singleton.h"
 #import "Tools.h"

@@ -48,7 +48,7 @@
         NSURL *fileURL            = [NSURL fileURLWithPath:filePath];
         self.tempURL              = fileURL;
         NSDictionary *settingDict = @{
-                                      AVFormatIDKey  :  @(kAudioFormatMPEG4AAC_HE),
+                                      AVFormatIDKey  :  @(kAudioFormatMPEG4AAC_ELD),
                                       AVSampleRateKey : @(44100.0f),
                                       AVNumberOfChannelsKey :@1,
                                       AVEncoderBitDepthHintKey : @16,
