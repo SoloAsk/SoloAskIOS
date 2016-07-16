@@ -39,6 +39,7 @@
 #import "UserManager.h"
 #import "User.h"
 #import "NetWorkingTools.h"
+#import "CloudTools.h"
 
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width

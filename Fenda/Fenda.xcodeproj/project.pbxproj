@@ -219,6 +219,7 @@
 		82DFA5A41D1A5C0F00DE0351 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFA5901D1A5C0F00DE0351 /* UIView+MJExtension.m */; };
 		82DFA5A81D1A5C5800DE0351 /* UIViewController+Example.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFA5A71D1A5C5800DE0351 /* UIViewController+Example.m */; };
 		82DFA5AE1D1A69C000DE0351 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFA5AD1D1A69C000DE0351 /* UserModel.m */; };
+		82E58B241D39ED5E00489D54 /* CloudTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E58B231D39ED5E00489D54 /* CloudTools.m */; };
 		82EE241B1D38970B004545BE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EE241A1D38970B004545BE /* Social.framework */; };
 		82EE241F1D38A332004545BE /* qdImage@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EE241C1D38A332004545BE /* qdImage@1x.png */; };
 		82EE24201D38A332004545BE /* qdImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EE241D1D38A332004545BE /* qdImage@2x.png */; };
@@ -625,6 +626,8 @@
 		82DFA5A71D1A5C5800DE0351 /* UIViewController+Example.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Example.m"; sourceTree = "<group>"; };
 		82DFA5AC1D1A69C000DE0351 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		82DFA5AD1D1A69C000DE0351 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		82E58B221D39ED5E00489D54 /* CloudTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CloudTools.h; sourceTree = "<group>"; };
+		82E58B231D39ED5E00489D54 /* CloudTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CloudTools.m; sourceTree = "<group>"; };
 		82EE241A1D38970B004545BE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		82EE241C1D38A332004545BE /* qdImage@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qdImage@1x.png"; sourceTree = "<group>"; };
 		82EE241D1D38A332004545BE /* qdImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qdImage@2x.png"; sourceTree = "<group>"; };
@@ -1384,6 +1387,8 @@
 				82382AF91D1598A50002BBC1 /* Tools.m */,
 				82F4264A1D379B9900B8F2E0 /* NetWorkingTools.h */,
 				82F4264B1D379B9900B8F2E0 /* NetWorkingTools.m */,
+				82E58B221D39ED5E00489D54 /* CloudTools.h */,
+				82E58B231D39ED5E00489D54 /* CloudTools.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1869,6 +1874,7 @@
 				820E41D01D29EE7800F54DD4 /* CalculateController.m in Sources */,
 				82D042711D2F32C2008D5A56 /* CLShareManager+ShareView.m in Sources */,
 				82F426061D36805B00B8F2E0 /* User.m in Sources */,
+				82E58B241D39ED5E00489D54 /* CloudTools.m in Sources */,
 				82382A731D13DC030002BBC1 /* UIImage+WebP.m in Sources */,
 				82DFA59B1D1A5C0F00DE0351 /* MJRefreshBackStateFooter.m in Sources */,
 				82382A6B1D13DC030002BBC1 /* SDWebImageDecoder.m in Sources */,
