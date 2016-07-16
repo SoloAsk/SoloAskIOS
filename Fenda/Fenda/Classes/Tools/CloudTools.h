@@ -33,4 +33,11 @@ typedef void(^GetObjectBlock)(NSObject *object, NSError *error);
 //提问完成将信息保存后台
 +(void)saveAskWithAskInfoDic:(NSDictionary *)infoDic answerObjID:(NSString *)aObjID resultBlock:(GetObjectBlock)result;
 
+//获取我问页面信息
++(void)queryMyAskWithBlock:(QueryResultBlock)result;
+
+//获取我答页面信息
++(void)queryMyAnswerWithBlock:(QueryResultBlock)result;
+
+
 @end

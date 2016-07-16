@@ -33,16 +33,8 @@ static NSString *reuseIdentifier = @"mineAskCell";
 
 -(void)loadData{
     
-    UserManager *user = [UserManager sharedUserManager];
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
-    
-    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.userObjectID];
-    [bquery whereKey:@"answerUser" equalTo:bUser];
-    [bquery includeKey:@"askUser,answerUser"];
-    
-    
-    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
-        
+    [CloudTools queryMyAnswerWithBlock:^(NSArray *array, NSError *error) {
+       
         if (error) {
             [MBProgressHUD showError:@"加载数据失败"];
             [self.tableView.mj_header endRefreshing];
@@ -73,12 +65,8 @@ static NSString *reuseIdentifier = @"mineAskCell";
                 
             }
             
-            
-            NSLog(@"data = %@",self.data);
-            
         }
-        
-        
+
         
     }];
     

@@ -43,7 +43,6 @@
         
         if (object) {
             editView.bUser = (User *)object;
-            NSLog(@"%@",[NSThread currentThread]);
         }
         
     }];

@@ -85,30 +85,48 @@
     [post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
         
         
-        if (isSuccessful) {
-            
-            [MBProgressHUD showSuccess:@"提问成功"];
-            
-            BmobQuery *bquery = [BmobQuery queryWithClassName:@"Question"];
-            
-            [bquery includeKey:@"askUser,answerUser"];
-            [bquery getObjectInBackgroundWithId:post.objectId block:^(BmobObject *object, NSError *error) {
-                
-                result(object,error);
-                
-            }];
-   
-        }
-        
-        
-        if (error) {
-            [MBProgressHUD showError:@"提问失败"];
-        }
         
         
     }];
     
 }
+
+#pragma mark - 获取我问页面信息
++(void)queryMyAskWithBlock:(QueryResultBlock)result{
+    
+    UserManager *user = [UserManager sharedUserManager];
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+    
+    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.userObjectID];
+    [bquery whereKey:@"askUser" equalTo:bUser];
+    [bquery includeKey:@"answerUser,askUser"];
+    
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+    
+        result(array,error);
+    }];
+}
+
+
+#pragma mark - 获取我答页面信息
++(void)queryMyAnswerWithBlock:(QueryResultBlock)result{
+    
+    UserManager *user = [UserManager sharedUserManager];
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+    
+    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.userObjectID];
+    [bquery whereKey:@"answerUser" equalTo:bUser];
+    [bquery includeKey:@"askUser,answerUser"];
+    
+    
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        
+        result(array,error);
+        
+    }];
+    
+}
+
 
 
 @end
