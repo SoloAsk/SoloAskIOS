@@ -90,6 +90,8 @@ static NSString *reuseIdentifier = @"AskTableCell";
             
         }else if (array.count > 0){
             
+            [self.data removeAllObjects];
+            
             for (Question *question in array) {
                 //只有已回答，完整的问题才显示
                 if ([[question objectForKey:@"state"] intValue] == 1) {
@@ -116,7 +118,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
     if (_data == nil) {
         
         
-        _data = [NSMutableArray arrayWithCapacity:10];
+        _data = [NSMutableArray array];
         
     }
     
@@ -131,7 +133,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-            [self.data removeAllObjects];
+        
             [weakSelf loadData];
     
     }];

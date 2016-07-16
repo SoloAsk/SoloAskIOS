@@ -59,7 +59,8 @@ static NSString *reuseIdentifier = @"TalentCell";
             return;
         }
        
-            
+        [self.data removeAllObjects];
+        
         for (User *bUser in array) {
             
                 [self.data addObject:bUser];
@@ -81,7 +82,7 @@ static NSString *reuseIdentifier = @"TalentCell";
     
     if (_data == nil) {
         
-        _data = [NSMutableArray arrayWithCapacity:10];
+        _data = [NSMutableArray array];
     }
     
     return _data;
@@ -95,7 +96,7 @@ static NSString *reuseIdentifier = @"TalentCell";
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 //        [weakSelf loadNewData];
-        [self.data removeAllObjects];
+        
         [weakSelf loadData];
         
     }];

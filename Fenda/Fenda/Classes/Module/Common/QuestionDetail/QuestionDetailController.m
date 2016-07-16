@@ -48,6 +48,9 @@
 //播放语音
 @property (nonatomic,strong) MCSimpleAudioPlayer *player;
 
+//记录语音是否 已经 下载并且购买过(防止每次判断都要去联网)
+@property (nonatomic,assign) BOOL isLocalBuy;
+
 @end
 
 @implementation QuestionDetailController
@@ -59,6 +62,15 @@ static NSString *reuseIdentifier3 = @"footerCell";
 -(void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
+    
+    
+    
+    //判断有没有当前问题的语音文件
+    if ([Tools isHaveVoiceWithFileName:[NSString stringWithFormat:@"%@.aac",self.question.objectId]]) {
+        self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
+        self.isLocalBuy = YES;
+    }
+    
     
     self.userManager = [UserManager sharedUserManager];
 }
@@ -75,6 +87,10 @@ static NSString *reuseIdentifier3 = @"footerCell";
     [super viewDidDisappear:animated];
     
     [self.player stop];
+    self.isLocalBuy = NO;
+    self.player = nil;
+    self.audioTool = nil;
+    [SVProgressHUD dismiss];
 }
 
 - (void)viewDidLoad {
@@ -98,21 +114,18 @@ static NSString *reuseIdentifier3 = @"footerCell";
     self.quesVC.question = self.question;
     self.quesVC.btnBlock = ^(NSInteger btnTag,QesDetailHeadView *detailView){
         
-        NSLog(@"-----%ld",(long)btnTag);
         
         
         if (weakSelf.userManager.isLogin) {
-            
+
             
             if (btnTag == 1) {//点击了提问者头像
-                
                 [weakSelf gotoAskTableControllerWithUser:[weakSelf.question objectForKey:@"askUser"]];
-                
                 return ;
             }
             
+            
             if (btnTag == 2) {//点击了回答者头像
-                
                 [weakSelf gotoAskTableControllerWithUser:[weakSelf.question objectForKey:@"answerUser"]];
                 return;
             }
@@ -120,43 +133,61 @@ static NSString *reuseIdentifier3 = @"footerCell";
             
             
             if (btnTag == 3) {//点击了语音，进行内购
-                weakSelf.isBuy = YES;
-                if (weakSelf.isBuy) {
+
+                if (weakSelf.isLocalBuy) {//如果已经购买过此语音，直接播放
+                    [weakSelf playingVoice];
+                    return;
+                }
+                
+                
+                
+            //判断是否是 提问者 和 回答者
+                [weakSelf isAuthorAndAnswerWithBlock:^(BOOL isAuthor) {
                     
-                    
-                    if ([Tools isHaveVoiceWithFileName:[NSString stringWithFormat:@"%@.aac",weakSelf.question.objectId]]) {
-                        
-                        NSLog(@"文件存在");
+                    if (isAuthor) {
+                        NSLog(@"是回答者或者作者");
+                        [SVProgressHUD dismiss];
+                        weakSelf.isLocalBuy = YES;
                         [weakSelf playingVoice];
                         
+                        return ;
                     }else{
+                        NSLog(@"不是回答者或者作者");
+                        //获取后台是否已经关联了此用户（已经偷听了）
+                        [weakSelf searchUserOfQuestionWithResultBlock:^(BOOL isHave) {
+                            
+                            if (isHave) {//----已经买过了
+                                
+                                weakSelf.isLocalBuy = YES;
+                                //播放语音
+                                [weakSelf playingVoice];
+                                
+                                
+                            }else{//----未曾买过 to 内购
+                                
+                                [weakSelf appleBuy];
+                            }
+                            
+                        }];
                         
-                        NSLog(@"文件不存在");
-                        //1.下载语音呢
-                        [weakSelf downloadFile];
+                        return ;
                     }
                     
                     
-                    
-                    
-//
-                    
-                    return ;
-                }
+                }];
+            
                 
-                //                [MBProgressHUD showMessage:@"请稍后"];
-                //                //请求可售商品
-                //                NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
-                //                SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-                //                request.delegate = weakSelf;
-                //                [request start];
-                
-                
+            
+               
                 return ;
             }
             
+            
+            
             AskTableController *apVC = [[AskTableController alloc] init];
             [weakSelf.navigationController pushViewController:apVC animated:YES];
+            
+            
         }else{
             
             LoginController *loginVC = [[LoginController alloc] init];
@@ -189,7 +220,8 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
 }
 
-#pragma mark - 封装方法
+#pragma mark - **************封装方法**************
+//TODO:跳转到提问页
 -(void)gotoAskTableControllerWithUser:(User *)user{
     
     AskTableController *apVC = [[AskTableController alloc] init];
@@ -202,6 +234,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
     [self.navigationController pushViewController:apVC animated:YES];
 }
 
+//TODO:下载文件
 - (void)downloadFile{
     
     [SVProgressHUD show];
@@ -209,21 +242,166 @@ static NSString *reuseIdentifier3 = @"footerCell";
     [NetWorkingTools downloadFileWithURL:[self.question objectForKey:@"quesVoiceURL"] destionation:^(NSURL *targetPath, NSURLResponse *response) {
         
         
-        
-        
         [SVProgressHUD showSuccessWithStatus:@"下载完毕"];
         [SVProgressHUD dismissWithDelay:1];
         
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            
+            self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
+            [self playingVoice];
+            
+        });
+        
+        
+        
+       
     } completion:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
         
+        if (error) {
+            [SVProgressHUD showErrorWithStatus:[error description]];
+            return ;
+        }
         
+        //将语音文件重命名为问题objectId
         [Tools reNameWithSourceURL:filePath useName:[NSString stringWithFormat:@"/voices/%@.aac",self.question.objectId]];
 
-        
     }];
+ 
+}
+
+//TODO:关联偷听用户
+-(void)addListenerRelation{
+    
+    [SVProgressHUD show];
+    
+    BmobObject *question = [BmobObject objectWithoutDataWithClassName:@"Question" objectId:self.question.objectId];
+    
+    //新建relation对象
+    BmobRelation *relation = [[BmobRelation alloc] init];
+    [relation addObject:[BmobObject objectWithoutDataWithClassName:@"User" objectId:[UserManager sharedUserManager].userObjectID]];
+    
+    //添加关联关系到hearedUser列中
+    [question addRelation:relation forKey:@"heardUser"];
+    
+    //异步更新obj的数据
+    [question updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+        if (isSuccessful) {
+            
+            [self addListenerNumber];
+            
+        }else{
+            
+            [SVProgressHUD showSuccessWithStatus:[error description]];
+            [SVProgressHUD dismissWithDelay:1];
+        }
+    }];
+}
+
+//TODO:更新偷听者数量
+-(void)addListenerNumber{
+    
+    //创建一条数据，并上传至服务器
+        BmobObject *questionToBeChanged = [BmobObject objectWithoutDataWithClassName:@"Question" objectId:self.question.objectId];
+            [questionToBeChanged incrementKey:@"listenerNum"];
+            [questionToBeChanged updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
+                if (isSuccessful) {
+                    
+                    [SVProgressHUD dismiss];
+//                    [SVProgressHUD dismissWithDelay:1];
+                    
+                } else {
+                    [SVProgressHUD showSuccessWithStatus:[error description]];
+                    [SVProgressHUD dismissWithDelay:1];
+                }
+            }];
+   
+}
+
+//TODO:查询Question偷听列里是否已经有此用户
+-(void)searchUserOfQuestionWithResultBlock:(SearchResultBlock)resultBlock{
+    
+    //关联对象表
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"User"];
+    
+    //需要查询的列
+    BmobObject *question = [BmobObject objectWithoutDataWithClassName:@"Question" objectId:self.question.objectId];
+    [bquery whereObjectKey:@"heardUser" relatedTo:question];
     
     
+    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+        if (error) {
+            NSLog(@"%@",error);
+        } else {
+            
+            NSInteger sum = 0;
+            for (BmobObject *user in array) {
+                
+                if ([user.objectId isEqualToString:[UserManager sharedUserManager].userObjectID]) {
+                    
+                    sum++;
+                    
+                }
+            }
+            
+            if (sum > 0) {
+                resultBlock(YES);
+            }else{
+                resultBlock(NO);
+            }
+        }
+    }];
+}
+
+//
+-(void)isAuthorAndAnswerWithBlock:(IsAskerOrAnswerBlock)result{
     
+    [SVProgressHUD show];
+    
+    //查询问题表
+    BmobQuery *query = [BmobQuery queryWithClassName:@"Question"];
+    
+    [query getObjectInBackgroundWithId:self.question.objectId block:^(BmobObject *object, NSError *error) {
+        
+        if (error) {
+            NSLog(@"error = %@",error);
+            
+            [SVProgressHUD showErrorWithStatus:[error description]];
+            [SVProgressHUD dismissWithDelay:1];
+        }
+        
+        if (object) {
+            
+            BmobObject *asker = [object objectForKey:@"askUser"];
+            NSString *askerID = asker.objectId;
+            
+            BmobObject *answer = [object objectForKey:@"answerUser"];
+            NSString *answerID = answer.objectId;
+            NSString *localUserID = [UserManager sharedUserManager].userObjectID;
+            
+            if ([askerID isEqualToString:localUserID] || [answerID isEqualToString:localUserID]) {
+                
+                result(YES);
+            }else{
+                result(NO);
+            }
+        }
+    }];
+  
+
+}
+
+
+
+-(void)appleBuy{
+
+    [SVProgressHUD show];
+    
+    //请求可售商品
+    NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
+    SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
+    request.delegate = self;
+    [request start];
 }
 
 
@@ -232,6 +410,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     for (SKProduct *product in response.products) {
         
+//        [SVProgressHUD dismiss];
         
         SKPayment *payment = [SKPayment paymentWithProduct:product];
         
@@ -240,6 +419,8 @@ static NSString *reuseIdentifier3 = @"footerCell";
         
         
     }
+    
+//    [SVProgressHUD dismiss];
 }
 
 
@@ -255,6 +436,9 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     //    self.hud.label.text = [NSString stringWithFormat:@"请求到的票据个数：%ld",(unsigned long)transactions.count];
     
+//    [SVProgressHUD dismiss];
+    [SVProgressHUD setMinimumDismissTimeInterval:1];
+    
     for (SKPaymentTransaction *transacion in transactions) {
         switch (transacion.transactionState) {
             case SKPaymentTransactionStatePurchasing:
@@ -263,12 +447,12 @@ static NSString *reuseIdentifier3 = @"footerCell";
             case SKPaymentTransactionStatePurchased:
                 
             {
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"购买成功"];
+                //关联偷听用户并增加偷听数量
+                [self addListenerRelation];
+                
                 [queue finishTransaction:transacion];
                 
-                self.isBuy = YES;
-                
+            
                 self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
                 
             }
@@ -278,27 +462,25 @@ static NSString *reuseIdentifier3 = @"footerCell";
                 
             case SKPaymentTransactionStateFailed:
                 [queue finishTransaction:transacion];
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"购买失败"];
+               
+                [SVProgressHUD showErrorWithStatus:@"购买失败"];
                 break;
                 
             case SKPaymentTransactionStateRestored:
-                [MBProgressHUD showError:@"恢复购买"];
-                [MBProgressHUD hideHUD];
+            
+                [SVProgressHUD showErrorWithStatus:@"恢复购买"];
                 [queue finishTransaction:transacion];
-                
                 break;
                 
             case SKPaymentTransactionStateDeferred:
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"未决定购买"];
+        
+                [SVProgressHUD showErrorWithStatus:@"未决定购买"];
                 [queue finishTransaction:transacion];
                 break;
                 
             default:
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"未知错误"];
-                
+               
+                [SVProgressHUD showErrorWithStatus:@"未知错误"];
                 break;
         }
         
@@ -315,7 +497,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
         NSString *documentDerectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         
         NSString *filePath = [documentDerectory stringByAppendingPathComponent:[NSString stringWithFormat:@"voices/%@.aac",self.question.objectId]];
-        NSLog(@"filePath = %@",filePath);
+        
         _player = [[MCSimpleAudioPlayer alloc] initWithFilePath:filePath fileType:kAudioFileMP3Type];
     }
     
@@ -323,6 +505,15 @@ static NSString *reuseIdentifier3 = @"footerCell";
 }
 
 -(void)playingVoice{
+    
+    //如果语音文件没有下载
+    if (![Tools isHaveVoiceWithFileName:[NSString stringWithFormat:@"%@.aac",self.question.objectId]]) {
+        
+        [self downloadFile];//下载语音文件
+        
+        return;
+    }
+    
     
     
     //第二种播放方式

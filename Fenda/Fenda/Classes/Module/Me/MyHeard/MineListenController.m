@@ -46,7 +46,7 @@ static NSString *reuseIdentifier = @"MineListenCell";
     BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
     
     BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
-    [bquery whereKey:@"hearedUser" equalTo:bUser];
+    [bquery whereKey:@"heardUser" equalTo:bUser];
     [bquery includeKey:@"answerUser"];
     
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
@@ -63,6 +63,8 @@ static NSString *reuseIdentifier = @"MineListenCell";
             [self.tableView.mj_header endRefreshing];
             
         }else if (array.count > 0){
+            
+            [self.data removeAllObjects];
             
             for (Question *question in array) {
                 
@@ -89,7 +91,7 @@ static NSString *reuseIdentifier = @"MineListenCell";
 
 -(NSMutableArray *)data{
     if (_data == nil) {
-        _data = [NSMutableArray arrayWithCapacity:10];
+        _data = [NSMutableArray array];
     }
     
     return _data;
@@ -104,7 +106,7 @@ static NSString *reuseIdentifier = @"MineListenCell";
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [self.data removeAllObjects];
+        
         [weakSelf loadData2];
         
         

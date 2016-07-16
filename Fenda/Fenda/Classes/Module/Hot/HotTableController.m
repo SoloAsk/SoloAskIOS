@@ -79,6 +79,9 @@ static NSString *reuseIdentifier = @"hotCell";
             
         }else if (array.count > 0){
             
+            //删除原有数据
+            [self.data removeAllObjects];
+            
             for (Question *question in array) {
                 
                 [self.data addObject:question];
@@ -93,13 +96,16 @@ static NSString *reuseIdentifier = @"hotCell";
     }];
     
     
+    
+    
+    
 }
 
 -(NSMutableArray *)data{
     
     if (_data == nil) {
 
-        _data = [NSMutableArray arrayWithCapacity:10];
+        _data = [NSMutableArray array];
         
     }
     
@@ -111,10 +117,13 @@ static NSString *reuseIdentifier = @"hotCell";
 {
     __unsafe_unretained __typeof(self) weakSelf = self;
     
+    
+    
+    
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-            [self.data removeAllObjects];
+        
             [weakSelf loadData];
         
         
@@ -138,15 +147,16 @@ static NSString *reuseIdentifier = @"hotCell";
         
         [weakSelf loadData];
         
-        // 刷新表格
+        
         [self.tableView reloadData];
-        
-        // 拿到当前的上拉刷新控件，变为没有更多数据的状态
-        
-        [self.tableView.mj_footer endRefreshing];
         
         
     }];
+    
+    
+    [self.tableView.mj_footer endRefreshing];
+    
+    
     
     // 马上进入刷新状态
 //    [self.tableView.mj_footer beginRefreshing];
@@ -174,24 +184,22 @@ static NSString *reuseIdentifier = @"hotCell";
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
-    Question *question = self.data[indexPath.row];
-    detailVC.question = question;
-    detailVC.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:detailVC animated:YES];
+    if (self.data.count > 0) {
+        QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
+        Question *question = self.data[indexPath.row];
+        detailVC.question = question;
+        detailVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:detailVC animated:YES];
+    }
+    
+    
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    if (self.data > 0) {
         Question *model = self.data[indexPath.row];
         self.proCell.question = model;
-    }
-    
-    
-    
-    
+
     CGSize cellSize = [self.proCell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
     return cellSize.height+1;

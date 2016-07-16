@@ -219,6 +219,10 @@
 		82DFA5A41D1A5C0F00DE0351 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFA5901D1A5C0F00DE0351 /* UIView+MJExtension.m */; };
 		82DFA5A81D1A5C5800DE0351 /* UIViewController+Example.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFA5A71D1A5C5800DE0351 /* UIViewController+Example.m */; };
 		82DFA5AE1D1A69C000DE0351 /* UserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82DFA5AD1D1A69C000DE0351 /* UserModel.m */; };
+		82EE241B1D38970B004545BE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EE241A1D38970B004545BE /* Social.framework */; };
+		82EE241F1D38A332004545BE /* qdImage@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EE241C1D38A332004545BE /* qdImage@1x.png */; };
+		82EE24201D38A332004545BE /* qdImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EE241D1D38A332004545BE /* qdImage@2x.png */; };
+		82EE24211D38A332004545BE /* qdImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82EE241E1D38A332004545BE /* qdImage@3x.png */; };
 		82F425211D347AC200B8F2E0 /* BUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425201D347AC200B8F2E0 /* BUserManager.m */; };
 		82F4259C1D34E8A300B8F2E0 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F425921D34E8A300B8F2E0 /* ShareSDK.framework */; };
 		82F4259D1D34E8A300B8F2E0 /* ShareSDKExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F425951D34E8A300B8F2E0 /* ShareSDKExtension.framework */; };
@@ -621,6 +625,10 @@
 		82DFA5A71D1A5C5800DE0351 /* UIViewController+Example.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Example.m"; sourceTree = "<group>"; };
 		82DFA5AC1D1A69C000DE0351 /* UserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModel.h; sourceTree = "<group>"; };
 		82DFA5AD1D1A69C000DE0351 /* UserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModel.m; sourceTree = "<group>"; };
+		82EE241A1D38970B004545BE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		82EE241C1D38A332004545BE /* qdImage@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qdImage@1x.png"; sourceTree = "<group>"; };
+		82EE241D1D38A332004545BE /* qdImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qdImage@2x.png"; sourceTree = "<group>"; };
+		82EE241E1D38A332004545BE /* qdImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qdImage@3x.png"; sourceTree = "<group>"; };
 		82F4251F1D347AC200B8F2E0 /* BUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUserManager.h; sourceTree = "<group>"; };
 		82F425201D347AC200B8F2E0 /* BUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUserManager.m; sourceTree = "<group>"; };
 		82F425921D34E8A300B8F2E0 /* ShareSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ShareSDK.framework; sourceTree = "<group>"; };
@@ -675,6 +683,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				82EE241B1D38970B004545BE /* Social.framework in Frameworks */,
 				82382A1F1D13415A0002BBC1 /* libsqlite3.tbd in Frameworks */,
 				82A11F6C1D1EDD27000453C0 /* StoreKit.framework in Frameworks */,
 				82F4259F1D34E8A300B8F2E0 /* ShareSDKUI.framework in Frameworks */,
@@ -1113,6 +1122,7 @@
 		82382A261D1349160002BBC1 /* framework */ = {
 			isa = PBXGroup;
 			children = (
+				82EE241A1D38970B004545BE /* Social.framework */,
 				82A11F6B1D1EDD27000453C0 /* StoreKit.framework */,
 				82382AF51D15953F0002BBC1 /* QuartzCore.framework */,
 				82382A811D1400020002BBC1 /* libicucore.tbd */,
@@ -1221,6 +1231,9 @@
 		828D3C5D1D0E5C85003B418E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				82EE241C1D38A332004545BE /* qdImage@1x.png */,
+				82EE241D1D38A332004545BE /* qdImage@2x.png */,
+				82EE241E1D38A332004545BE /* qdImage@3x.png */,
 				82C0B7551D2BB965006AFBEC /* la.png */,
 				828D3C6B1D0E5C85003B418E /* LaunchScreen.storyboard */,
 				828D3C6E1D0E5C85003B418E /* Info.plist */,
@@ -1756,6 +1769,8 @@
 				82382A0A1D1340CB0002BBC1 /* UMSLoginViewController.xib in Resources */,
 				820E41A51D29E9CC00F54DD4 /* LoginController.xib in Resources */,
 				82382AF21D1594C10002BBC1 /* SVProgressHUD.bundle in Resources */,
+				82EE241F1D38A332004545BE /* qdImage@1x.png in Resources */,
+				82EE24201D38A332004545BE /* qdImage@2x.png in Resources */,
 				82382A0C1D1340CB0002BBC1 /* UMSShareListController.xib in Resources */,
 				82382A061D1340CB0002BBC1 /* UMSCommentInputController.xib in Resources */,
 				82F426001D3612C500B8F2E0 /* b3013af6ec.aac in Resources */,
@@ -1784,6 +1799,7 @@
 				82D042731D2F32C2008D5A56 /* share_qq@2x.png in Resources */,
 				82382A0B1D1340CB0002BBC1 /* UMSnsAccountViewController.xib in Resources */,
 				82D042761D2F32C2008D5A56 /* share_微博@2x.png in Resources */,
+				82EE24211D38A332004545BE /* qdImage@3x.png in Resources */,
 				820E41B51D29EBD700F54DD4 /* MineAskController.xib in Resources */,
 				820E43251D2B5EB200F54DD4 /* MineFooterView.xib in Resources */,
 				820E430E1D2B564A00F54DD4 /* AskHeaderView.xib in Resources */,

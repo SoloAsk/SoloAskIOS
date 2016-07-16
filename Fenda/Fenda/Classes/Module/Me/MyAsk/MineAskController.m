@@ -55,6 +55,8 @@ static NSString *reuseIdentifier = @"mineAskCell";
             
         }else if (array.count > 0){
             
+            [self.data removeAllObjects];
+            
             for (Question *question in array) {
                 
                 [self.data addObject:question];
@@ -78,7 +80,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
 
 -(NSMutableArray *)data{
     if (_data == nil) {
-        _data = [NSMutableArray arrayWithCapacity:10];
+        _data = [NSMutableArray array];
     }
     
     return _data;
@@ -93,7 +95,7 @@ static NSString *reuseIdentifier = @"mineAskCell";
     // 设置回调（一旦进入刷新状态就会调用这个refreshingBlock）
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
-        [self.data removeAllObjects];
+        
         [weakSelf loadData2];
         
         

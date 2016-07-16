@@ -20,6 +20,7 @@
 #import "UMSocial.h"
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKConnector/ShareSDKConnector.h>
+#import <ShareSDKUI/ShareSDK+SSUI.h>
 #import <BmobSDK/Bmob.h>
 #import <BmobSDK/BmobProFile.h>
 

@@ -46,10 +46,10 @@
     
     
     if ([ShareSDK hasAuthorized:SSDKPlatformTypeFacebook]) {
-        NSLog(@"9999999999999");
+        NSLog(@"facebook已经授权(已登录状态)");
     }else{
         
-        NSLog(@"88888888888888888");
+        NSLog(@"facebook未授权(未登录状态)");
     }
     
     //设置shareSDK

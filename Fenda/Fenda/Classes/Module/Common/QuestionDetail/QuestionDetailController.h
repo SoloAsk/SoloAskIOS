@@ -9,6 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "BaseTableViewController.h"
 
+//是否是偷听者
+typedef void(^SearchResultBlock)(BOOL isHave);
+
+//是回答者还是提问者
+typedef void(^IsAskerOrAnswerBlock)(BOOL isAuthor);
+
+
 @interface QuestionDetailController : BaseTableViewController
 
 @property (nonatomic,strong) Question *question;

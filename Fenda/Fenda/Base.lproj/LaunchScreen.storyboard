@@ -29,7 +29,7 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="la.png" translatesAutoresizingMaskIntoConstraints="NO" id="u2t-mp-N3t">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qdImage.png" translatesAutoresizingMaskIntoConstraints="NO" id="u2t-mp-N3t">
                                 <rect key="frame" x="150" y="246" width="74" height="74"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="74" id="Con-wB-YqR"/>
@@ -55,6 +55,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="la.png" width="290" height="292"/>
+        <image name="qdImage.png" width="96" height="97"/>
     </resources>
 </document>

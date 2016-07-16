@@ -107,7 +107,6 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *timeDate = [dateFormatter dateFromString:strTime];
-    NSLog(@"timeDate = %@",strTime);
     
     //得到与当前时间差(全部使用标准时间计算)
     NSTimeInterval  timeInterval = [timeDate timeIntervalSinceNow];
