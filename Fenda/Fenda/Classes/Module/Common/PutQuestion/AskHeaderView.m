@@ -152,7 +152,9 @@
         NSDictionary *dic = @{
             @"isPublic":[NSNumber numberWithBool:self.isPrivateBtn.selected],
             @"quesContent":self.askContent.text,
-            @"quesPrice":[fmatter numberFromString:price]
+            @"quesPrice":[fmatter numberFromString:price],
+            @"askTime":[Tools stringFromDate:[NSDate date]],
+            @"userObjectID":[UserManager sharedUserManager].userObjectID
             };
         
         

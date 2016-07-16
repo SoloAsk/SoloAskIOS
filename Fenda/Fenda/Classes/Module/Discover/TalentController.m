@@ -45,23 +45,20 @@ static NSString *reuseIdentifier = @"TalentCell";
 #pragma mark - 加载网络数据
 -(void)loadData{
     
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
-    
-    //查找User表里面usid数据
-    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+    [CloudTools queryDiscoverWithBlock:^(NSArray *array, NSError *error) {
         
         if (error) {
             [MBProgressHUD showError:@"加载数据失败"];
             [self.tableView.mj_header endRefreshing];
             return;
         }
-       
+        
         [self.data removeAllObjects];
         
         for (User *bUser in array) {
             
-                [self.data addObject:bUser];
-            }
+            [self.data addObject:bUser];
+        }
         
         // 刷新表格
         [self.tableView reloadData];

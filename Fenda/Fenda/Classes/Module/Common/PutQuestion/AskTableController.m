@@ -69,12 +69,8 @@ static NSString *reuseIdentifier = @"AskTableCell";
 #pragma mark - 加载网络数据
 -(void)loadData{
     
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
-    
-    [bquery whereKey:@"answerUser" equalTo:self.bUser];
-    [bquery includeKey:@"answerUser,askUser"];
-    
-    [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
+    [CloudTools queryAskWithUser:self.bUser resultBlock:^(NSArray *array, NSError *error) {
+       
         
         if (error) {
             [MBProgressHUD showError:@"请检查网络"];
@@ -83,7 +79,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
         }
         
         if (array.count == 0) {
-//            [MBProgressHUD showError:@"无结果"];
+            //            [MBProgressHUD showError:@"无结果"];
             [self.tableView.mj_header endRefreshing];
             
         }else if (array.count > 0){
@@ -105,6 +101,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
             [self.tableView.mj_header endRefreshing];
             
         }
+
         
     }];
     
@@ -150,78 +147,28 @@ static NSString *reuseIdentifier = @"AskTableCell";
  
 }
 
-//将问题保存到云端
+#pragma mark - 将问题保存到云端
 -(void)saveQuestion{
     
-
-    
-//    [MBProgressHUD showMessage:@"请稍后..."];
-    
-    BmobObject  *post = [BmobObject objectWithClassName:@"Question"];
-    //设置问题内容、价格、是否公开
-    [post setObject:self.askDic[@"quesContent"] forKey:@"quesContent"];
-    [post setObject:self.askDic[@"quesPrice"] forKey:@"quesPrice"];
-    [post setObject:[NSNumber numberWithBool:self.askDic[@"isPublic"]] forKey:@"isPublic"];
-    [post setObject:@0 forKey:@"state"];
-    [post setObject:@0 forKey:@"listenerNum"];
-    [post setObject:[Tools stringFromDate:[NSDate date]] forKey:@"askTime"];
-    
-    //设置问题关联的提问者记录
-    BmobObject *askerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:[UserManager sharedUserManager].userObjectID];
-    [post setObject:askerUser forKey:@"askUser"];
-    
-
-    
-    //设置问题关联的回答者记录
-    BmobObject *answerUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:self.bUser.objectId];
-    [post setObject:answerUser forKey:@"answerUser"];
-    
-    
-    
-    //异步保存
-    [post saveInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
-        if (isSuccessful) {
-            
-            
-            [MBProgressHUD showSuccess:@"提问成功"];
-//            [self.navigationController popViewControllerAnimated:YES];
-            //提问成功跳到详情页
-//            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//            
-//            TabbarController *tabVC = [[UIStoryboard storyboardWithName:@"Main" bundle:nil] instantiateViewControllerWithIdentifier:@"TabbarController"];
-//            tabVC.selectedIndex = 2;
-//            window.rootViewController = tabVC;
-            QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
-            
-            BmobQuery *bquery = [BmobQuery queryWithClassName:@"Question"];
-            
-            [bquery includeKey:@"askUser,answerUser"];
-            [bquery getObjectInBackgroundWithId:post.objectId block:^(BmobObject *object, NSError *error) {
-                
-                
-                if (object) {
-                    detailVC.question = (Question *)object;
-                    [self.navigationController pushViewController:detailVC animated:YES];
-                }
-                
-            }];
-            
-           
-            
-            
-            
-            
-            
-            
-        }else{
-            if (error) {
-
-                [MBProgressHUD showError:@"提问失败"];
-            }
+    [CloudTools saveAskWithAskInfoDic:self.askDic answerObjID:self.bUser.objectId resultBlock:^(NSObject *object, NSError *error) {
+        
+        if (error) {
+            [MBProgressHUD showError:@"获取问题信息失败"];
+            return ;
         }
+        
+        if (object) {
+            
+            QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
+            detailVC.question = (Question *)object;
+            [self.navigationController pushViewController:detailVC animated:YES];
+        }
+        
     }];
-    
+ 
 }
+
+
 
 #pragma mark - 内购代理
 -(void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response{
@@ -339,32 +286,6 @@ static NSString *reuseIdentifier = @"AskTableCell";
     [self.navigationController pushViewController:quesVC animated:YES];
 }
 
-
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    
-//    if (section == 0) {
-//        AskHeaderView *askView = [[AskHeaderView alloc]init];
-//        askView.priceLabel.text = self.userModel.price;
-//        askView.editBlock = ^(NSDictionary *dic){
-//            
-//            NSLog(@"写好了");
-//            
-//            
-//            [MBProgressHUD showMessage:@"请稍后"];
-//            
-//            //请求可售商品
-//            NSSet *productSet = [NSSet setWithArray:@[@"Fenda.vDownload"]];
-//            SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-//            request.delegate = self;
-//            [request start];
-//            
-//        };
-//        askView.userModel = self.userModel;
-//        return askView;
-//    }
-//    
-//    return nil;
-//}
 
 
 
