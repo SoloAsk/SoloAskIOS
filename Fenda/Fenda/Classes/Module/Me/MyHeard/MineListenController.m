@@ -136,9 +136,11 @@ static NSString *reuseIdentifier = @"MineListenCell";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    self.listenCell.question = self.data[indexPath.row];
+    
     CGSize size = [self.listenCell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
     
-    return size.height;
+    return size.height+1;
 }
 
 
