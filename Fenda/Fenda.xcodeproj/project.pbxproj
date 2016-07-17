@@ -75,7 +75,6 @@
 		820E433A1D2B5FB800F54DD4 /* EditView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E433C1D2B5FB800F54DD4 /* EditView.xib */; };
 		820E43411D2B637800F54DD4 /* MinePageHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E43431D2B637800F54DD4 /* MinePageHeaderView.xib */; };
 		820E43481D2B65A800F54DD4 /* MineAskCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E434A1D2B65A800F54DD4 /* MineAskCell.xib */; };
-		820E434F1D2B663B00F54DD4 /* MineListenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E43511D2B663B00F54DD4 /* MineListenCell.xib */; };
 		820E435B1D2B672900F54DD4 /* GetMoneyHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 820E435D1D2B672900F54DD4 /* GetMoneyHeadView.xib */; };
 		820E43631D2B6A9700F54DD4 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E43621D2B6A9700F54DD4 /* UMMobClick.framework */; };
 		820E43671D2B77DD00F54DD4 /* libUMessage_Sdk_1.3.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 820E43651D2B77DD00F54DD4 /* libUMessage_Sdk_1.3.0.a */; };
@@ -224,6 +223,7 @@
 		82E58B4C1D3A5CEB00489D54 /* qdImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E58B491D3A5CEB00489D54 /* qdImage@2x.png */; };
 		82E58B4D1D3A5CEB00489D54 /* qdImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E58B4A1D3A5CEB00489D54 /* qdImage@3x.png */; };
 		82E58B791D3ADAAE00489D54 /* BBRecordTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E58B781D3ADAAE00489D54 /* BBRecordTools.m */; };
+		82E58B7B1D3B333800489D54 /* MineListenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82E58B7A1D3B333800489D54 /* MineListenCell.xib */; };
 		82EE241B1D38970B004545BE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EE241A1D38970B004545BE /* Social.framework */; };
 		82F425211D347AC200B8F2E0 /* BUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425201D347AC200B8F2E0 /* BUserManager.m */; };
 		82F4259C1D34E8A300B8F2E0 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F425921D34E8A300B8F2E0 /* ShareSDK.framework */; };
@@ -376,8 +376,6 @@
 		820E433B1D2B5FB800F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/EditView.xib; sourceTree = "<group>"; };
 		820E43421D2B637800F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MinePageHeaderView.xib; sourceTree = "<group>"; };
 		820E43491D2B65A800F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MineAskCell.xib; sourceTree = "<group>"; };
-		820E43561D2B66C900F54DD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "zh-Hans"; path = "zh-Hans.lproj/MineListenCell.xib"; sourceTree = "<group>"; };
-		820E43581D2B66CC00F54DD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MineListenCell.xib; sourceTree = "<group>"; };
 		820E435C1D2B672900F54DD4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/GetMoneyHeadView.xib; sourceTree = "<group>"; };
 		820E435F1D2B672C00F54DD4 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/GetMoneyHeadView.strings"; sourceTree = "<group>"; };
 		820E43611D2B672D00F54DD4 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/GetMoneyHeadView.strings; sourceTree = "<group>"; };
@@ -634,6 +632,7 @@
 		82E58B4A1D3A5CEB00489D54 /* qdImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qdImage@3x.png"; sourceTree = "<group>"; };
 		82E58B771D3ADAAE00489D54 /* BBRecordTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRecordTools.h; sourceTree = "<group>"; };
 		82E58B781D3ADAAE00489D54 /* BBRecordTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBRecordTools.m; sourceTree = "<group>"; };
+		82E58B7A1D3B333800489D54 /* MineListenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MineListenCell.xib; sourceTree = "<group>"; };
 		82EE241A1D38970B004545BE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		82F4251F1D347AC200B8F2E0 /* BUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUserManager.h; sourceTree = "<group>"; };
 		82F425201D347AC200B8F2E0 /* BUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUserManager.m; sourceTree = "<group>"; };
@@ -996,7 +995,7 @@
 			children = (
 				820E41E71D29F34A00F54DD4 /* MineListenCell.h */,
 				820E41E81D29F34A00F54DD4 /* MineListenCell.m */,
-				820E43511D2B663B00F54DD4 /* MineListenCell.xib */,
+				82E58B7A1D3B333800489D54 /* MineListenCell.xib */,
 				820E41EA1D29F34A00F54DD4 /* MineListenHeadView.h */,
 				820E41EB1D29F34A00F54DD4 /* MineListenHeadView.m */,
 				820E437D1D2B8C7400F54DD4 /* MineListenHeadView.xib */,
@@ -1762,7 +1761,6 @@
 				820E433A1D2B5FB800F54DD4 /* EditView.xib in Resources */,
 				820E435B1D2B672900F54DD4 /* GetMoneyHeadView.xib in Resources */,
 				82DFA59F1D1A5C0F00DE0351 /* MJRefresh.bundle in Resources */,
-				820E434F1D2B663B00F54DD4 /* MineListenCell.xib in Resources */,
 				82F425A11D34E8A300B8F2E0 /* ShareSDK.bundle in Resources */,
 				828D3C8E1D0E7A68003B418E /* HotCellData.plist in Resources */,
 				82382A081D1340CB0002BBC1 /* UMShareEditViewController.xib in Resources */,
@@ -1803,6 +1801,7 @@
 				820E41BE1D29ED5D00F54DD4 /* AnswerVoiceController.xib in Resources */,
 				820E436D1D2B8B7800F54DD4 /* MineAskHeadView.xib in Resources */,
 				82B48F091D0FFA9D0070DA78 /* fanta_ic_playing_1.png in Resources */,
+				82E58B7B1D3B333800489D54 /* MineListenCell.xib in Resources */,
 				82D042741D2F32C2008D5A56 /* share_QQ空间@2x.png in Resources */,
 				820E43481D2B65A800F54DD4 /* MineAskCell.xib in Resources */,
 				82D042731D2F32C2008D5A56 /* share_qq@2x.png in Resources */,
@@ -2096,15 +2095,6 @@
 				820E43491D2B65A800F54DD4 /* Base */,
 			);
 			name = MineAskCell.xib;
-			sourceTree = "<group>";
-		};
-		820E43511D2B663B00F54DD4 /* MineListenCell.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				820E43561D2B66C900F54DD4 /* zh-Hans */,
-				820E43581D2B66CC00F54DD4 /* en */,
-			);
-			name = MineListenCell.xib;
 			sourceTree = "<group>";
 		};
 		820E435D1D2B672900F54DD4 /* GetMoneyHeadView.xib */ = {

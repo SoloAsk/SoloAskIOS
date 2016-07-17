@@ -44,7 +44,25 @@
     _question = question;
     
     
-//    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:_question.answerUser.userIcon] placeholderImage:[UIImage imageNamed:@"001"]];
+    //回答者头像
+    User *answerUser = [_question objectForKey:@"answerUser"];
+    [self.userIcon sd_setImageWithURL:[NSURL URLWithString:[answerUser objectForKey:@"userIcon"]] placeholderImage:[UIImage imageNamed:@"001"]];
+    
+    //回答者用户名
+    self.userName.text = [answerUser objectForKey:@"userName"];
+    
+    //回答者头衔
+    self.userHonor.text = [answerUser objectForKey:@"userTitle"];
+    
+    //内容
+    self.quesContent.text = [_question objectForKey:@"quesContent"];
+    
+    //时间范围
+    self.quesTime.text = [Tools compareCurrentTime:[_question objectForKey:@"askTime"]];
+    
+    //偷听人数
+    NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
+    self.listenNum.text = [NSString stringWithFormat:@"%@ %@",[fmatter stringFromNumber:[_question objectForKey:@"listenerNum"]],NSLocalizedString(@"mineAskcell_heard", "")];
     
     
 }

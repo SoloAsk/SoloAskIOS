@@ -42,11 +42,15 @@ static NSString *reuseIdentifier = @"MineListenCell";
 -(void)loadData{
     
     UserManager *user = [UserManager sharedUserManager];
-    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+    BmobQuery *bquery = [BmobQuery queryWithClassName:@"Question"];
     
-    BmobObject *bUser = [BmobObject objectWithoutDataWithClassName:@"User" objectId:user.objectId];
-    [bquery whereKey:@"heardUser" equalTo:bUser];
-    [bquery includeKey:@"answerUser"];
+    //构造约束条件
+    BmobQuery *inQuery = [BmobQuery queryWithClassName:@"User"];
+    [inQuery whereKey:@"objectId" equalTo:user.userObjectID];
+    
+    //匹配查询
+    [bquery whereKey:@"heardUser" matchesQuery:inQuery];
+    [bquery includeKey:@"askUser,answerUser"];
     
     [bquery findObjectsInBackgroundWithBlock:^(NSArray *array, NSError *error) {
         
@@ -66,6 +70,7 @@ static NSString *reuseIdentifier = @"MineListenCell";
             [self.data removeAllObjects];
             
             for (Question *question in array) {
+                
                 
                 [self.data addObject:question];
                 
@@ -124,6 +129,7 @@ static NSString *reuseIdentifier = @"MineListenCell";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     QuestionDetailController *quesVC = [[QuestionDetailController alloc] init];
+    quesVC.question = self.data[indexPath.row];
     quesVC.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:quesVC animated:YES];
 }
