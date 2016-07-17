@@ -260,15 +260,16 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     [NetWorkingTools downloadFileWithURL:[self.question objectForKey:@"quesVoiceURL"] destionation:^(NSURL *targetPath, NSURLResponse *response) {
         
-        [SVProgressHUD dismiss];
-//        [SVProgressHUD showSuccessWithStatus:@"下载完毕"];
-//        [SVProgressHUD dismissWithDelay:1];
+//        [SVProgressHUD dismiss];
+        [SVProgressHUD setMinimumDismissTimeInterval:1.0];
+        [SVProgressHUD showSuccessWithStatus:@"下载完毕"];
+        
         
         
         dispatch_sync(dispatch_get_main_queue(), ^{
             
             self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
-            [self playingVoice];
+//            [self playingVoice];
             
         });
         

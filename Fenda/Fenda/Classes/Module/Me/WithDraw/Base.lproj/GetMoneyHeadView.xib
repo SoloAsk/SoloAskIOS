@@ -14,21 +14,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSX-zZ-nUj">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="211"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="杨幂" translatesAutoresizingMaskIntoConstraints="NO" id="8v5-iF-NTF">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="001" translatesAutoresizingMaskIntoConstraints="NO" id="8v5-iF-NTF">
                             <rect key="frame" x="135" y="35" width="50" height="50"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="50" id="GOv-AQ-yyG"/>
                                 <constraint firstAttribute="width" constant="50" id="cOj-QO-Gjd"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="杨幂" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euN-qK-FRY">
-                            <rect key="frame" x="145" y="93" width="30" height="18"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="soloAsk" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="euN-qK-FRY">
+                            <rect key="frame" x="133.5" y="93" width="53.5" height="18"/>
                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50% from income belongs to you" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u2v-fc-uyo">
-                            <rect key="frame" x="54.5" y="160" width="212" height="17"/>
+                            <rect key="frame" x="54" y="160" width="212" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
                             <nil key="highlightedColor"/>
@@ -149,13 +149,14 @@
                 <outlet property="paypayField2" destination="CNO-PA-Q2y" id="eX2-hS-oXc"/>
                 <outlet property="paypayFiled1" destination="olt-VR-l1p" id="43K-Qw-efJ"/>
                 <outlet property="userIcon" destination="8v5-iF-NTF" id="y5c-V9-erN"/>
+                <outlet property="userName" destination="euN-qK-FRY" id="51c-7w-eSV"/>
             </connections>
             <point key="canvasLocation" x="870" y="-264"/>
         </view>
     </objects>
     <resources>
+        <image name="001" width="54" height="54"/>
         <image name="fanta_ic_checked" width="23" height="23"/>
         <image name="ic_default" width="23" height="23"/>
-        <image name="杨幂" width="299" height="295"/>
     </resources>
 </document>

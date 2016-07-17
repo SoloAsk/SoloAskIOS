@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userIcon;
 @property (weak, nonatomic) IBOutlet UIButton *getMoneyBtn;
 
+@property (weak, nonatomic) IBOutlet UILabel *userName;
 
 @property (weak, nonatomic) IBOutlet UILabel *incomeLabel;
 @property (weak, nonatomic) IBOutlet UITextField *paypayFiled1;
@@ -48,6 +49,10 @@
     _bUser = bUser;
     
     if (_bUser) {
+        
+        [self.userIcon sd_setImageWithURL:[_bUser objectForKey:@"userIcon"] placeholderImage:[UIImage imageNamed:@"001"]];
+        
+        self.userName.text = [_bUser objectForKey:@"userName"];
         
         self.paypayFiled1.text = [_bUser objectForKey:@"paypalAccount"];
         self.paypayField2.text = [_bUser objectForKey:@"paypalAccount"];
