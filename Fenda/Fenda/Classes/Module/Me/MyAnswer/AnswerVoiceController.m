@@ -48,8 +48,7 @@
 
 //记录录音按钮状态：0开始录音，1停止录音，2播放录音
 @property (nonatomic,assign) NSInteger num;
-//录音
-@property (nonatomic, strong) AVAudioRecordTool *recordTool;
+
 
 @property (nonatomic,strong) NSURL *playURL;
 
@@ -66,7 +65,7 @@
 @property (strong, nonatomic) NSTimer *recordTimer;
 
 //播放语音
-@property (nonatomic,strong) MCSimpleAudioPlayer *player;
+//@property (nonatomic,strong) MCSimpleAudioPlayer *player;
 
 
 @property (nonatomic,strong) BBRecordTools *recordTools;
@@ -90,7 +89,7 @@
     [self setupData];
     
     //初始化录音工具类
-    self.recordTool = [[AVAudioRecordTool alloc] init];
+//    self.recordTools = [[BBRecordTools alloc] init];
     
 }
 
@@ -98,14 +97,14 @@
 
 
 
--(AVAudioRecordTool *)recordTool{
-    
-    if (_recordTool == nil) {
-        _recordTool = [[AVAudioRecordTool alloc] init];
-    }
-    
-    return _recordTool;
-}
+//-(AVAudioRecordTool *)recordTool{
+//    
+//    if (_recordTool == nil) {
+//        _recordTool = [[AVAudioRecordTool alloc] init];
+//    }
+//    
+//    return _recordTool;
+//}
 
 
 //-(MCSimpleAudioPlayer *)player{
@@ -243,6 +242,7 @@
 - (IBAction)recordBtnClick:(UIButton *)sender {
     
     
+    
     if (self.num == 0) {//开始录音
         [sender setImage:[UIImage imageNamed:@"ic_answer_stop"] forState:UIControlStateNormal];
         self.num++;
@@ -251,7 +251,6 @@
         
         self.state = YES;
         [self startRecordTimer];
-        
         
         [self.recordTools startRecord];
         
@@ -267,10 +266,10 @@
         [self.againBtn setBackgroundColor:AGAIN_BUTTON_COLOR];
         [self.sendBtn setBackgroundColor:MAIN_RED_COLOR];
 
+       
         [self.recordTools stopRecord];
+
         [self stopRecordTimer];
-        
-        self.playURL = [self.recordTool saveRecordingWithName:@"luyin"];
         
     }else if (self.num == 2){//播放录音
         
@@ -288,6 +287,8 @@
         NSString *savePath = [[NSString documentDirectory] stringByAppendingPathComponent:@"luyin.aac"];
 
         [self.recordTools playWithURL:[NSURL fileURLWithPath:savePath]];
+        
+//        [self.recordTools play];
     }
     
  
@@ -344,7 +345,7 @@
             NSLog(@"删除保存的录音文件失败---1");
         }
         
-        self.recordTool = nil;
+//        self.recordTools = nil;
     }
  
     

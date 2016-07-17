@@ -20,6 +20,7 @@
 
 @implementation BBRecordTools
 
+
 -(void)startRecord{
     
     NSString *filePath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
@@ -47,7 +48,21 @@
     // 录音质量
     [dict setValue:[NSNumber numberWithInt:AVAudioQualityMedium] forKey:AVEncoderAudioQualityKey];
     
+    
+    
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    
     NSError *error = nil;
+    
+    [session setCategory:AVAudioSessionCategoryRecord error:&error];
+    [session setActive:YES error:nil];
+    if(error){
+        
+        NSLog(@"录音错误说明%@", [error description]);
+    }
+    
+    
+//    NSError *error = nil;
     self.recorder = [[AVAudioRecorder alloc] initWithURL:self.fileURL settings: dict error: &error];
     self.recorder.delegate = self;
     if (error)
@@ -61,9 +76,14 @@
 
 
 -(void)stopRecord{
-    
+    //此处需要恢复设置回放标志，否则会导致其它播放声音也会变小
+    AVAudioSession *session = [AVAudioSession sharedInstance];
+    [session setCategory:AVAudioSessionCategoryPlayback error:nil];
+    [session setActive:YES error:nil];
+
     if (self.recorder)
     {
+        
         [self.recorder stop];
         self.recorder = nil;
     }

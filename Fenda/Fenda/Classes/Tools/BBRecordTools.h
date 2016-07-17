@@ -7,8 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Singleton.h"
 
 @interface BBRecordTools : NSObject
+
 
 //文件path
 @property (nonatomic,strong) NSString *filePath;
