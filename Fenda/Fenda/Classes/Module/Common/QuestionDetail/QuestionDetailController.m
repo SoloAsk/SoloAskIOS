@@ -68,6 +68,19 @@ static NSString *reuseIdentifier3 = @"footerCell";
     if ([Tools isHaveVoiceWithFileName:[NSString stringWithFormat:@"%@.aac",self.question.objectId]]) {
         self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
         self.isLocalBuy = YES;
+    }else{
+        
+        //语音
+        if ([[_question objectForKey:@"isFree"] boolValue]) {
+            
+            self.quesVC.voiceTitle.text = NSLocalizedString(@"listen_for_free", "");
+            
+            
+        }else{
+            
+            self.quesVC.voiceTitle.text = NSLocalizedString(@"listen_for_buy", "");
+            
+        }
     }
     
     
@@ -87,7 +100,7 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     //删除下载的语音
     [self removeFileWithFileName:[NSString stringWithFormat:@"voices/%@.aac",self.question.objectId]];
-    
+//    self.quesVC.voiceTitle.text = NSLocalizedString(@"detail_click_to_play", "");
     
     self.isLocalBuy = NO;
     [self.recordTools stopRecord];
