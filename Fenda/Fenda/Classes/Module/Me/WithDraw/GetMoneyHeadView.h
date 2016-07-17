@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^SubmitFinishBlock)();
+
 @interface GetMoneyHeadView : UIView
+
+@property (nonatomic,copy) SubmitFinishBlock finishBlock;
+
+@property (nonatomic,strong) User *bUser;
 
 @end

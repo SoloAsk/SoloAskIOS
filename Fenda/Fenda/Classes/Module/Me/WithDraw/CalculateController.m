@@ -18,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"bUSER = %@",self.bUser);
+    
     self.title = NSLocalizedString(@"提现", "");
     BackBarBtnView *backview = [[BackBarBtnView alloc] init];
     backview.backBlock = ^{
@@ -33,6 +35,11 @@
     myScrollView.contentOffset = CGPointMake(0, 0);
     
     GetMoneyHeadView *getView = [[GetMoneyHeadView alloc] init];
+    getView.bUser = self.bUser;
+    getView.finishBlock = ^{
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    };
     getView.frame = myScrollView.bounds;
     [myScrollView addSubview:getView];
     

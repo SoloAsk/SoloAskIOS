@@ -10,4 +10,6 @@
 
 @interface CalculateController : UIViewController
 
+@property (nonatomic,strong) User *bUser;
+
 @end

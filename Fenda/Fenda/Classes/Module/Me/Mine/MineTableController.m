@@ -173,17 +173,6 @@ static NSString *reuseIdentifier = @"mineCell";
 }
 
 
-#pragma mark - UM实现回调方法：
--(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response
-{
-    //根据`responseCode`得到发送结果,如果分享成功
-    if(response.responseCode == UMSResponseCodeSuccess)
-    {
-        //得到分享到的微博平台名
-        NSLog(@"share to sns name is %@",[[response.data allKeys] objectAtIndex:0]);
-    }
-}
-
 
 
 
@@ -234,10 +223,9 @@ static NSString *reuseIdentifier = @"mineCell";
     NSString *className = rowDic[@"className"];
     
     
-    //模拟数据
-    BOOL isLogin = YES;
-    BOOL isHave = YES;//我问、我答、我听没有数据
     
+    BOOL isLogin = [UserManager sharedUserManager].isLogin;
+    BOOL isHave = YES;//我问、我答、我听没有数据
     
     if (indexPath.section == 2 && indexPath.row == 1) {//关于
         [self pushuVCWithClassName:className];
@@ -247,6 +235,17 @@ static NSString *reuseIdentifier = @"mineCell";
     
         if (!isLogin) {//未登录
         [self pushuVCWithClassName:@"LoginController"];
+        return;
+    }
+    
+    
+    if (indexPath.section == 2 && indexPath.row == 0) {//提现
+        
+        CalculateController *withDrawVC = [[CalculateController alloc] init];
+        withDrawVC.bUser = self.bUser;
+        withDrawVC.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:withDrawVC animated:YES];
+        
         return;
     }
     
@@ -264,6 +263,9 @@ static NSString *reuseIdentifier = @"mineCell";
            [self pushuVCWithClassName:className];
             return;
         }
+    
+    
+    
     
            
     [self pushuVCWithClassName:className];
