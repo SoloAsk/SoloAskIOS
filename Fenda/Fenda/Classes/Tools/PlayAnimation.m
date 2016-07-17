@@ -36,11 +36,12 @@ static UIImageView *playIcon;
     
     playIcon.animationImages = images;
     
+    //动画播放次数
+   playIcon.animationRepeatCount = 1;
     
-   playIcon.animationRepeatCount = 50;
-    
-    CGFloat eachDuration = 0.2;
-    playIcon.animationDuration = eachDuration * images.count;
+    CGFloat eachDuration = 0.1;
+    //设置动画播放时间
+    playIcon.animationDuration = images.count*eachDuration;
     [playIcon startAnimating];
     
     [self performSelector:@selector(clearCache) withObject:nil afterDelay:playIcon.animationDuration + 0.2];

@@ -113,7 +113,7 @@
     timeInterval = -timeInterval;
     
     //01.标准时间和北京时间差8个小时
-//    timeInterval = timeInterval + 8*60*60;
+//    timeInterval = timeInterval - 8*60*60;
     
     long temp = 0;
     NSString *result;

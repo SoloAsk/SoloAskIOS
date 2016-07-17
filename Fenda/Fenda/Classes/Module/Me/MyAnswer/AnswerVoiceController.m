@@ -57,6 +57,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 //记录label数字
 @property (nonatomic,assign) NSInteger times;
+//录音最终长度
+@property (nonatomic,assign) NSInteger timesCount;
+
 //播放状态(yes：录音 no：播放)
 @property (nonatomic,assign) BOOL state;
 //记录录音时间
@@ -65,6 +68,8 @@
 //播放语音
 @property (nonatomic,strong) MCSimpleAudioPlayer *player;
 
+
+@property (nonatomic,strong) BBRecordTools *recordTools;
 
 @end
 
@@ -222,6 +227,18 @@
     
 }
 
+
+#pragma mark - 录音更新---开始录音
+-(BBRecordTools *)recordTools{
+    
+    if (_recordTools == nil) {
+        _recordTools = [[BBRecordTools alloc] init];
+    }
+    
+    return _recordTools;
+}
+
+
 #pragma mark - 开始录音
 - (IBAction)recordBtnClick:(UIButton *)sender {
     
@@ -235,10 +252,13 @@
         self.state = YES;
         [self startRecordTimer];
         
-        [AVAudioSession setCategory:AVAudioSessionCategoryRecord];
-        [self.recordTool record];
+        
+        [self.recordTools startRecord];
         
     }else if (self.num == 1){//停止录音
+        
+        //记录语音长度
+        self.timesCount = [self.timeLabel.text integerValue];
         
         [sender setImage:[UIImage imageNamed:@"ic_answer_play"] forState:UIControlStateNormal];
         self.num++;
@@ -246,18 +266,18 @@
         self.sendBtn.userInteractionEnabled = YES;
         [self.againBtn setBackgroundColor:AGAIN_BUTTON_COLOR];
         [self.sendBtn setBackgroundColor:MAIN_RED_COLOR];
-        
-        [AVAudioSession setCategory:AVAudioSessionCategoryPlayback];
-        [self.recordTool stopRecord];
+
+        [self.recordTools stopRecord];
         [self stopRecordTimer];
         
         self.playURL = [self.recordTool saveRecordingWithName:@"luyin"];
         
     }else if (self.num == 2){//播放录音
-
-        if (self.player.isPlayingOrWaiting) {
-            return ;
+        
+        if ([self.recordTools isPlaying]) {
+            return;
         }
+
         
         [sender setImage:[UIImage imageNamed:@"ic_answer_stop"] forState:UIControlStateNormal];
         
@@ -267,8 +287,7 @@
 
         NSString *savePath = [[NSString documentDirectory] stringByAppendingPathComponent:@"luyin.aac"];
 
-        _player = [[MCSimpleAudioPlayer alloc] initWithFilePath:savePath fileType:kAudioFileMP3Type];
-        [_player play];
+        [self.recordTools playWithURL:[NSURL fileURLWithPath:savePath]];
     }
     
  
@@ -352,8 +371,7 @@
             [question setObject:file1.url  forKey:@"quesVoiceURL"];
             [question setObject:@1 forKey:@"state"];
             
-            NSNumberFormatter *fmatter = [[NSNumberFormatter alloc] init];
-            [question setObject:[fmatter numberFromString:[self.timeLabel.text substringToIndex:1]] forKey:@"voiceTime"];
+            [question setObject:[NSNumber numberWithInteger:self.timesCount] forKey:@"voiceTime"];
             
             [question sub_updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                 
@@ -387,6 +405,8 @@
     
     [super viewDidDisappear:animated];
     
+    [self.recordTools stopRecord];
+    self.recordTools = nil;
     [self removeRecordState];
 
 }

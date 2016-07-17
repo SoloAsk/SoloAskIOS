@@ -34,8 +34,7 @@
 
 @property (nonatomic,strong) UserManager *userManager;
 
-//必须强引用才能播放
-@property (nonatomic,strong) AVAudioRecordTool *audioTool;
+
 
 //是否正在内购，防止按钮被多次点击
 @property (nonatomic,assign) BOOL isBuying;
@@ -45,13 +44,11 @@
 
 @property (strong, nonatomic) NSTimer *recordTimer;
 
-//播放语音
-@property (nonatomic,strong) MCSimpleAudioPlayer *player;
 
 //记录语音是否 已经 下载并且购买过(防止每次判断都要去联网)
 @property (nonatomic,assign) BOOL isLocalBuy;
 
-
+@property (nonatomic,strong) BBRecordTools *recordTools;
 
 @end
 
@@ -91,10 +88,10 @@ static NSString *reuseIdentifier3 = @"footerCell";
     //删除下载的语音
     [self removeFileWithFileName:[NSString stringWithFormat:@"voices/%@.aac",self.question.objectId]];
     
-    [self.player stop];
+    
     self.isLocalBuy = NO;
-    self.player = nil;
-    self.audioTool = nil;
+    [self.recordTools stopRecord];
+    self.recordTools = nil;
     [SVProgressHUD dismiss];
 }
 
@@ -109,8 +106,6 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     self.title = NSLocalizedString(@"问题详情", "");
     self.tableView.backgroundColor = TABLE_BACKGROUND_COLOR;
-    
-    self.audioTool = [[AVAudioRecordTool alloc] init];
     
     __unsafe_unretained __typeof(self) weakSelf = self;
     self.quesVC = [[QesDetailHeadView alloc] init];
@@ -514,10 +509,13 @@ static NSString *reuseIdentifier3 = @"footerCell";
                 break;
                 
             case SKPaymentTransactionStateFailed:
+            {
                 [queue finishTransaction:transacion];
                
                 [SVProgressHUD showErrorWithStatus:@"购买失败"];
                 self.isBuying = NO;
+                
+            }
                 break;
                 
             case SKPaymentTransactionStateRestored:
@@ -545,22 +543,28 @@ static NSString *reuseIdentifier3 = @"footerCell";
     }
 }
 
-#pragma mark - 语音播放
--(MCSimpleAudioPlayer *)player{
+
+#pragma mark - 语音播放(更新)
+-(BBRecordTools *)recordTools{
     
-    if (_player == nil) {
-//        NSString *path = [[NSBundle mainBundle] pathForResource:@"b3013af6ec.aac" ofType:nil];
+    if (_recordTools == nil) {
         
-        //播放以objectid命名的aac文件
         NSString *documentDerectory = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
         
         NSString *filePath = [documentDerectory stringByAppendingPathComponent:[NSString stringWithFormat:@"voices/%@.aac",self.question.objectId]];
         
-        _player = [[MCSimpleAudioPlayer alloc] initWithFilePath:filePath fileType:kAudioFileMP3Type];
+        NSURL *fileURL = [NSURL fileURLWithPath:filePath];
+        _recordTools = [[BBRecordTools alloc] init];
+        
+        _recordTools.fileURL = fileURL;
     }
     
-    return _player;
+    return _recordTools;
+    
 }
+
+
+
 
 -(void)playingVoice{
     
@@ -574,27 +578,24 @@ static NSString *reuseIdentifier3 = @"footerCell";
     
     
     
-    //第二种播放方式
-    if (self.player.isPlayingOrWaiting)
-    {
-        [self.player pause];//如果正在播放就停止
+    if ([self.recordTools isPlaying]) {
+        
         [self stopRecordTimer];
-    }
-    else
-    {
-        [self.player play];//如果停止播放，就播放
+        [self.recordTools pausePlay];
+        
+    }else{
+        
+        [self.recordTools play];
         [PlayAnimation runAnimationWithCount:3 AndImageView:self.quesVC.animationImgView];
         [self startRecordTimer];
     }
-    
-    
-    
+  
     
 }
 
 - (void)startRecordTimer {
     [self.recordTimer invalidate];
-    self.recordTimer = [NSTimer timerWithTimeInterval:1.0
+    self.recordTimer = [NSTimer timerWithTimeInterval:0.3
                                                target:self
                                              selector:@selector(updateRecordCurrentTime)
                                              userInfo:nil
@@ -605,7 +606,14 @@ static NSString *reuseIdentifier3 = @"footerCell";
 
 - (void)updateRecordCurrentTime {
     
-    if (!self.player.isPlayingOrWaiting) {//如果不播放了就停止动画
+    
+//    if ([self.recordTools isPlaying]) {
+//        [self startRecordTimer];
+//        return;
+//    }
+    
+    
+    if (![self.recordTools isPlaying]) {//如果不播放了就停止动画
         [self stopRecordTimer];
         return;
     }

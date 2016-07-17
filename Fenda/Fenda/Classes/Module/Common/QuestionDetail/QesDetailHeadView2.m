@@ -54,6 +54,9 @@
     //用户名
     self.askerName.text = [askUser objectForKey:@"userName"];
     
+    //时间范围
+    self.timeLabel.text = [Tools compareCurrentTime:[_question objectForKey:@"askTime"]];
+    
 }
 
 

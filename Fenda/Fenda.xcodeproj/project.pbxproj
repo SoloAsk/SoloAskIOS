@@ -223,6 +223,7 @@
 		82E58B4B1D3A5CEB00489D54 /* qdImage.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E58B481D3A5CEB00489D54 /* qdImage.png */; };
 		82E58B4C1D3A5CEB00489D54 /* qdImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E58B491D3A5CEB00489D54 /* qdImage@2x.png */; };
 		82E58B4D1D3A5CEB00489D54 /* qdImage@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82E58B4A1D3A5CEB00489D54 /* qdImage@3x.png */; };
+		82E58B791D3ADAAE00489D54 /* BBRecordTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 82E58B781D3ADAAE00489D54 /* BBRecordTools.m */; };
 		82EE241B1D38970B004545BE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82EE241A1D38970B004545BE /* Social.framework */; };
 		82F425211D347AC200B8F2E0 /* BUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 82F425201D347AC200B8F2E0 /* BUserManager.m */; };
 		82F4259C1D34E8A300B8F2E0 /* ShareSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82F425921D34E8A300B8F2E0 /* ShareSDK.framework */; };
@@ -631,6 +632,8 @@
 		82E58B481D3A5CEB00489D54 /* qdImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qdImage.png; sourceTree = "<group>"; };
 		82E58B491D3A5CEB00489D54 /* qdImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qdImage@2x.png"; sourceTree = "<group>"; };
 		82E58B4A1D3A5CEB00489D54 /* qdImage@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "qdImage@3x.png"; sourceTree = "<group>"; };
+		82E58B771D3ADAAE00489D54 /* BBRecordTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRecordTools.h; sourceTree = "<group>"; };
+		82E58B781D3ADAAE00489D54 /* BBRecordTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBRecordTools.m; sourceTree = "<group>"; };
 		82EE241A1D38970B004545BE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		82F4251F1D347AC200B8F2E0 /* BUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUserManager.h; sourceTree = "<group>"; };
 		82F425201D347AC200B8F2E0 /* BUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUserManager.m; sourceTree = "<group>"; };
@@ -1385,6 +1388,8 @@
 				82B48F121D1001A70070DA78 /* PlayAnimation.m */,
 				82382AF81D1598A50002BBC1 /* Tools.h */,
 				82382AF91D1598A50002BBC1 /* Tools.m */,
+				82E58B771D3ADAAE00489D54 /* BBRecordTools.h */,
+				82E58B781D3ADAAE00489D54 /* BBRecordTools.m */,
 				82F4264A1D379B9900B8F2E0 /* NetWorkingTools.h */,
 				82F4264B1D379B9900B8F2E0 /* NetWorkingTools.m */,
 				82E58B221D39ED5E00489D54 /* CloudTools.h */,
@@ -1929,6 +1934,7 @@
 				82DFA5A31D1A5C0F00DE0351 /* UIScrollView+MJRefresh.m in Sources */,
 				82382A6D1D13DC030002BBC1 /* SDWebImageDownloaderOperation.m in Sources */,
 				82A529221D16AE0C0091F893 /* TabbarController.m in Sources */,
+				82E58B791D3ADAAE00489D54 /* BBRecordTools.m in Sources */,
 				820E41CC1D29EE6900F54DD4 /* AboutController.m in Sources */,
 				828D3CB41D0E7F23003B418E /* NSString+MJExtension.m in Sources */,
 				82023D8B1D11421200008E5A /* IQUIScrollView+Additions.m in Sources */,
