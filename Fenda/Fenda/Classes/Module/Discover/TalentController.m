@@ -33,6 +33,12 @@
 static NSString *reuseIdentifier = @"TalentCell";
 
 
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+}
+
 -(void)setupUI{
     
     self.backview.hidden = YES;

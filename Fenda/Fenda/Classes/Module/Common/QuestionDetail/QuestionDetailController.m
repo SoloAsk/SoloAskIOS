@@ -115,6 +115,8 @@ static NSString *reuseIdentifier3 = @"footerCell";
  
 }
 
+
+
 -(void)setupUI{
     
     self.title = NSLocalizedString(@"问题详情", "");

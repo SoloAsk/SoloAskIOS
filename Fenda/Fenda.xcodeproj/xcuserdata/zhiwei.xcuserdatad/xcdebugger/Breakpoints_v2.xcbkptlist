@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Fenda/Classes/Module/Common/QuestionDetail/QuestionDetailController.m"
-            timestampString = "490438524.754455"
+            timestampString = "490504514.326717"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "598"
-            endingLineNumber = "598"
+            startingLineNumber = "600"
+            endingLineNumber = "600"
             landmarkName = "-playingVoice"
             landmarkType = "5">
          </BreakpointContent>

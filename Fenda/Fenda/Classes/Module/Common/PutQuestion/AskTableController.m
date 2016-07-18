@@ -151,7 +151,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
 -(void)saveQuestion{
     
     
-    [CloudTools saveAskWithAskInfoDic:self.askDic answerObjID:self.bUser.objectId resultBlock:^(NSObject *object, NSError *error) {
+    [CloudTools saveAskWithAskInfoDic:self.askDic answerObjID:self.bUser resultBlock:^(NSObject *object, NSError *error) {
         
         if (error) {
             [MBProgressHUD showError:@"获取问题信息失败"];
@@ -159,6 +159,7 @@ static NSString *reuseIdentifier = @"AskTableCell";
         
        
         if (object) {
+            
             
             QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
             detailVC.question = (Question *)object;

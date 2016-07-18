@@ -20,4 +20,6 @@ typedef void(^IsAskerOrAnswerBlock)(BOOL isAuthor);
 
 @property (nonatomic,strong) Question *question;
 
+
+
 @end

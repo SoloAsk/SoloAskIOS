@@ -126,6 +126,10 @@ static NSString *reuseIdentifier = @"mineCell";
     
     [super viewWillAppear:animated];
     
+    
+    
+    
+    
     if (self.isLogin) {
 //        NSLog(@"现在是已登录成功状态");
         

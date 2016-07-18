@@ -14,11 +14,17 @@
 #import "UMSocialTwitterHandler.h"
 #import "UMSocial.h"
 #import <Bugly/Bugly.h>
+#import "QuestionDetailController.h"
+#import "AnswerVoiceController.h"
+#import "BaseNavController.h"
+#import "TabbarController.h"
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 
 @interface AppDelegate ()
+
+
 
 @end
 
@@ -53,6 +59,8 @@
     
     //设置shareSDK
     [self setShareSDK];
+    
+//    [self updateDeviceToken];
     
     
     return YES;
@@ -89,12 +97,14 @@
 
 -(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
     
+    
     //注册成功后上传Token至服务器
     BmobInstallation  *currentIntallation = [BmobInstallation installation];
     [currentIntallation setDeviceTokenFromData:deviceToken];
     [currentIntallation saveInBackground];
-    
-    
+    ;
+    self.deviceToken = currentIntallation.deviceToken;
+    [self updateDeviceToken];
 }
 
 
@@ -198,15 +208,64 @@
     
 }
 
+#pragma mark - 更新用户设备deviceToken
+-(void)updateDeviceToken{
+    
+    //更新当前用户User表的deviceToken
+    BmobQuery   *bquery = [BmobQuery queryWithClassName:@"User"];
+    
+    [bquery getObjectInBackgroundWithId:[UserManager sharedUserManager].userObjectID block:^(BmobObject *object,NSError *error){
+        //没有返回错误
+        if (!error) {
+            //对象存在
+            if (object) {
+                
+            
+                [object setObject:self.deviceToken forKey:@"deviceToken"];
+               
+                
+                //异步更新数据
+                [object updateInBackground];
+            }
+        }else{
+            [MBProgressHUD showError:@""];
+        }
+    }];
+}
 
 
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
+    
+  
+    
+    
+    //获取当前tabar控制器并设置选中的item
+    TabbarController *tabContrl = (TabbarController *)self.window.rootViewController;
+    tabContrl.selectedIndex = 0;
+    
+    //发送跳转通知
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeOpen" object:userInfo];
+    
+    NSLog(@"%@",userInfo);
+}
 
 
-
+/** 获取当前View的控制器对象 */
+-(UIViewController *)getCurrentViewController{
+    UIResponder *next = [self nextResponder];
+    do {
+        if ([next isKindOfClass:[UIViewController class]]) {
+            return (UIViewController *)next;
+        }
+        next = [next nextResponder];
+    } while (next != nil);
+    return nil;
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     
+    [self updateDeviceToken];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -214,6 +273,8 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
+    
+    [self updateDeviceToken];
     
 }
 

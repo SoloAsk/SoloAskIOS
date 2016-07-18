@@ -12,12 +12,16 @@
 #import <TwitterKit/TWTRSession.h>
 #import <TwitterKit/TwitterKit.h>
 #import <Social/Social.h>
+#import "AnswerVoiceController.h"
 
 @interface BaseTableViewController ()<UMSocialUIDelegate>
 
 @property (nonatomic, strong) Reachability *conn;
 
 @property (nonatomic,strong) CLShareManager *manager;
+
+//防止多次跳转
+@property (nonatomic,assign) BOOL jump;
 
 @end
 
@@ -29,7 +33,7 @@
     
     [super viewDidAppear:animated];
     
-    
+   
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -42,8 +46,14 @@
 }
 
 
+
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+
+    
     
     BackBarBtnView *backview = [[BackBarBtnView alloc] init];
     backview.backBlock = ^{
