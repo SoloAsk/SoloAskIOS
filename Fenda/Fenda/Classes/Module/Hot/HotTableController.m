@@ -22,6 +22,9 @@
 
 @property (nonatomic,strong) HotCell *proCell;
 
+//防止多次跳转
+@property (nonatomic,assign) NSInteger jump;
+
 @end
 
 @implementation HotTableController
@@ -38,44 +41,64 @@ static NSString *reuseIdentifier = @"hotCell";
 }
 
 
--(void)viewWillAppear:(BOOL)animated{
+-(void)viewDidAppear:(BOOL)animated{
     
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
+    self.jump = 0;
+    //接收到远程通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeOpenAction:) name:@"noticeOpen" object:nil];
     
+}
+
+-(void)viewDidDisappear:(BOOL)animated{
+    
+    [super viewDidDisappear:animated];
+    
+//
 }
 
 
 -(void)noticeOpenAction:(NSNotification *)noti{
     
     
-    NSDictionary *userInfoDic = (NSDictionary *)[noti object];
-    
-    if (userInfoDic[@"aps"][@"questionID"]) {
+   
+        NSDictionary *userInfoDic = (NSDictionary *)[noti object];
         
-        //查找GameScore表
-        BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
-        [bquery includeKey:@"askUser,answerUser"];
-        //查找GameScore表里面id为0c6db13c的数据
-        [bquery getObjectInBackgroundWithId:userInfoDic[@"aps"][@"questionID"] block:^(BmobObject *object,NSError *error){
-            if (error){
-                //进行错误处理
-            }else{
-                
-                if (object) {
+        if (userInfoDic[@"aps"][@"questionID"]) {
+            
+            //查找GameScore表
+            BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+            [bquery includeKey:@"askUser,answerUser"];
+            //查找GameScore表里面id为0c6db13c的数据
+            [bquery getObjectInBackgroundWithId:userInfoDic[@"aps"][@"questionID"] block:^(BmobObject *object,NSError *error){
+                if (error){
+                    //进行错误处理
+                }else{
                     
-                   
-                    AnswerVoiceController *detailVC = [[AnswerVoiceController alloc] init];
-                    detailVC.quesModel = (Question *)object;
-                    detailVC.hidesBottomBarWhenPushed = YES;
-                    [self.navigationController pushViewController:detailVC animated:YES];
-                    
-                    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"noticeOpen" object:nil];
+                    if (object) {
+                        
+                        
+                        
+                        if (self.jump == 0) {
+                            self.jump++;
+                            AnswerVoiceController *detailVC = [[AnswerVoiceController alloc] init];
+                            detailVC.quesModel = (Question *)object;
+                            detailVC.hidesBottomBarWhenPushed = YES;
+                            [self.navigationController pushViewController:detailVC animated:YES];
+                            
+                            [[NSNotificationCenter defaultCenter]removeObserver:self name:@"noticeOpen" object:nil];
+                        }
+                        
+                        
+                        
+                       
+                    }
                 }
-            }
-        }];
-        
-    }
+            }];
+            
+        }
+
     
     
     
@@ -90,8 +113,6 @@ static NSString *reuseIdentifier = @"hotCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    //接收到远程通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeOpenAction:) name:@"noticeOpen" object:nil];
     
     [self setupUI];
     

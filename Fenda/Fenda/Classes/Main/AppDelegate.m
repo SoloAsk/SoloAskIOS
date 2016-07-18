@@ -19,12 +19,14 @@
 #import "BaseNavController.h"
 #import "TabbarController.h"
 
+
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 
 @interface AppDelegate ()
 
-
+//防止多次跳转
+@property (nonatomic,assign) BOOL jump;
 
 @end
 
@@ -32,6 +34,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    self.jump = YES;
     
     //设置Bmob
     [self setupBmob];
@@ -244,7 +248,9 @@
     tabContrl.selectedIndex = 0;
     
     //发送跳转通知
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeOpen" object:userInfo];
+    
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeOpen" object:userInfo];
+    
     
     NSLog(@"%@",userInfo);
 }

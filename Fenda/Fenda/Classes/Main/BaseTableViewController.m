@@ -20,8 +20,7 @@
 
 @property (nonatomic,strong) CLShareManager *manager;
 
-//防止多次跳转
-@property (nonatomic,assign) BOOL jump;
+
 
 @end
 

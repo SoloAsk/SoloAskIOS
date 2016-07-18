@@ -32,7 +32,6 @@
 -(void)itemShareAction;
 
 
--(void)noticeOpenAction:(NSNotification *)noti;
 
 
 @end
