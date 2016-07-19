@@ -240,7 +240,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     
-  
+    [UIApplication sharedApplication].applicationIconBadgeNumber++;
     
     
     //获取当前tabar控制器并设置选中的item
@@ -248,9 +248,21 @@
     tabContrl.selectedIndex = 0;
     
     //发送跳转通知
+    NSString *openType = userInfo[@"aps"][@"openType"];
+    if ([openType isEqualToString:@"ask"]) {
+        //有人提问我的时候跳到回答页
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeAskOpen" object:userInfo];
+        return;
+    }
     
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeOpen" object:userInfo];
     
+    if ([openType isEqualToString:@"answer"]) {
+        //问题被回答的时候跳到对应问题详情页
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"noticeAnswerOpen" object:userInfo];
+        return;
+    }
+    
+
     
     NSLog(@"%@",userInfo);
 }
@@ -272,6 +284,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     
     [self updateDeviceToken];
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -281,7 +294,7 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     
     [self updateDeviceToken];
-    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

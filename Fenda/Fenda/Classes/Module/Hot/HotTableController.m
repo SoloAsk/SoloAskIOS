@@ -24,6 +24,7 @@
 
 //防止多次跳转
 @property (nonatomic,assign) NSInteger jump;
+@property (nonatomic,assign) NSInteger jump2;
 
 @end
 
@@ -46,9 +47,12 @@ static NSString *reuseIdentifier = @"hotCell";
     [super viewDidAppear:animated];
     
     self.jump = 0;
+    self.jump2 = 0;
     //接收到远程通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeOpenAction:) name:@"noticeOpen" object:nil];
-    
+    //我问
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeAskOpenAction:) name:@"noticeAskOpen" object:nil];
+    //我答
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(noticeAnswerOpenAction:) name:@"noticeAnswerOpen" object:nil];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -59,7 +63,7 @@ static NSString *reuseIdentifier = @"hotCell";
 }
 
 
--(void)noticeOpenAction:(NSNotification *)noti{
+-(void)noticeAnswerOpenAction:(NSNotification *)noti{
     
     
    
@@ -80,14 +84,14 @@ static NSString *reuseIdentifier = @"hotCell";
                         
                         
                         
-                        if (self.jump == 0) {
-                            self.jump++;
-                            AnswerVoiceController *detailVC = [[AnswerVoiceController alloc] init];
-                            detailVC.quesModel = (Question *)object;
+                        if (self.jump2 == 0) {
+                            self.jump2++;
+                            QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
+                            detailVC.question = (Question *)object;
                             detailVC.hidesBottomBarWhenPushed = YES;
                             [self.navigationController pushViewController:detailVC animated:YES];
                             
-                            [[NSNotificationCenter defaultCenter]removeObserver:self name:@"noticeOpen" object:nil];
+                            [[NSNotificationCenter defaultCenter]removeObserver:self name:@"noticeAnswerOpen" object:nil];
                         }
                         
                         
@@ -99,6 +103,53 @@ static NSString *reuseIdentifier = @"hotCell";
             
         }
 
+    
+    
+    
+    
+}
+
+
+-(void)noticeAskOpenAction:(NSNotification *)noti{
+    
+    
+    
+    NSDictionary *userInfoDic = (NSDictionary *)[noti object];
+    
+    if (userInfoDic[@"aps"][@"questionID"]) {
+        
+        //查找GameScore表
+        BmobQuery   *bquery = [BmobQuery queryWithClassName:@"Question"];
+        [bquery includeKey:@"askUser,answerUser"];
+        //查找GameScore表里面id为0c6db13c的数据
+        [bquery getObjectInBackgroundWithId:userInfoDic[@"aps"][@"questionID"] block:^(BmobObject *object,NSError *error){
+            if (error){
+                //进行错误处理
+            }else{
+                
+                if (object) {
+                    
+                    
+                    
+                    if (self.jump == 0) {
+                        self.jump++;
+                        AnswerVoiceController *detailVC = [[AnswerVoiceController alloc] init];
+                        detailVC.quesModel = (Question *)object;
+                        detailVC.hidesBottomBarWhenPushed = YES;
+                        [self.navigationController pushViewController:detailVC animated:YES];
+                        
+                        [[NSNotificationCenter defaultCenter]removeObserver:self name:@"noticeAskOpen" object:nil];
+                    }
+                    
+                    
+                    
+                    
+                }
+            }
+        }];
+        
+    }
+    
     
     
     

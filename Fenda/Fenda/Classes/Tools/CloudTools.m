@@ -96,10 +96,7 @@
         
         if (isSuccessful) {
             
-            
-            
             BmobQuery *bquery = [BmobQuery queryWithClassName:@"Question"];
-            
             [bquery includeKey:@"askUser,answerUser"];
             [bquery getObjectInBackgroundWithId:post.objectId block:^(BmobObject *object, NSError *error) {
                 
@@ -111,13 +108,11 @@
                 
                 
                 if (object) {
-                    //                    //给被提问者发推送通知
+                    //给被提问者发推送通知
                     BmobQuery *query = [BmobInstallation query];
                     [query whereKey:@"deviceToken" equalTo:[answer objectForKey:@"deviceToken"]];
-                    
                     BmobPush *push = [BmobPush push];
                     [push setQuery:query];
-                    
                     
                     NSString *askerName = [[object objectForKey:@"askUser"] objectForKey:@"userName"];
                     NSString *notiStr = [NSString stringWithFormat:@"%@给您提了一个问题",askerName];
@@ -125,14 +120,13 @@
                                               @"sound": @"cheering.caf",
                                               @"alert": notiStr,
                                               @"badge": @0,
-                                              @"questionID":object.objectId
+                                              @"questionID":object.objectId,
+                                              @"openType":@"ask"
                                               };
                     
                     NSDictionary *dic = @{
                                           @"aps":message
                                           };
-                    
-                    //                    NSString *msg = [dic mj_JSONString];
                     
                     [push setData:dic];
                     [push sendPushInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {

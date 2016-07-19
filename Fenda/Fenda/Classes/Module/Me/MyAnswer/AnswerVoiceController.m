@@ -367,8 +367,7 @@
     [file1 saveInBackground:^(BOOL isSuccessful, NSError *error) {
        
         if (isSuccessful) {
-            
-//            NSLog(@"%@",file1.url);
+
             [question setObject:file1.url  forKey:@"quesVoiceURL"];
             [question setObject:@1 forKey:@"state"];
             
@@ -377,10 +376,51 @@
             [question sub_updateInBackgroundWithResultBlock:^(BOOL isSuccessful, NSError *error) {
                 
                 if (isSuccessful) {
-                    NSLog(@"发送成功");
-                    [MBProgressHUD hideHUD];
-                    [MBProgressHUD showSuccess:@"发送成功"];
-                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                    //给被提问者发推送通知
+                    BmobQuery *query = [BmobInstallation query];
+                    [query whereKey:@"deviceToken" equalTo:[[_quesModel objectForKey:@"askUser"] objectForKey:@"deviceToken"]];
+                    BmobPush *push = [BmobPush push];
+                    [push setQuery:query];
+                    
+                    NSString *askerName = [[_quesModel objectForKey:@"answerUser"] objectForKey:@"userName"];
+                    NSString *notiStr = [NSString stringWithFormat:@"%@回答了您的问题",askerName];
+                    NSDictionary *message = @{
+                                              @"sound": @"cheering.caf",
+                                              @"alert": notiStr,
+                                              @"badge": @0,
+                                              @"questionID":_quesModel.objectId,
+                                              @"openType":@"answer"
+                                              };
+                    
+                    NSDictionary *dic = @{
+                                          @"aps":message
+                                          };
+                    
+                    [push setData:dic];
+                    [push sendPushInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
+                        
+                        if (error) {
+                            [MBProgressHUD hideHUD];
+                            [MBProgressHUD showError:[error description]];
+                            NSLog(@"%@",[error description]);
+                        }
+                        
+                        
+                        if (isSuccessful) {
+                            
+                            
+                            NSLog(@"发送成功");
+                            [MBProgressHUD hideHUD];
+                            [MBProgressHUD showSuccess:@"发送成功"];
+                            [self.navigationController popViewControllerAnimated:YES];
+                            
+                            
+                        }
+                        
+                    }];
+                    
+                    
                 }
                 
                 
