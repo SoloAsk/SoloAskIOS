@@ -25,9 +25,6 @@
 
 @interface AppDelegate ()
 
-//防止多次跳转
-@property (nonatomic,assign) BOOL jump;
-
 @end
 
 @implementation AppDelegate
@@ -35,7 +32,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    self.jump = YES;
     
     //设置Bmob
     [self setupBmob];
@@ -240,8 +236,9 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     
-    [UIApplication sharedApplication].applicationIconBadgeNumber++;
-    
+    NSInteger bage = [UIApplication sharedApplication].applicationIconBadgeNumber;
+    bage = bage + 1;
+    [UIApplication sharedApplication].applicationIconBadgeNumber = bage;
     
     //获取当前tabar控制器并设置选中的item
     TabbarController *tabContrl = (TabbarController *)self.window.rootViewController;
