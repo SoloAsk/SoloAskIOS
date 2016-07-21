@@ -137,6 +137,7 @@
 		82382AF41D1594C10002BBC1 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 82382AEF1D1594C10002BBC1 /* SVRadialGradientLayer.m */; };
 		82382AF61D15953F0002BBC1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82382AF51D15953F0002BBC1 /* QuartzCore.framework */; };
 		82382AFA1D1598A50002BBC1 /* Tools.m in Sources */ = {isa = PBXBuildFile; fileRef = 82382AF91D1598A50002BBC1 /* Tools.m */; };
+		824706281D411732008D69F6 /* Products.plist in Resources */ = {isa = PBXBuildFile; fileRef = 824706271D411732008D69F6 /* Products.plist */; };
 		828D3C681D0E5C85003B418E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828D3C661D0E5C85003B418E /* Main.storyboard */; };
 		828D3C6A1D0E5C85003B418E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 828D3C691D0E5C85003B418E /* Assets.xcassets */; };
 		828D3C6D1D0E5C85003B418E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 828D3C6B1D0E5C85003B418E /* LaunchScreen.storyboard */; };
@@ -479,6 +480,7 @@
 		82382AF51D15953F0002BBC1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		82382AF81D1598A50002BBC1 /* Tools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tools.h; sourceTree = "<group>"; };
 		82382AF91D1598A50002BBC1 /* Tools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tools.m; sourceTree = "<group>"; };
+		824706271D411732008D69F6 /* Products.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Products.plist; sourceTree = "<group>"; };
 		828D3C5A1D0E5C85003B418E /* Fenda.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fenda.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		828D3C671D0E5C85003B418E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		828D3C691D0E5C85003B418E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -1316,6 +1318,7 @@
 				82B48F0A1D0FFAA90070DA78 /* images */,
 				828D3C8D1D0E7A68003B418E /* HotCellData.plist */,
 				828D3CBA1D0EA666003B418E /* Mine.plist */,
+				824706271D411732008D69F6 /* Products.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -1826,6 +1829,7 @@
 				820E437B1D2B8C7400F54DD4 /* MineListenHeadView.xib in Resources */,
 				82F425A61D35E5B600B8F2E0 /* luyin.aac in Resources */,
 				82382A071D1340CB0002BBC1 /* UMSCommentInputControlleriPad.xib in Resources */,
+				824706281D411732008D69F6 /* Products.plist in Resources */,
 				82D042771D2F32C2008D5A56 /* share_朋友圈@2x.png in Resources */,
 				820E41E11D29F29E00F54DD4 /* TalentCell.xib in Resources */,
 				82382A0D1D1340CB0002BBC1 /* UMSocialSDKResourcesNew.bundle in Resources */,

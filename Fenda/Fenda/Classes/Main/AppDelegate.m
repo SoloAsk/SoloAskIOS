@@ -107,6 +107,11 @@
     [self updateDeviceToken];
 }
 
+-(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
+    
+    
+}
+
 
 #pragma mark - 设置shareSDK
 -(void)setShareSDK{

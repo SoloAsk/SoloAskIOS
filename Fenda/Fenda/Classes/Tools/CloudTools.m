@@ -62,7 +62,7 @@
 #pragma mark - 提问完成将信息保存后台
 +(void)saveAskWithAskInfoDic:(NSDictionary *)infoDic answerObjID:(User *)answer resultBlock:(GetObjectBlock)result{
     
-    [MBProgressHUD  showMessage:@"请稍后"];
+//    [MBProgressHUD  showMessage:@"请稍后"];
     
     BmobObject  *post = [BmobObject objectWithClassName:@"Question"];
     //设置问题内容、价格、是否公开
@@ -88,8 +88,10 @@
         
         
         if (error) {
-            [MBProgressHUD hideHUD];
-            [MBProgressHUD showError:@"保存信息失败"];
+            
+            [SVProgressHUD showErrorWithStatus:@"保存信息失败"];
+            [SVProgressHUD dismissWithDelay:1.0];
+            
             NSLog(@"%@",[error description]);
         }
         
@@ -132,15 +134,17 @@
                     [push sendPushInBackgroundWithBlock:^(BOOL isSuccessful, NSError *error) {
                         
                         if (error) {
-                            [MBProgressHUD hideHUD];
-                            [MBProgressHUD showError:[error description]];
+                            
+                            [SVProgressHUD showErrorWithStatus:[error description]];
+                            [SVProgressHUD dismissWithDelay:1.0];
                             NSLog(@"%@",[error description]);
                         }
                         
                         
                         if (isSuccessful) {
-                            [MBProgressHUD hideHUD];
-                            [MBProgressHUD showSuccess:@"提问成功"];
+                            
+                            [SVProgressHUD showSuccessWithStatus:@"提问成功"];
+                            [SVProgressHUD dismissWithDelay:1.0];
                             result(object,error);
                         }
                         

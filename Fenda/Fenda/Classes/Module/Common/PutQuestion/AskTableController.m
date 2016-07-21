@@ -131,14 +131,23 @@ static NSString *reuseIdentifier = @"AskTableCell";
 //        [self.hud show:YES];
 //        [self.hud hide:YES afterDelay:5];
         
-        [self saveQuestion];
-
+        NSNumber *indexNum = self.askDic[@"quesPrice"];
+        NSInteger index = [indexNum integerValue];
         
-        //请求可售商品
-//        NSSet *productSet = [NSSet setWithArray:@[@"soloask.listen"]];
-//        SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
-//        request.delegate = self;
-//        [request start];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Products" ofType:@"plist"];
+        NSArray *products = [NSArray arrayWithContentsOfFile:path];
+        
+        
+        if ([SKPaymentQueue canMakePayments]) {
+            
+            [SVProgressHUD show];
+            //请求可售商品
+            NSSet *productSet = [NSSet setWithArray:@[products[index]]];
+            SKProductsRequest *request = [[SKProductsRequest alloc] initWithProductIdentifiers:productSet];
+            request.delegate = self;
+            [request start];
+        }
+        
         
     };
     
@@ -154,12 +163,12 @@ static NSString *reuseIdentifier = @"AskTableCell";
     [CloudTools saveAskWithAskInfoDic:self.askDic answerObjID:self.bUser resultBlock:^(NSObject *object, NSError *error) {
         
         if (error) {
-            [MBProgressHUD showError:@"获取问题信息失败"];
+            [SVProgressHUD showErrorWithStatus:@"获取问题信息失败"];
+            [SVProgressHUD dismissWithDelay:1.0];
         }
         
        
         if (object) {
-            
             
             QuestionDetailController *detailVC = [[QuestionDetailController alloc] init];
             detailVC.question = (Question *)object;
@@ -200,8 +209,8 @@ static NSString *reuseIdentifier = @"AskTableCell";
      SKPaymentTransactionStateDeferred 未决定的,不需要做处理
      */
     
-
     
+//    [SVProgressHUD setMinimumDismissTimeInterval:1];
     for (SKPaymentTransaction *transacion in transactions) {
         switch (transacion.transactionState) {
             case SKPaymentTransactionStatePurchasing:
@@ -210,11 +219,8 @@ static NSString *reuseIdentifier = @"AskTableCell";
             case SKPaymentTransactionStatePurchased:
                 
             {
-                
+                //购买成功绑定信息
                 [self saveQuestion];
-                
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"购买成功"];
                 [queue finishTransaction:transacion];
             }
                 
@@ -222,27 +228,26 @@ static NSString *reuseIdentifier = @"AskTableCell";
                 break;
                 
             case SKPaymentTransactionStateFailed:
+            
                 [queue finishTransaction:transacion];
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"购买失败"];
+                [SVProgressHUD showErrorWithStatus:@"购买失败"];
+                
                 break;
                 
             case SKPaymentTransactionStateRestored:
-                [MBProgressHUD showError:@"恢复购买"];
-                [MBProgressHUD hideHUD];
-                [queue finishTransaction:transacion];
                 
+                [queue finishTransaction:transacion];
+                [SVProgressHUD showErrorWithStatus:@"恢复购买"];
                 break;
                 
             case SKPaymentTransactionStateDeferred:
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"未决定购买"];
+                
                 [queue finishTransaction:transacion];
+                [SVProgressHUD showErrorWithStatus:@"未决定购买"];
                 break;
                 
             default:
-                [MBProgressHUD hideHUD];
-                [MBProgressHUD showError:@"未知错误"];
+                [SVProgressHUD showErrorWithStatus:@"未知错误"];
                 
                 break;
         }
