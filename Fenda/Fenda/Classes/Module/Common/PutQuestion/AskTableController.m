@@ -131,10 +131,10 @@ static NSString *reuseIdentifier = @"AskTableCell";
 //        [self.hud show:YES];
 //        [self.hud hide:YES afterDelay:5];
         
-        NSNumber *indexNum = self.askDic[@"quesPrice"];
+        NSNumber *indexNum = [self.bUser objectForKey:@"priceRank"];
         NSInteger index = [indexNum integerValue];
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:@"Products" ofType:@"plist"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"Products2" ofType:@"plist"];
         NSArray *products = [NSArray arrayWithContentsOfFile:path];
         
         

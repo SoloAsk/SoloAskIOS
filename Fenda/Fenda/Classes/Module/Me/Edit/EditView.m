@@ -60,9 +60,11 @@
 
 - (IBAction)priceBtnClick:(UIButton *)sender {
     
-    NSArray * str  = @[@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"];
+    NSArray * str  = @[@"0.99",@"1.99",@"2.99",@"4.99"];
+    
     zySheetPickerView *pickerView = [zySheetPickerView ZYSheetStringPickerWithTitle:str andHeadTitle:@"Select Price" Andcall:^(zySheetPickerView *pickerView, NSString *choiceString) {
-        [self.priceBtn setTitle:choiceString forState:UIControlStateNormal];
+        
+        [self.priceBtn setTitle:[NSString stringWithFormat:@"$%@",choiceString] forState:UIControlStateNormal];
         [pickerView dismissPicker];
     }];
     [pickerView show];
@@ -78,7 +80,7 @@
     self.honorLabel.text = [_bUser objectForKey:@"userTitle"];
     self.introduce.text = [_bUser objectForKey:@"userIntroduce"];
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-    [self.priceBtn setTitle:[formatter stringFromNumber:[_bUser objectForKey:@"askPrice"]] forState:UIControlStateNormal];
+    [self.priceBtn setTitle:[NSString stringWithFormat:@"$%@",[formatter stringFromNumber:[_bUser objectForKey:@"askPrice"]]] forState:UIControlStateNormal];
 }
 
 
@@ -99,11 +101,26 @@
         return;
     }
     
+    NSNumber *priceRank;
+    NSString *btnText = self.priceBtn.titleLabel.text;
+    
+    if ([btnText isEqualToString:@"$0.99"]) {
+        priceRank = @1;
+    }else if([btnText isEqualToString:@"$1.99"]){
+        priceRank = @2;
+    }else if([btnText isEqualToString:@"$2.99"]){
+        priceRank = @3;
+    }else if([btnText isEqualToString:@"$4.99"]){
+        priceRank = @4;
+    }
+    
+    
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
     NSDictionary *userInfoDic = @{
                 @"userTitle":self.honorLabel.text,
                 @"userIntroduce":self.introduce.text,
-                @"askPrice":[formatter numberFromString:self.priceBtn.titleLabel.text]
+                @"askPrice":[formatter numberFromString:self.priceBtn.titleLabel.text],
+                @"priceRank":priceRank
                 };
     
     [CloudTools updateEditUserWithBUser:self.bUser UserInfo:userInfoDic Block:^(BOOL isSuccessful, NSError *error) {
