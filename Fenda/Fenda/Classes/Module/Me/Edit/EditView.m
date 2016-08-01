@@ -119,7 +119,7 @@
     NSDictionary *userInfoDic = @{
                 @"userTitle":self.honorLabel.text,
                 @"userIntroduce":self.introduce.text,
-                @"askPrice":[formatter numberFromString:self.priceBtn.titleLabel.text],
+                @"askPrice":[formatter numberFromString:[self.priceBtn.titleLabel.text substringFromIndex:1]],
                 @"priceRank":priceRank
                 };
     

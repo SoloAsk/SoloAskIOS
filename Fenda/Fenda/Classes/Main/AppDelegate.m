@@ -32,6 +32,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    NSLog(@"sfsfsdfsdfsf");
     
     //设置Bmob
     [self setupBmob];
